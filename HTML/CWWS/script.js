@@ -32,14 +32,18 @@ function closeNav() {
 //
 //sidebarbutton
 function togglesidebar(){
+
   var x = document.getElementById("idsidebar");
   var btn = document.getElementById("sidebarbtn");
+
   if (x.classList.contains("activesb")) {
     x.classList.remove("activesb");
+    btn.className = "sidebarbutton";
     btn.innerHTML=">";
   } 
   else {
     x.classList.add("activesb");
+    btn.className+= " activebtn";
     btn.innerHTML="<";
   }
 }
