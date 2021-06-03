@@ -142,7 +142,7 @@
         return $result;
     }
 
-    function Lagerplatzanlegen($conn,$Name,$Kategorie,$Beschreibung,$Laenge,$Hoehe,$Breite){
+    function Lagerplatzanlegen($conn,$Name,$Kategorie,$Beschreibung,$Laenge,$Hoehe,$Breite,$User_User_id){
         $sql = "INSERT INTO storage_yard (Storage_name,Storage_description,Storage_category,Storage_format_heigth,Storage_format_width,Storage_format_length,User_User_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt,$sql)){
@@ -150,7 +150,7 @@
             exit();
         }
         $userid=1;
-        if(!mysqli_stmt_bind_param($stmt, "sssssss",$Name, $Beschreibung, $Kategorie, $Hoehe, $Breite, $Laenge,$userid)){
+        if(!mysqli_stmt_bind_param($stmt, "sssssss",$Name, $Beschreibung, $Kategorie, $Hoehe, $Breite, $Laenge,$User_User_id)){
             header("location: ../storage.php?error=bindparamfailed");
         }
         
@@ -178,12 +178,12 @@
         }
     }
 
-    function getlagerplatz($Storage_name){
-        $sql = 'SELECT * FROM storage_yard WHERE Storage_name ='.$Storage_name.';';
-        include_once 'includes/dbh.inc.php';
+    function getlagerplatz($conn,$Storage_name){
+        $sql = "SELECT * FROM storage_yard WHERE Storage_name ='$Storage_name';";
+        
         $res=mysqli_query($conn, $sql);
         if(!$res){
-            header("location: ../storage.php?error=stmtexecutefailed");
+            
         }
         else{
             return $res;

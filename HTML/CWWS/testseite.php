@@ -29,19 +29,20 @@
                                     <div class="objektfenster">
                                 
                                         <?php
-                                            
-                                                $objekt = getlagerplatz("raum1");
-                                               echo '
-                                                <div class="lagerplatz">
-                                                    <p class="datenheader">Name:</p><p class="datenfeld">'.$objekt['Storage_name'].'</p>
-                                                    <p class="datenheader">ID:</p><p class="datenfeld">'.$objekt['Storage_id'].'</p>
-                                                    <p class="datenheader">Beschreibung:</p><p class="datenfeld">ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                                                    <p class="datenheader">Kategorie:</p><p class="datenfeld"></p>
-                                                    <p class="datenheader">Bild:</p><p class="datenfeld"></p>
-                                                    <p class="datenheader">Maße:</p><p class="datenfeld"></p>
-                                                    <p class="datenheader">Nutzerliste:</p><p class="datenfeld">Ingo, Stefan, Anne, Angela</p>
-                                                </div>
-                                               ';
+                                            require_once 'includes/dbh.inc.php';
+                                            require_once 'includes/functions.inc.php';
+                                            $objektarray = mysqli_fetch_array(getlagerplatz($conn,"raum1"));
+                                            echo '
+                                            <div class="lagerplatz">
+                                                <p class="datenheader">Name:</p><p class="datenfeld">'.$objektarray['Storage_name'].'</p>
+                                                <p class="datenheader">ID:</p><p class="datenfeld">'.$objektarray['Storage_id'].'</p>
+                                                <p class="datenheader">Beschreibung:</p><p class="datenfeld">'.$objektarray['Storage_description'].'</p>
+                                                <p class="datenheader">Kategorie:</p><p class="datenfeld">'.$objektarray['Storage_category'].'</p>
+                                                <p class="datenheader">Bild:</p><p class="datenfeld">'.$objektarray['Storage_id'].'</p>
+                                                <p class="datenheader">Maße:</p><p class="datenfeld">'.$objektarray['Storage_format_length'].'m x '.$objektarray['Storage_format_width'].'m x '.$objektarray['Storage_format_heigth'].'m</p>
+                                                <p class="datenheader">Nutzerliste:</p><p class="datenfeld">'.$objektarray['User_User_id'].'</p>
+                                            </div>
+                                            ';
                                             
                                         ?>                                          
                                     </div>

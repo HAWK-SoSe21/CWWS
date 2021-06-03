@@ -17,7 +17,9 @@ body{
     text-decoration: none;
 }
 input{
-    width:100px;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
@@ -38,6 +40,7 @@ input{
     text-decoration: none;
     list-style: none;
     border: 1px solid darkgreen;
+    
     transition: border-bottom 0.5s;
     padding: 5px;
 }
@@ -102,6 +105,7 @@ input{
 }
 .mainbox{
     border: 1px solid darkgreen;
+    border-radius: 15px;
     padding: 5px;
 }
 .maingrid{
@@ -228,6 +232,7 @@ input{
 
 .objektfenster{
     border: 1px solid midnightblue;
+    border-radius: 15px;
     background-color: darkgreen;
     width: 100%;
     height: fit-content;
@@ -236,6 +241,9 @@ input{
     grid-template-columns: auto auto;
     grid-gap:1px;
     margin: 2px;
+}
+.objektfenster p{
+    margin-left: 15px;
 }
 .lagerplatz{
     display: grid;
