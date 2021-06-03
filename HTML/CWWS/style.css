@@ -112,7 +112,6 @@ input{
 }
 
 /* sidebar*/
-
 .sidebar{
     background-color: rgba(255, 255, 255, 0.001);
     color: white;
@@ -126,7 +125,6 @@ input{
     display: block;
     overflow:hidden;
 }
-
 .sidebar ul header{
     width: 100%;
     padding: 10px;
@@ -136,11 +134,9 @@ input{
     border-top: 2px solid rgba(255, 255, 255, 0.2);
     border-bottom: 2px solid rgb(255, 255, 255, 0.2);
 }
-
 .sidebar ul li{
    list-style: none;
 }
-
 .sidebar ul li a{
     display: flex;
     flex-wrap: wrap;
@@ -160,7 +156,7 @@ input{
 }
 .activesb ul{
     display: block;
-    width: 105px;   
+    width: 105px;
 }
 
 .sidebarbutton{
@@ -171,7 +167,7 @@ input{
     color: white;
     font-weight: bold;
 }
-.activebtn{
+.activesb .sidebarbutton{
     background-color: darkgreen;
 }
 
@@ -203,6 +199,58 @@ input{
     justify-content: center;
 }
 
+/*Explorer*/
+.explorer{
+    display: grid;
+    grid-template-columns: 100px auto;
+}
+.liste{
+    width: 100%;
+}
+.explorer ul li{
+    list-style: none;
+    text-decoration: none;
+    transition: border-bottom 0.5s;
+    padding: 5px;
+}
+.explorer ul li a{
+    color: white;
+    font-size:small;
+    text-decoration: none;
+    transition: colour 0.5s;
+}
+.explorer ul li:hover{
+    border-bottom: 1px solid green;
+}
+.explorer ul li a:hover{
+    color: darkgreen;
+}
+
+.objektfenster{
+    border: 1px solid midnightblue;
+    background-color: darkgreen;
+    width: 100%;
+    height: fit-content;
+    font-size: small;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap:1px;
+    margin: 2px;
+}
+.lagerplatz{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap:1px;
+}
+.lagerplatz .datenfeld{
+    max-height: 75px;
+    overflow:auto;
+    font-weight: normal;
+    background: rgb(53, 116, 53);
+}
+.lagerplatz .datenheader{
+    font-weight: bold;
+}
 
 
 

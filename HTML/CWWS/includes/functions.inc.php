@@ -143,17 +143,50 @@
     }
 
     function Lagerplatzanlegen($conn,$Name,$Kategorie,$Beschreibung,$Laenge,$Hoehe,$Breite){
-        $sql = "INSERT INTO storage_yard (Storage_name,Storage_description,Storage_category,Storage_format_heigth,Storage_format_width,Storage_format_length) VALUES (?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO storage_yard (Storage_name,Storage_description,Storage_category,Storage_format_heigth,Storage_format_width,Storage_format_length,User_User_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt,$sql)){
             header("location: ../storage.php?error=stmtfailed");
             exit();
         }
+        $userid=1;
+        if(!mysqli_stmt_bind_param($stmt, "sssssss",$Name, $Beschreibung, $Kategorie, $Hoehe, $Breite, $Laenge,$userid)){
+            header("location: ../storage.php?error=bindparamfailed");
+        }
         
-        mysqli_stmt_bind_param($stmt, "ssssss",$Name, $Beschreibung, $Kategorie, $Hoehe, $Breite, $Laenge);
-        mysqli_stmt_execute($stmt);
+        if(!mysqli_stmt_execute($stmt)){
+            header("location: ../storage.php?error=stmtexecutefailed");
+        }
         mysqli_stmt_close($stmt);
         header("location: ../storage.php?error=none");
         exit();
+    }
+
+    function explorerliste($conn){
+        $res=mysqli_query($conn, "SELECT * FROM storage_yard;");
+        if(!$res){
+            echo("keine Lagerplätze gefunden");
+        }
+        else{
+            $i=0;
+            echo "<ul>";
+                while($row=mysqli_fetch_array($res)){
+                    echo ('<li><a href="#'.$row['Storage_name'].'">'.$row['Storage_name'].'</a></li><button id="dropdownbutton'.$i.' class="dropdownbutton" onclick="togglesubelements()">V</button>');
+                    $i++;
+                }
+            echo"</ul>";
+        }
+    }
+
+    function getlagerplatz($Storage_name){
+        $sql = 'SELECT * FROM storage_yard WHERE Storage_name ='.$Storage_name.';';
+        include_once 'includes/dbh.inc.php';
+        $res=mysqli_query($conn, $sql);
+        if(!$res){
+            header("location: ../storage.php?error=stmtexecutefailed");
+        }
+        else{
+            return $res;
+        }
     }
 ?>
