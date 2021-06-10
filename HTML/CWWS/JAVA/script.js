@@ -1,12 +1,16 @@
-//active navigation bar
-const currentLocation = location.href;
-const menuItem= document.querySelectorAll('a');
-const menuLength = menuItem.length
-for(let i=0;i<menuLength;i++){
-    if(menuItem[i].href ===currentLocation){
+//active navigation
+  const currentLocation = location.href;
+  const menuItem= document.querySelectorAll('a');
+  const menuLength = menuItem.length
+  for(let i=0;i<menuLength;i++){
+    if( currentLocation.includes(menuItem[i].href)){
         menuItem[i].parentNode.className ="active"
     }
-}
+    else{
+        menuItem[i].parentNode.classList.remove ="active"
+    }
+  }
+
 //dropdownmenüs
 $(document).ready(function () {
     $('.group').hide();

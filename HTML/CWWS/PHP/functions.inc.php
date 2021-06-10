@@ -1,4 +1,6 @@
 <?php
+
+
     function emptyInputSignup($name,$email,$username,$pwd,$pwdrepeat){
         $result=false;
         if(empty($name)||empty($email)||empty($username)||empty($pwd)||empty($pwdrepeat)){
@@ -9,6 +11,8 @@
         }
         return $result;
     }
+
+
 
     function invalidUid($username){
         $result=false;
@@ -21,6 +25,8 @@
         return $result;
     }
 
+
+
     function invalidemail($email){
         $result=false;
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
@@ -32,6 +38,8 @@
         return $result;
     }
 
+
+
     function pwdMatch($pwd,$pwdrepeat){
         $result=false;
         if($pwdrepeat!==$pwd){
@@ -42,6 +50,8 @@
         }
         return $result;
     }
+
+
 
     function uidExists($conn,$email){
         $sql = "SELECT * FROM user WHERE User_email = ?;";
@@ -69,6 +79,8 @@
         mysqli_stmt_close($stmt);
     }
 
+
+
     function createUser($conn, $firstname, $lastname, $email, $birthday, $pwd){
         $sql = "INSERT INTO user (User_first_name,User_second_name,User_email,User_birthday,User_password) VALUES (?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
@@ -86,6 +98,7 @@
         exit();
     }
 
+    
     function emptyInputLogin($username,$pwd){
         $result=false;
         if(empty($username)||empty($pwd)){
@@ -96,6 +109,8 @@
         }
         return $result;
     }
+
+
 
     function loginUser($conn,$username,$pwd){
         $uidExists = uidExists($conn,$username);
@@ -121,6 +136,8 @@
         }
     }
 
+
+
     function userinfo(){
         if(isset($_SESSION["userid"])){
             return $_SESSION["username"];
@@ -129,6 +146,7 @@
             return "not logged in";
         }   
     }
+
 
     function emptyInputLagerplatzanlegen($Name,$Kategorie,$Beschreibung,$Laenge,$Hoehe,$Breite){
         $result=false;
@@ -140,6 +158,8 @@
         }
         return $result;
     }
+
+
 
     function Lagerplatzanlegen($conn,$Name,$Kategorie,$Beschreibung,$Laenge,$Hoehe,$Breite,$User_User_id){
         $sql = "INSERT INTO storage_yard (Storage_name,Storage_description,Storage_category,Storage_format_heigth,Storage_format_width,Storage_format_length,User_User_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -161,53 +181,89 @@
         exit();
     }
 
-    function explorerliste($conn){
+
+
+    function explorerliste(){
         
-                            
         $sql = "SELECT * FROM storage_yard";
         $Storages = getDatas($sql);
-        
+        ?><div class="mainbox"><?php
         ?><h3>Lagerplätze</h3><?php 
     
         if(!$Storages):?>
             <p>keine Lagerplätze gefunden</p>
         <?php
         else:
+            
             foreach ($Storages as $Storag): ?>
-                <a href="?storageid=<?=$Storag->Storage_id?>"><?= $Storag->Storage_name ?></a>
-                <?php 
-                    $sql = "SELECT * FROM substorage_yard WHERE Storage_yard_Storage_id = $Storag->Storage_id;";
-                    $SubStorages = getDatas($sql);
-                                    
-                    if(!$SubStorages):?>
-                        <p>leer</p>
-                    <?php
-                    else:
-                        foreach ($SubStorages as $SubStorage): ?>
-                            <a href="#"><?= $SubStorage->Substorage_name?></a>
-                        <?php endforeach;
-                    endif;
-                ?>
+                <li ><a href="?storageid=<?=$Storag->Storage_id?>" ><?= $Storag->Storage_name ?></a></li>
+                
             <?php endforeach;
+            
         endif;
-        
-        artikelliste($conn);
+        ?></div><?php
+        substoragelisteeinzeln();
+        artikelliste();
     }
 
-    function artikelliste($conn){
+
+
+    function substorageliste($Storag){
+        $sql = "SELECT * FROM substorage_yard WHERE Storage_yard_Storage_id = $Storag->Storage_id;";
+        $Substorages = getDatas($sql);
+                        
+        if(!$Substorages):?>
+            
+        <?php
+        else:
+            
+            foreach ($Substorages as $Substorage): ?>
+                <li ><span class="tab1"></span><a href="?substorageid=<?=$Substorage->Substorage_id?>"><?= $Substorage->Substorage_name?></a></li>
+            <?php endforeach;
+            endif;
+    }
+
+
+
+    function substoragelisteeinzeln(){
+        $sql = "SELECT * FROM substorage_yard";
+        $Substorages = getDatas($sql);
+        
+        ?><div class="mainbox"><?php
+        ?><h3>Sublagerplätze</h3><?php                
+        
+        if(!$Substorages):?>
+            <p>keine Sublagerplätze gefunden</p>
+        <?php
+        else:
+            foreach ($Substorages as $Substorage): ?>
+                <li ><span class="tab1"></span><a href="?substorageid=<?=$Substorage->Substorage_id?>"><?= $Substorage->Substorage_name?></a></li>
+            <?php endforeach;
+            endif;
+        ?></div><?php
+    }
+
+
+
+    function artikelliste(){
 
         $sql = "SELECT * FROM articel;";
         $articles = getDatas($sql);
+        ?><div class="mainbox"><?php
         ?><h3>Artikel</h3><?php             
         if(!$articles):?>
             <p>keine Artikel gefunden!</p>
         <?php
         else:
+            
             foreach ($articles as $article): ?>
-                <a href="#"><?= $article->Articel_name?></a>
+                <li><span class="tab3"></span><a href="?articleid=<?=$article->Articel_id?>"><?= $article->Articel_name?></a></li>
             <?php endforeach;
         endif;
+        ?> </div><?php
     }
+
+
 
     function getlagerplatz($conn,$Storage_name){
         $sql = "SELECT * FROM storage_yard WHERE Storage_name ='$Storage_name';";

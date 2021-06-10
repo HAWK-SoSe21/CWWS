@@ -25,7 +25,7 @@
     </head>
     
     <body>
-        <div class="header">
+        <div id="header" class="header">
             <div class="navbar">
                 <li><a href="<?php WEBROOT ?>/CWWS/index.php">CWWS</a></li>
                 <li><a href="<?php WEBROOT ?>/CWWS/pages/testseite.php">Testseite</a></li>
