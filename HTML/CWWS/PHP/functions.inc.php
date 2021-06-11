@@ -183,91 +183,46 @@
 
 
 
-    function explorerliste(){
+    function getstorages(){
         
         $sql = "SELECT * FROM storage_yard";
         $Storages = getDatas($sql);
-        ?><div class="mainbox"><?php
-        ?><h3>Lagerplätze</h3><?php 
-    
-        if(!$Storages):?>
-            <p>keine Lagerplätze gefunden</p>
-        <?php
-        else:
-            
-            foreach ($Storages as $Storag): ?>
-                <li ><a href="?storageid=<?=$Storag->Storage_id?>" ><?= $Storag->Storage_name ?></a></li>
-                
-            <?php endforeach;
-            
-        endif;
-        ?></div><?php
-        substoragelisteeinzeln();
-        artikelliste();
+        return $Storages;
+        
     }
 
 
 
-    function substorageliste($Storag){
-        $sql = "SELECT * FROM substorage_yard WHERE Storage_yard_Storage_id = $Storag->Storage_id;";
+    function getsubstoragesinstorage($Storage){
+
+        $sql = "SELECT * FROM substorage_yard WHERE Storage_yard_Storage_id = $Storage->Storage_id;";
         $Substorages = getDatas($sql);
-                        
-        if(!$Substorages):?>
-            
-        <?php
-        else:
-            
-            foreach ($Substorages as $Substorage): ?>
-                <li ><span class="tab1"></span><a href="?substorageid=<?=$Substorage->Substorage_id?>"><?= $Substorage->Substorage_name?></a></li>
-            <?php endforeach;
-            endif;
+        return $Substorages;
     }
 
 
 
-    function substoragelisteeinzeln(){
+    function getsubstorages(){
+
         $sql = "SELECT * FROM substorage_yard";
         $Substorages = getDatas($sql);
-        
-        ?><div class="mainbox"><?php
-        ?><h3>Sublagerplätze</h3><?php                
-        
-        if(!$Substorages):?>
-            <p>keine Sublagerplätze gefunden</p>
-        <?php
-        else:
-            foreach ($Substorages as $Substorage): ?>
-                <li ><span class="tab1"></span><a href="?substorageid=<?=$Substorage->Substorage_id?>"><?= $Substorage->Substorage_name?></a></li>
-            <?php endforeach;
-            endif;
-        ?></div><?php
+        return $Substorages; 
     }
 
 
 
-    function artikelliste(){
+    function getarticles(){
 
         $sql = "SELECT * FROM articel;";
         $articles = getDatas($sql);
-        ?><div class="mainbox"><?php
-        ?><h3>Artikel</h3><?php             
-        if(!$articles):?>
-            <p>keine Artikel gefunden!</p>
-        <?php
-        else:
-            
-            foreach ($articles as $article): ?>
-                <li><span class="tab3"></span><a href="?articleid=<?=$article->Articel_id?>"><?= $article->Articel_name?></a></li>
-            <?php endforeach;
-        endif;
-        ?> </div><?php
+        return $articles;
     }
 
 
 
     function getlagerplatz($conn,$Storage_name){
+
         $sql = "SELECT * FROM storage_yard WHERE Storage_name ='$Storage_name';";
-        
         $res=mysqli_query($conn, $sql);
         if(!$res){
             
@@ -276,4 +231,7 @@
             return $res;
         }
     }
+
+
+    
 ?>

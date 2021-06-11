@@ -61,12 +61,12 @@ input{
     color: darkgreen;
 }
 
-.header .active,.footer .active,.sidebar .active{
+.header .active,.footer .active,.sidebar .active,.explorer .active li{
     border-bottom: 1px solid darkgreen ;
     color:darkgreen !important;
 }
 
-.header .active a,.footer .active a,.sidebar .active a{
+.header .active a,.footer .active a,.sidebar .active a,.explorer .active a{
     color:darkgreen !important;
 }
 .infobox{
@@ -129,6 +129,7 @@ input{
     display: block;
     overflow:hidden;
 }
+
 .sidebar ul header{
     width: 100%;
     padding: 10px;
@@ -138,9 +139,11 @@ input{
     border-top: 2px solid rgba(255, 255, 255, 0.2);
     border-bottom: 2px solid rgb(255, 255, 255, 0.2);
 }
+
 .sidebar ul li{
    list-style: none;
 }
+
 .sidebar ul li a{
     display: flex;
     flex-wrap: wrap;
@@ -153,12 +156,8 @@ input{
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgb(255, 255, 255, 0.2);
 }
-.activesb{
-    margin-left: 0;
-    width: 105px;
-    transition: width 1.5s ease-out;
-}
-.activesb ul{
+
+.sidebar .active ul{
     display: block;
     width: 105px;
 }
@@ -171,18 +170,23 @@ input{
     color: white;
     font-weight: bold;
 }
-.activesb .sidebarbutton{
+.active .sidebarbutton{
     background-color: darkgreen;
+}
+
+.sidebar{
+    margin-left: 0;
+    width: 105px !important;
+    transition: width 1.5s ease-out;
 }
 
 .content{
     display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: 150px auto;
+    grid-template-rows: 50% 50%;
     grid-template-areas: 
     "explorer objekte"
-    "explorer funktionen"
-    "explorer übersicht";
+    "explorer funktionen";
     width: 100%;
 }
 #explorer{
@@ -193,9 +197,6 @@ input{
 }
 #objekte{
     grid-area: objekte;
-}
-#übersicht{
-    grid-area: übersicht;
 }
 
 
@@ -221,10 +222,12 @@ input{
 }
 
 /*Explorer*/
+
 .explorer{
     display:block;
-
+    width: 100%;
 }
+
 .explorer li{
     list-style: none;
     text-decoration: none;
@@ -240,22 +243,14 @@ input{
     tab-size: 4;
 }
 .explorer li:hover{
-    background-color: rgb(19, 31, 31);
+    background-color: gray;
     border-radius: 15px;
 }
 .explorer li a:hover{
     color: darkgreen;
     border-bottom: 1px solid green;
 }
-.explorer .active li{
-    border-bottom: 1px solid darkgreen ;
-    color:darkgreen !important;
-}
 
-.explorer .active a{
-    color:darkgreen !important;
-    border-bottom: 1px solid darkgreen;
-}
 .tab1 {
     display: inline-block;
     margin-left: 10px;
@@ -270,9 +265,9 @@ input{
 }
 /*Objektfenster*/
 .objektfenster{
-    border: 1px solid midnightblue;
+    border: 1px solid darkgreen;
     border-radius: 15px;
-    background-color: darkgreen;
+    background-color: rgba(255, 255, 255, 0.001);
     width: 92%;
     max-width: 400px;
     max-height: 400px;
@@ -354,9 +349,3 @@ input{
         margin-left: 0px;
     }
   }
-
-
-
-
-  
-

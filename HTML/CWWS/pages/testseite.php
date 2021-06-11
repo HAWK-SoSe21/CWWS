@@ -2,6 +2,8 @@
 
             <div class="main">
                 <div class="maingrid">
+                    
+                
                     <div id="idsidebar" class="sidebar">
                         <ul>
                             <header>Funktionen</header>
@@ -17,7 +19,12 @@
                             <li><a href="#">Artikel bearbeiten</a></li> 
                         </ul> 
                     </div>
+                    
+                    
                     <button id="sidebarbtn" class="sidebarbutton" onclick="togglesidebar()">></button>
+                    
+                    
+                    
                     <div class="content">
                         
                         <div id="explorer" class="mainbox">
