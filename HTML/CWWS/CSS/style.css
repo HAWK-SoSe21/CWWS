@@ -317,7 +317,7 @@ input{
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 3px;
-    
+    font-size: small;
     
 }
 .actionwindow form input{
