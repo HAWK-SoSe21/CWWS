@@ -7,6 +7,6 @@
             </div>
         </div>
         
-        <script src="<?= WEBROOT ?>/CWWS/HTML/CWWS/JAVA/script.js"></script>
+        <script src="<?= WEBROOT ?><?= UV ?>JAVA/script.js"></script>
     </body>
 </html>

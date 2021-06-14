@@ -1,6 +1,8 @@
 <?php
     define("WEBROOT", 'http://localhost');
-    define("ROOT", $_SERVER['DOCUMENT_ROOT'] . '/CWWS/HTML/CWWS');
+    define("UV", '/CWWS/HTML/CWWS/');//Unterverzeichnis wenn nicht direkt im htdocs-Ordner
+    define("ROOT", $_SERVER['DOCUMENT_ROOT'] . UV);
+    
 
     $GLOBALS["user"] = null;
     session_start();
@@ -19,7 +21,7 @@
     <head>
         <meta charset="utf-8" />
         <title>CWWS</title>
-        <link rel="stylesheet" href="<?= WEBROOT ?>/CWWS/HTML/CWWS/CSS/style.css">
+        <link rel="stylesheet" href="<?= WEBROOT ?><?= UV ?>CSS/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8"/>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     </head>
@@ -27,16 +29,16 @@
     <body>
         <div id="header" class="header">
             <div class="navbar">
-                <li><a href="<?php WEBROOT ?>/CWWS/HTML/CWWS/index.php">CWWS</a></li>
-                <li><a href="<?php WEBROOT ?>/CWWS/HTML/CWWS/pages/testseite.php">Testseite</a></li>
-                <li><a href="<?php WEBROOT ?>/CWWS/HTML/CWWS/pages/about.php">Handbuch</a></li>
+                <li><a href="<?php WEBROOT ?><?= UV ?>index.php">CWWS</a></li>
+                <li><a href="<?php WEBROOT ?><?= UV ?>pages/testseite.php">Testseite</a></li>
+                <li><a href="<?php WEBROOT ?><?= UV ?>pages/about.php">Handbuch</a></li>
                 
                 <?php if(isset($_SESSION["userid"])):?>
-                    <li><a href="<?php WEBROOT ?>/CWWS/HTML/CWWS/PHP/logout.inc.php">Log out</a></li>
+                    <li><a href="<?php WEBROOT ?><?= UV ?>PHP/logout.inc.php">Log out</a></li>
                 
                 <?php else: ?>
-                    <li><a href="<?php WEBROOT ?>/CWWS/HTML/CWWS/pages/signup.php">Sign up</a></li>
-                    <li><a href="<?php WEBROOT ?>/CWWS/HTML/CWWS/pages/login.php">Log in</a></li>                   
+                    <li><a href="<?php WEBROOT ?><?= UV ?>pages/signup.php">Sign up</a></li>
+                    <li><a href="<?php WEBROOT ?><?= UV ?>pages/login.php">Log in</a></li>                   
                 <?php endif ?>
             </div>
             
