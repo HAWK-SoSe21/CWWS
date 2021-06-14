@@ -11,31 +11,31 @@
     }
   }
 
+
 //dropdownmenüs
 $(document).ready(function () {
-    $('.group').hide();
-    $('#option1').show();
-    $('#dropdown1').change(function () {
-      $('.group').hide();
-      $('#'+$(this).val()).show();
-    })
-   
-  });
+    
+  $('.actionwindow').hide();
+
+  $('#bearbeiten').show();
+    
+  $('#dropdown1').change(function () {
+    
+    $('.actionwindow').hide();
+    
+    $('#'+$(this).val()).show();
   
-  $(document).ready(function () {
-    $('.Funktion').hide();
-    $('#lagerplatz-anlegen').show();
-    $('#dropdownlagerplaetze').change(function () {
-      $('.Funktion').hide();
-      $('#'+$(this).val()).show();
-    })
-  });
+  })
+   
+});
+  
 
  /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
 function openNav() {
   document.getElementById("mySidebar").style.width = "30%";
   document.getElementById("main").style.marginLeft = "30%";
 }
+
 
 /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
 function closeNav() {
@@ -47,8 +47,8 @@ function closeNav() {
 //sidebarbutton
 function togglesidebar(){
 
-  var x = document.getElementById("sidebar");
-  var btn = document.getElementById("sidebarbutton");
+  var x = document.getElementById("idsidebar");
+  var btn = document.getElementById("idsidebarbutton");
 
   if (x.classList.contains("active")) {
     x.classList.remove("active");

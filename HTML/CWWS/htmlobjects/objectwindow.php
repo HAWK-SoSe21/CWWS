@@ -41,7 +41,7 @@
             <p class="datenheader">ID:</p><p class="datenfeld"><?=$object->Substorage_id?></p>
             <p class="datenheader">Beschreibung:</p><p class="datenfeld"><?=$object->Substorage_description?></p>
             <p class="datenheader">Lagerplatz:</p><p class="datenfeld"><?=$object->Storage_yard_Storage_id?></p>
-            <p class="datenheader">Lagerplatz:</p><p class="datenfeld"><?=$object->Storage_yard_User_User_id?></p>
+            <p class="datenheader">Nutzer:</p><p class="datenfeld"><?=$object->Storage_yard_User_User_id?></p>
             <p class="datenheader">Bild:</p><img class="datenfeld" src="<?php WEBROOT ?>images/substorage.png" alt ="Image not found" onerror="this.onerror=null;this.src='<?php WEBROOT ?>images/substorage.png';">
 
     <?php else:?>
