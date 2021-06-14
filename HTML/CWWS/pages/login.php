@@ -4,7 +4,7 @@
     <div class="mainbox">
         <section class="login-form">
             <h2>Login</h2>
-            <form action="<?php ROOT ?>/CWWS/PHP/login.inc.php" method="post">
+            <form action="<?php ROOT ?>../PHP/login.inc.php" method="post">
                 <input type="text" name="uid" placeholder="Email...">
                 <input type="password" name="pwd" placeholder="Password...">
                 <button type="submit"name="submit">Login</button>

@@ -4,7 +4,7 @@
         <div class="mainbox">
             <section class="signup-form">
                 <h2>Sign Up</h2>
-                <form action="<?php ROOT ?>/CWWS/PHP/signup.inc.php" method="post">
+                <form action="<?php ROOT ?>../PHP/signup.inc.php" method="post">
                     <input type="text" name="firstname" placeholder="Vorname...">
                     <input type="text" name="lastname" placeholder="Nachname...">
                     <input type="text" name="email" placeholder="Email...">

@@ -1,6 +1,6 @@
 <?php
-    define("WEBROOT", 'http://localhost/CWWS');
-    define("ROOT", $_SERVER['DOCUMENT_ROOT'] . '/CWWS');
+    define("WEBROOT", 'http://localhost/CWWS/HTML/CWWS');
+    define("ROOT", $_SERVER['DOCUMENT_ROOT'] . '/CWWS/HTML/CWWS');
 
     $GLOBALS["user"] = null;
     session_start();
