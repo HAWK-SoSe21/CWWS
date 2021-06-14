@@ -261,6 +261,41 @@ input{
 }
 
 
+<<<<<<< Updated upstream:HTML/CWWS/style.css
 
   
 
+=======
+@media only screen and (max-width: 400px) {
+    .content{
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto ;
+        grid-template-areas: 
+        "explorer"
+        "objekte"
+        "funktionen";
+        width: 100%;
+    }
+    .explorer{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .explorer div{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .tab1 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+    .tab2 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+    .tab3 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+  }
+>>>>>>> Stashed changes:HTML/CWWS/CSS/style.css
