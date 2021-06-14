@@ -1,4 +1,6 @@
 <?php
+
+
     function emptyInputSignup($name,$email,$username,$pwd,$pwdrepeat){
         $result=false;
         if(empty($name)||empty($email)||empty($username)||empty($pwd)||empty($pwdrepeat)){
@@ -9,6 +11,8 @@
         }
         return $result;
     }
+
+
 
     function invalidUid($username){
         $result=false;
@@ -21,6 +25,8 @@
         return $result;
     }
 
+
+
     function invalidemail($email){
         $result=false;
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
@@ -31,6 +37,8 @@
         }
         return $result;
     }
+
+
 
     function pwdMatch($pwd,$pwdrepeat){
         $result=false;
@@ -43,12 +51,14 @@
         return $result;
     }
 
+
+
     function uidExists($conn,$email){
         $sql = "SELECT * FROM user WHERE User_email = ?;";
         $stmt = mysqli_stmt_init($conn);
         
         if(!mysqli_stmt_prepare($stmt,$sql)){
-            header("location: ../signup.php?error=stmtfailed");
+            header("location: ../pages/signup.php?error=stmtfailed");
             exit();
         }
     
@@ -69,11 +79,13 @@
         mysqli_stmt_close($stmt);
     }
 
+
+
     function createUser($conn, $firstname, $lastname, $email, $birthday, $pwd){
         $sql = "INSERT INTO user (User_first_name,User_second_name,User_email,User_birthday,User_password) VALUES (?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt,$sql)){
-            header("location: ../signup.php?error=stmtfailed");
+            header("location: ../pages/signup.php?error=stmtfailed");
             exit();
         }
         
@@ -82,10 +94,11 @@
         mysqli_stmt_bind_param($stmt, "sssss",$firstname, $lastname, $email, $birthday, $hashedPwd);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
-        header("location: ../signup.php?error=none");
+        header("location: ../pages/signup.php?error=none");
         exit();
     }
 
+    
     function emptyInputLogin($username,$pwd){
         $result=false;
         if(empty($username)||empty($pwd)){
@@ -97,11 +110,13 @@
         return $result;
     }
 
+
+
     function loginUser($conn,$username,$pwd){
         $uidExists = uidExists($conn,$username);
 
         if($uidExists===false){
-            header("location: ../login.php?error=wronglogin");
+            header("location: ../pages/login.php?error=wronglogin1");
             exit();
         }
     
@@ -109,8 +124,7 @@
         $checkPwd = password_verify($pwd,$pwdHashed);
 
         if($checkPwd === false) {
-            header("location: ../login.php?error=wronglogin");
-
+            header("location: ../pages/login.php?error=wronglogin2");
             exit();
         }
         else if($checkPwd === true){
@@ -122,6 +136,8 @@
         }
     }
 
+
+
     function userinfo(){
         if(isset($_SESSION["userid"])){
             return $_SESSION["username"];
@@ -130,6 +146,7 @@
             return "not logged in";
         }   
     }
+
 
     function emptyInputLagerplatzanlegen($Name,$Kategorie,$Beschreibung,$Laenge,$Hoehe,$Breite){
         $result=false;
@@ -142,45 +159,70 @@
         return $result;
     }
 
+
+
     function Lagerplatzanlegen($conn,$Name,$Kategorie,$Beschreibung,$Laenge,$Hoehe,$Breite,$User_User_id){
         $sql = "INSERT INTO storage_yard (Storage_name,Storage_description,Storage_category,Storage_format_heigth,Storage_format_width,Storage_format_length,User_User_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt,$sql)){
-            header("location: ../storage.php?error=stmtfailed");
+            header("location: ../pages/storage.php?error=stmtfailed");
             exit();
         }
         $userid=1;
         if(!mysqli_stmt_bind_param($stmt, "sssssss",$Name, $Beschreibung, $Kategorie, $Hoehe, $Breite, $Laenge,$User_User_id)){
-            header("location: ../storage.php?error=bindparamfailed");
+            header("location: ../pages/storage.php?error=bindparamfailed");
         }
         
         if(!mysqli_stmt_execute($stmt)){
-            header("location: ../storage.php?error=stmtexecutefailed");
+            header("location: ../pages/storage.php?error=stmtexecutefailed");
         }
         mysqli_stmt_close($stmt);
-        header("location: ../storage.php?error=none");
+        header("location: ../pages/storage.php?error=none");
         exit();
     }
 
-    function explorerliste($conn){
-        $res=mysqli_query($conn, "SELECT * FROM storage_yard;");
-        if(!$res){
-            echo("keine Lagerplätze gefunden");
-        }
-        else{
-            $i=0;
-            echo "<ul>";
-                while($row=mysqli_fetch_array($res)){
-                    echo ('<li><a href="#'.$row['Storage_name'].'">'.$row['Storage_name'].'</a></li><button id="dropdownbutton'.$i.' class="dropdownbutton" onclick="togglesubelements()">V</button>');
-                    $i++;
-                }
-            echo"</ul>";
-        }
+
+
+    function getstorages(){
+        
+        $sql = "SELECT * FROM storage_yard";
+        $Storages = getDatas($sql);
+        return $Storages;
+        
     }
 
+
+
+    function getsubstoragesinstorage($Storage){
+
+        $sql = "SELECT * FROM substorage_yard WHERE Storage_yard_Storage_id = $Storage->Storage_id;";
+        $Substorages = getDatas($sql);
+        return $Substorages;
+    }
+
+
+
+    function getsubstorages(){
+
+        $sql = "SELECT * FROM substorage_yard";
+        $Substorages = getDatas($sql);
+        return $Substorages; 
+    }
+
+
+
+    function getarticles(){
+
+        $sql = "SELECT * FROM articel;";
+        $articles = getDatas($sql);
+        return $articles;
+    }
+
+
+
     function getlagerplatz($conn,$Storage_name){
+
         $sql = "SELECT * FROM storage_yard WHERE Storage_name ='$Storage_name';";
-        
         $res=mysqli_query($conn, $sql);
         if(!$res){
             
@@ -189,4 +231,7 @@
             return $res;
         }
     }
+
+
+    
 ?>

@@ -1,0 +1,349 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+html,body{
+    height: 100%;
+}
+body{
+    font-family: Arial;
+    margin:0px;
+    padding: 0px;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+input{
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/*HEADER*/
+.header{
+    width: 100%;
+}
+.navbar{
+    float: left;
+    width: 68%;
+    align-items: center;
+    padding:1%;
+}
+.header li,.footer li{
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+    border: 1px solid darkgreen;
+    
+    transition: border-bottom 0.5s;
+    padding: 5px;
+}
+
+.header li a,.footer li a, .sidebar li a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.header li:hover,.footer li:hover,.sidebar li:hover{
+    border-bottom: 1px solid darkgreen;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header li a:hover,.footer li a:hover,.sidebar li a:hover{
+    color: darkgreen;
+}
+
+.header .active,.footer .active,.sidebar .active,.explorer .active li{
+    border-bottom: 1px solid darkgreen ;
+    color:darkgreen !important;
+}
+
+.header .active a,.footer .active a,.sidebar .active a,.explorer .active a{
+    color:darkgreen !important;
+}
+.infobox{
+    float: left;
+    display: block;
+    align-items: center;
+    padding: 1%;
+    width: 28%;
+}
+
+.brand{
+    color: darkgreen;
+    font-weight: bold;
+    text-align: right;
+    padding: 1px 5px;
+}
+
+.status{
+    color: blue;
+    font-size: small;
+    text-align: right;
+    padding: 1px 5px;
+    margin: 5px;
+}
+
+
+/*MAIN*/
+.main{
+    width: 100%;
+    margin-bottom: 20px;
+    height: 100%;
+    overflow: auto;
+}
+.mainpic{
+    width: 100%;
+}
+.mainbox{
+    border: 1px solid darkgreen;
+    border-radius: 15px;
+    padding: 5px;
+}
+.maingrid{
+    display: grid;
+    grid-template-columns: fit-content(150px) 20px auto;
+    width: 100%;
+    height: 100%;
+}
+
+/* sidebar*/
+.sidebar{
+    background-color: rgba(255, 255, 255, 0.001);
+    color: white;
+    width: 0px;
+    display: flex;
+    transition: width 1.5s ease-out;
+}
+
+.sidebar ul{
+    padding-top: 0px;
+    display: block;
+    overflow:hidden;
+}
+
+.sidebar ul header{
+    width: 100%;
+    padding: 10px;
+    background-color: darkgreen;
+    color: white;
+    box-sizing: border-box;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgb(255, 255, 255, 0.2);
+}
+
+.sidebar ul li{
+   list-style: none;
+}
+
+.sidebar ul li a{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+}
+
+.sidebar .active ul{
+    display: block;
+    width: 105px;
+}
+
+.sidebarbutton{
+    height: 100%;
+    width: 20px;
+    writing-mode: sideways-rl;
+    background-color: darkgreen;
+    color: white;
+    font-weight: bold;
+}
+#sidebarbutton .active{
+    background-color: red;
+}
+
+.sidebar{
+    margin-left: 0;
+    width: 105px !important;
+    transition: width 1.5s ease-out;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: 
+    "explorer objekte"
+    "explorer funktionen";
+    width: 100%;
+}
+#explorer{
+    grid-area: explorer;
+}
+#funktionen{
+    grid-area: funktionen;
+}
+#objekte{
+    grid-area: objekte;
+}
+
+
+/*FOOTER*/
+.footer{
+    font-size: small;
+    height: 20px;
+    margin-top: -20px;
+    padding: 10px;
+}
+.copyright{
+    float: left;
+    text-align: left;
+    white-space: nowrap;
+    margin-right: 5%;
+}
+.navbarfooter{
+    float:left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Explorer*/
+
+.explorer{
+    display:block;
+    width: 100%;
+}
+
+.explorer li{
+    list-style: none;
+    text-decoration: none;
+    transition: border-bottom 0.5s;
+    padding: 5px;
+    max-width: 100px;
+}
+.explorer li a{
+    color: white;
+    font-size:small;
+    text-decoration: none;
+    transition: colour 0.5s;
+    tab-size: 4;
+}
+.explorer li:hover{
+    background-color: gray;
+    border-radius: 15px;
+}
+.explorer li a:hover{
+    color: darkgreen;
+    border-bottom: 1px solid green;
+}
+
+.tab1 {
+    display: inline-block;
+    margin-left: 10px;
+}
+.tab2 {
+    display: inline-block;
+    margin-left: 20px;
+}
+.tab3 {
+    display: inline-block;
+    margin-left: 30px;
+}
+/*Objektfenster*/
+#objektfenster{
+    border: 1px solid darkgreen;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.001);
+    width: 92%;
+    max-width: 400px;
+    max-height: 400px;
+    font-size: small;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap:3px;
+}
+.datenfeld{
+    max-width: 100%;
+    font-weight: normal;
+    background: rgb(53, 116, 53);
+    text-align: right;
+}
+.datenheader{
+    font-weight: bold;
+}
+#objektfenster img{
+    max-height: 200px;
+    height: 100%;
+    width: 100%;
+}
+#objektfenster img:hover{
+    background-color: blue;
+}
+
+/*experimentell*/
+#dropdown1{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+#dropdown1 option{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.maingrid2{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.contentalt{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 400px) {
+    .content{
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto ;
+        grid-template-areas: 
+        "explorer"
+        "objekte"
+        "funktionen";
+        width: 100%;
+    }
+    .explorer{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .explorer div{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .tab1 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+    .tab2 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+    .tab3 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+  }

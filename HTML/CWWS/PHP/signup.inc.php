@@ -11,26 +11,26 @@
         require_once 'functions.inc.php';
 
         if(emptyInputSignup($firstname,$lastname,$email,$birthday,$pwd,$pwdrepeat) !== false) {
-            header("location: ../signup.php?error=emptyinput");
+            header("location: ../pages/signup.php?error=emptyinput");
             exit();
         }
         if(invalidemail($email) !== false) {
-            header("location: ../signup.php?error=invalidemail");
+            header("location: ../pages/signup.php?error=invalidemail");
             exit();
         }
         if(pwdMatch($pwd,$pwdrepeat) !== false) {
-            header("location: ../signup.php?error=passwordsdontmatch");
+            header("location: ../pages/signup.php?error=passwordsdontmatch");
             exit();
         }
         if(uidExists($conn,$email) !== false) {
-            header("location: ../signup.php?error=usernametaken");
+            header("location: ../pages/signup.php?error=usernametaken");
             exit();
         }
 
         createUser($conn,$firstname,$lastname, $email, $birthday, $pwd);
     }
     else{
-        header("location: ../signup.php");
+        header("location: ../pages/signup.php");
         exit();
     }
 ?>

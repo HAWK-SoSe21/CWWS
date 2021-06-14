@@ -7,7 +7,7 @@
         require_once 'functions.inc.php';
 
         if(emptyInputLogin($username,$pwd)!==false){
-            header("location ../login.php?error=emptyinput");
+            header("location ../pages/login.php?error=emptyinput");
             exit();
         }
 
@@ -15,7 +15,7 @@
 
     }
     else{
-        header("location: ../login.php");
+        header("location: ../pages/login.php");
         exit();
     }
 ?>

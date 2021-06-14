@@ -1,12 +1,12 @@
         <div class="footer">
             <div class="navbarfooter">
                 <p class="copyright">©HAWK</p>
-                <li><a href="contact.php">Kontakt</a></li>
-                <li><a href="impressum.php">Impressum</a></li>
-                <li><a href="datalaw.php">Datenschutz</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><a href="#">Impressum</a></li>
+                <li><a href="#">Datenschutz</a></li>
             </div>
         </div>
         
-        <script src="script.js"></script>
+        <script src="<?= WEBROOT ?>/JAVA/script.js"></script>
     </body>
 </html>
