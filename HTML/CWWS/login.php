@@ -4,7 +4,11 @@
     <div class="mainbox">
         <section class="login-form">
             <h2>Login</h2>
+<<<<<<< Updated upstream:HTML/CWWS/login.php
             <form action="includes/login.inc.php" method="post">
+=======
+            <form action="<?php ROOT ?>../PHP/login.inc.php" method="post">
+>>>>>>> Stashed changes:HTML/CWWS/pages/login.php
                 <input type="text" name="uid" placeholder="Email...">
                 <input type="password" name="pwd" placeholder="Password...">
                 <button type="submit"name="submit">Login</button>

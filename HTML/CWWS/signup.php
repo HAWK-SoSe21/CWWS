@@ -4,7 +4,11 @@
         <div class="mainbox">
             <section class="signup-form">
                 <h2>Sign Up</h2>
+<<<<<<< Updated upstream:HTML/CWWS/signup.php
                 <form action="includes/signup.inc.php" method="post">
+=======
+                <form action="<?php ROOT ?>../PHP/signup.inc.php" method="post">
+>>>>>>> Stashed changes:HTML/CWWS/pages/signup.php
                     <input type="text" name="firstname" placeholder="Vorname...">
                     <input type="text" name="lastname" placeholder="Nachname...">
                     <input type="text" name="email" placeholder="Email...">
