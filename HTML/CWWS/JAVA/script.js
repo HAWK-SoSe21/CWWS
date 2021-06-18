@@ -1,12 +1,16 @@
-//active navigation bar
-const currentLocation = location.href;
-const menuItem= document.querySelectorAll('a');
-const menuLength = menuItem.length
-for(let i=0;i<menuLength;i++){
-    if(menuItem[i].href ===currentLocation){
+//active navigation
+  const currentLocation = location.href;
+  const menuItem= document.querySelectorAll('a');
+  const menuLength = menuItem.length
+  for(let i=0;i<menuLength;i++){
+    if( currentLocation.includes(menuItem[i].href)){
         menuItem[i].parentNode.className ="active"
     }
-}
+    else{
+        menuItem[i].parentNode.classList.remove ="active"
+    }
+  }
+
 //dropdownmenüs
 $(document).ready(function () {
     $('.group').hide();
@@ -15,6 +19,7 @@ $(document).ready(function () {
       $('.group').hide();
       $('#'+$(this).val()).show();
     })
+   
   });
   
   $(document).ready(function () {
@@ -42,17 +47,17 @@ function closeNav() {
 //sidebarbutton
 function togglesidebar(){
 
-  var x = document.getElementById("idsidebar");
-  var btn = document.getElementById("sidebarbtn");
+  var x = document.getElementById("sidebar");
+  var btn = document.getElementById("sidebarbutton");
 
-  if (x.classList.contains("activesb")) {
-    x.classList.remove("activesb");
+  if (x.classList.contains("active")) {
+    x.classList.remove("active");
     btn.className = "sidebarbutton";
     btn.innerHTML=">";
   } 
   else {
-    x.classList.add("activesb");
-    btn.className+= " activebtn";
+    x.classList.add("active");
+    btn.className+= " active";
     btn.innerHTML="<";
   }
 }

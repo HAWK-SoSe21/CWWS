@@ -61,12 +61,12 @@ input{
     color: darkgreen;
 }
 
-.header .active,.footer .active,.sidebar .active{
+.header .active,.footer .active,.sidebar .active,.explorer .active li{
     border-bottom: 1px solid darkgreen ;
     color:darkgreen !important;
 }
 
-.header .active a,.footer .active a,.sidebar .active a{
+.header .active a,.footer .active a,.sidebar .active a,.explorer .active a{
     color:darkgreen !important;
 }
 .infobox{
@@ -129,6 +129,7 @@ input{
     display: block;
     overflow:hidden;
 }
+
 .sidebar ul header{
     width: 100%;
     padding: 10px;
@@ -138,9 +139,11 @@ input{
     border-top: 2px solid rgba(255, 255, 255, 0.2);
     border-bottom: 2px solid rgb(255, 255, 255, 0.2);
 }
+
 .sidebar ul li{
    list-style: none;
 }
+
 .sidebar ul li a{
     display: flex;
     flex-wrap: wrap;
@@ -153,12 +156,8 @@ input{
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgb(255, 255, 255, 0.2);
 }
-.activesb{
-    margin-left: 0;
-    width: 105px;
-    transition: width 1.5s ease-out;
-}
-.activesb ul{
+
+.sidebar .active ul{
     display: block;
     width: 105px;
 }
@@ -171,18 +170,23 @@ input{
     color: white;
     font-weight: bold;
 }
-.activesb .sidebarbutton{
+.active .sidebarbutton{
     background-color: darkgreen;
+}
+
+.sidebar{
+    margin-left: 0;
+    width: 105px !important;
+    transition: width 1.5s ease-out;
 }
 
 .content{
     display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: 150px auto;
+    grid-template-rows: 50% 50%;
     grid-template-areas: 
-    "explorer funktionen"
     "explorer objekte"
-    "explorer übersicht";
+    "explorer funktionen";
     width: 100%;
 }
 #explorer{
@@ -193,9 +197,6 @@ input{
 }
 #objekte{
     grid-area: objekte;
-}
-#übersicht{
-    grid-area: übersicht;
 }
 
 
@@ -221,36 +222,52 @@ input{
 }
 
 /*Explorer*/
+
 .explorer{
     display:block;
-}
-.liste{
     width: 100%;
 }
-.explorer ul li{
+
+.explorer li{
     list-style: none;
     text-decoration: none;
     transition: border-bottom 0.5s;
     padding: 5px;
+    max-width: 100px;
 }
-.explorer ul li a{
+.explorer li a{
     color: white;
     font-size:small;
     text-decoration: none;
     transition: colour 0.5s;
+    tab-size: 4;
 }
-.explorer ul li:hover{
+.explorer li:hover{
+    background-color: gray;
+    border-radius: 15px;
+}
+.explorer li a:hover{
+    color: darkgreen;
     border-bottom: 1px solid green;
 }
-.explorer ul li a:hover{
-    color: darkgreen;
-}
 
+.tab1 {
+    display: inline-block;
+    margin-left: 10px;
+}
+.tab2 {
+    display: inline-block;
+    margin-left: 20px;
+}
+.tab3 {
+    display: inline-block;
+    margin-left: 30px;
+}
 /*Objektfenster*/
 .objektfenster{
-    border: 1px solid midnightblue;
+    border: 1px solid darkgreen;
     border-radius: 15px;
-    background-color: darkgreen;
+    background-color: rgba(255, 255, 255, 0.001);
     width: 92%;
     max-width: 400px;
     max-height: 400px;
@@ -262,7 +279,6 @@ input{
     padding: 3%;
 }
 .datenfeld{
-    max-height: 100%;
     max-width: 100%;
     font-weight: normal;
     background: rgb(53, 116, 53);
@@ -270,6 +286,14 @@ input{
 }
 .datenheader{
     font-weight: bold;
+}
+.objektfenster img{
+    max-height: 200px;
+    height: 100%;
+    width: 100%;
+}
+.objektfenster img:hover{
+    background-color: blue;
 }
 
 /*experimentell*/
@@ -293,8 +317,35 @@ input{
     flex-wrap: wrap;
 }
 
-
-
-
-  
-
+@media only screen and (max-width: 400px) {
+    .content{
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto ;
+        grid-template-areas: 
+        "explorer"
+        "objekte"
+        "funktionen";
+        width: 100%;
+    }
+    .explorer{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .explorer div{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .tab1 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+    .tab2 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+    .tab3 {
+        display: inline-block;
+        margin-left: 0px;
+    }
+  }
