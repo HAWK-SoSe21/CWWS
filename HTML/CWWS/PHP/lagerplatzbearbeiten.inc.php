@@ -2,20 +2,6 @@
 
 include_once '../phpheader.php';
 
-$message = '';
-$authenticatedUserId = $_SESSION["userid"];
-
-$storage = null;
-
-if(isset($_GET['id'])) {
-  $sql = "SELECT * FROM storage_yard WHERE Storage_id = '" . $_GET['id'] . "'";
-  $storage = getData($sql);
-}
-
-if(!$storage) {
-  header('location: index.php');
-}
-
 if(isset($_POST['submit'])) {
   if($_FILES["Storage_picture"]['name']) {
     $target_dir = ROOT . "/uploads/storages/";
@@ -33,6 +19,6 @@ if(isset($_POST['submit'])) {
     header('location: ../index.php?error=none');
   }
   else{
-  header("location: ../index.php?error=stmtfailed");
+    header("location: ../index.php?error=stmtfailed");
   }
 }

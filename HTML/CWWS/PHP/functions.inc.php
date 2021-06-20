@@ -1,9 +1,9 @@
 <?php
 
 
-    function emptyInputSignup($name,$email,$username,$pwd,$pwdrepeat){
+    function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
         $result=false;
-        if(empty($name)||empty($email)||empty($username)||empty($pwd)||empty($pwdrepeat)){
+        if(empty($uid)||empty($email)||empty($pwd)||empty($pwdrepeat)){
             $result= TRUE;
         }
         else{
@@ -53,8 +53,8 @@
 
 
 
-    function uidExists($conn,$email){
-        $sql = "SELECT * FROM user WHERE User_email = ?;";
+    function uidExists($conn,$uid,$email){
+        $sql = "SELECT * FROM user WHERE User_email = ? OR User_id = ?;";
         $stmt = mysqli_stmt_init($conn);
         
         if(!mysqli_stmt_prepare($stmt,$sql)){
@@ -63,7 +63,7 @@
         }
     
 
-        mysqli_stmt_bind_param($stmt, "s",$email);
+        mysqli_stmt_bind_param($stmt, "ss",$email,$uid);
         mysqli_stmt_execute($stmt);
 
         $resultData =mysqli_stmt_get_result($stmt);
@@ -81,8 +81,8 @@
 
 
 
-    function createUser($conn, $firstname, $lastname, $email, $birthday, $pwd){
-        $sql = "INSERT INTO user (User_first_name,User_second_name,User_email,User_birthday,User_password) VALUES (?, ?, ?, ?, ?);";
+    function createUser($conn, $uid, $email, $pwd){
+        $sql = "INSERT INTO user (User_id,User_email,User_password) VALUES (?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt,$sql)){
             header("location: ../pages/signup.php?error=stmtfailed");
@@ -91,7 +91,7 @@
         
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-        mysqli_stmt_bind_param($stmt, "sssss",$firstname, $lastname, $email, $birthday, $hashedPwd);
+        mysqli_stmt_bind_param($stmt, "sss",$uid, $email, $hashedPwd);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header("location: ../pages/signup.php?error=none");
@@ -113,7 +113,7 @@
 
 
     function loginUser($conn,$username,$pwd){
-        $uidExists = uidExists($conn,$username);
+        $uidExists = uidExists($conn,$username,$username);
 
         if($uidExists===false){
             header("location: ../pages/login.php?error=wronglogin1");
@@ -130,7 +130,6 @@
         else if($checkPwd === true){
             session_start();
             $_SESSION["userid"]=$uidExists["User_id"];
-            $_SESSION["username"]=$uidExists["User_first_name"];
             header("location: ../index.php");
             exit();
         }
@@ -140,10 +139,10 @@
 
     function userinfo(){
         if(isset($_SESSION["userid"])){
-            return $_SESSION["username"];
+            return $_SESSION["userid"];
         }
         else{
-            return "not logged in";
+            return "nicht angemeldet";
         }   
     }
 
