@@ -19,11 +19,11 @@
                 <li><a href="<?php WEBROOT ?><?= UV ?>pages/about.php">Handbuch</a></li>
                 
                 <?php if(isset($_SESSION["userid"])):?>
-                    <li><a href="<?php WEBROOT ?><?= UV ?>PHP/logout.inc.php">Log out</a></li>
+                    <li><a href="<?php WEBROOT ?><?= UV ?>PHP/logout.inc.php">Abmelden</a></li>
                 
                 <?php else: ?>
-                    <li><a href="<?php WEBROOT ?><?= UV ?>pages/signup.php">Sign up</a></li>
-                    <li><a href="<?php WEBROOT ?><?= UV ?>pages/login.php">Log in</a></li>                   
+                    <li><a href="<?php WEBROOT ?><?= UV ?>pages/signup.php">Registrieren</a></li>
+                    <li><a href="<?php WEBROOT ?><?= UV ?>pages/login.php">Anmelden</a></li>                   
                 <?php endif ?>
             </div>
             

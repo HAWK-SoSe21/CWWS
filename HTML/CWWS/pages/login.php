@@ -3,11 +3,11 @@
 <div class="main">
     <div class="mainbox">
         <section class="login-form">
-            <h2>Login</h2>
+            
             <form action="<?php ROOT ?>../PHP/login.inc.php" method="post">
                 <input type="text" name="uid" placeholder="Nutzername oder Email...">
                 <input type="password" name="pwd" placeholder="Passwort...">
-                <button type="submit"name="submit">Login</button>
+                <button type="submit"name="submit">Anmelden</button>
             </form>
             <?php
                 if(isset($_GET["error"])){
