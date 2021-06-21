@@ -42,8 +42,13 @@
             <label class="datenheader" for="Storage_format_length">Länge</label>
             <input class="datenfeld" type="text" name="Storage_format_length" id="Storage_format_length">
 
-            <label class="datenheader" for="Storage_furniture">Möbel</label>
-            <input class="datenfeld" type="text" name="Storage_furniture" id="Storage_furniture">
+            <label class="datenheader" for="Properties_Properties_id">Eigenschaften</label>
+                <select class="datenfeld" name="Properties_Properties_id" id="Properties_Properties_id">
+                    <?php foreach ($properties=getproperties() as $key => $property): ?>
+                                <option value="<?= $property->Storage_id ?>"><?= $property->Properties_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+
 
             <button type="submit" name="submit">anlegen</button>
 
