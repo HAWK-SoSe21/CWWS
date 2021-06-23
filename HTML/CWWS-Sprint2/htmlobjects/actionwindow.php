@@ -22,26 +22,25 @@
                     <option value="Schränke">Schränke</option>
                     <option value="Regale">Regale</option>
                     <option value="Boxen">Boxen</option>
-                </select>
-
-            <label class="datenheader" for="Storage_format_length">Länge</label>
-            <input class="datenfeld" type="text" name="Storage_format_length" id="Storage_format_length">
-
-            <label class="datenheader" for="Storage_format_width">Breite</label>
-            <input class="datenfeld" type="text" name="Storage_format_width" id="Storage_format_width">
-
-            <label class="datenheader" for="Storage_format_heigth">Höhe</label>
-            <input class="datenfeld" type="text" name="Storage_format_heigth"id="Storage_format_heigth">
+                </select>           
 
             <label class="datenheader" for="Format_Format_id">Formatvorlage</label>
                 <select class="datenfeld" class="" name="Storage_yard_Storage_id" id="Storage_yard_Storage_id">
-                    <?php foreach ($storages=getformates() as $key => $format): ?>
-                                <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
+                    <?php foreach ($formates=getformates() as $key => $format): ?>
+                        <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
                     <?php endforeach; ?>
                 </select>
+            
+            <label class="datenheader" for="neuesformat">neues Format</label>
+            <input class="datenfeld" type="checkbox" id="neuesformat" name="neuesformat" value="neuesformat">
+            
 
-            <label class="datenheader" for="Storage_furniture">Möbel</label>
-            <input class="datenfeld" type="text" name="Storage_furniture" id="Storage_furniture">
+            <label class="datenheader" for="Properties_Properties_id">Lagerlatzzugehörigkeit</label>
+            <select class="datenfeld" class="" name="Properties_Properties_id" id="Properties_Properties_id">
+                <?php foreach ($properties=getproperties() as $key => $property): ?>
+                    <option value="<?= $property->Properties_id ?>"><?= $property->Properties_name ?></option>
+                <?php endforeach; ?>
+            </select>
 
             <label class="datenheader" for="Storage_picture">Bild</label>
             <input class="datenfeld" type="file" name="Storage_picture" id="Storage_picture">

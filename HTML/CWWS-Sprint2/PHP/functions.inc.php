@@ -230,6 +230,7 @@
             return $res;
         }
     }
+    
 
     function getformates(){
         $sql = "SELECT * FROM format;";
@@ -237,6 +238,12 @@
         return $articles;
     }
 
+
+    function getproperties(){
+        $sql = "SELECT * FROM format;";
+        $articles = getDatas($sql);
+        return $articles;
+    }
 
     
 ?>

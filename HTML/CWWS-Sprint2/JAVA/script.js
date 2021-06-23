@@ -61,3 +61,17 @@ function togglesidebar(){
     btn.innerHTML="<";
   }
 }
+
+//checkboxen
+
+function togglecheckboxcontent(){
+  var cb = document.getElementById("neuesformat");
+  var formatanlegen = document.getElementById("formatanlegen");
+
+  if(cb.checked==true){
+    formatanlegen.style.visibility="visible";
+  }
+  else{
+    formatanlegen.style.visibility="hidden";
+  }
+}
