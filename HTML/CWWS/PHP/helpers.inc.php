@@ -1,6 +1,6 @@
 <?php
 
-    $dbName   = 'cwws_25052021';
+    $dbName   = 'db_cwws';
     $host     = 'localhost';
     $userName = 'root';
     $password = '';

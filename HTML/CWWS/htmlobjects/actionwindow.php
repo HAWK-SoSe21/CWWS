@@ -2,45 +2,31 @@
     <option value="bearbeiten">Auswahl bearbeiten</option>
     <option value="lagerplatzanlegen">Lagerplatz anlegen</option>
     <option value="sublagerplatzanlegen">Sublagerplatz anlegen</option>
+    <option value="festensublagerplatzanlegen">festen Sublagerlatz anlegen</option>
+    <option value="beweglichensublagerplatzanlegen">beweglichen Sublagerlatz anlegen</option>
     <option value="artikelanlegen">Artikel anlegen</option>
+    
+    <option value="eigenschaftanlegen">Eigenschaft anlegen</option>
 
 </select>
 <div  class="mainbox">
     <div id="lagerplatzanlegen" class="actionwindow">
-
         <h3>Lagerplatz anlegen</h3>
 
         <form action="<?= WEBROOT?><?= UV ?>PHP/lagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+            <label class="datenheader" for="Storage_name" >Name</label>
+            <input class="datenfeld" id="Storage_name" type="text" name="Storage_name">
 
             <label class="datenheader" for="Storage_description" >Beschreibung</label>
             <input class="datenfeld" id="Storage_description" type="text" name="Storage_description">
 
 
             <label class="datenheader" for="Storage_category">Kategorie</label>
-                <select class="datenfeld" name="Storage_category" id="Storage_category">
-                    <option value="Räume">Räume</option>
-                    <option value="Schränke">Schränke</option>
-                    <option value="Regale">Regale</option>
-                    <option value="Boxen">Boxen</option>
-                </select>           
-
-            <label class="datenheader" for="Format_Format_id">Formatvorlage</label>
-                <select class="datenfeld" class="" name="Storage_yard_Storage_id" id="Storage_yard_Storage_id">
-                    <?php foreach ($formates=getformates() as $key => $format): ?>
-                        <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
-                    <?php endforeach; ?>
-                </select>
-            
-            <label class="datenheader" for="neuesformat">neues Format</label>
-            <input class="datenfeld" type="checkbox" id="neuesformat" name="neuesformat" value="neuesformat">
-            
-
-            <label class="datenheader" for="Properties_Properties_id">Lagerlatzzugehörigkeit</label>
-            <select class="datenfeld" class="" name="Properties_Properties_id" id="Properties_Properties_id">
-                <?php foreach ($properties=getproperties() as $key => $property): ?>
-                    <option value="<?= $property->Properties_id ?>"><?= $property->Properties_name ?></option>
-                <?php endforeach; ?>
-            </select>
+            <select class="datenfeld" name="Storage_category" id="Storage_category">
+                <option value="Räume">Raum</option>
+                <option value="Schränke">Möbelstück</option>
+            </select>    
 
             <label class="datenheader" for="Storage_picture">Bild</label>
             <input class="datenfeld" type="file" name="Storage_picture" id="Storage_picture">
@@ -48,13 +34,11 @@
             <button type="submit" name="submit">anlegen</button>
 
         </form>
-
-
     </div>
 </div>
 
 <div class="mainbox">
-    <div  id="sublagerplatzanlegen" class="actionwindow">
+    <div id="sublagerplatzanlegen" class="actionwindow">
 
         <h3>Sublagerplatz anlegen</h3>
         <form action="<?= WEBROOT?><?= UV ?>PHP/sublagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
@@ -66,6 +50,9 @@
             <label class="datenheader" for="Substorage_description" >Beschreibung</label>
             <input class="datenfeld" id="Substorage_description" type="text" name="Substorage_description">
 
+            <label class="datenheader" for="Substorage_quantity" >Anzahl</label>
+            <input class="datenfeld" id="Substorage_quantity" type="number" min="0" name="Substorage_quantity">
+
 
             <label class="datenheader" for="Storage_yard_Storage_id">Lagerlatzzugehörigkeit</label>
                 <select class="datenfeld" class="" name="Storage_yard_Storage_id" id="Storage_yard_Storage_id">
@@ -74,8 +61,122 @@
                     <?php endforeach; ?>
                 </select>
 
-            <label class="datenheader" for="Substorage_picture">Bild</label>
-            <input class="datenfeld" type="file" name="Substorage_picture" id="Substorage_picture">
+            <label class="datenheader" for="Substorage_yard_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Substorage_yard_picture" id="Substorage_yard_picture">
+
+            <button type="submit" name="submit">anlegen</button>
+
+        </form>
+    </div>
+</div>
+
+
+<div class="mainbox">
+    <div id="festensublagerplatzanlegen" class="actionwindow">
+
+        <h3>Sublagerplatz anlegen</h3>
+        <form action="<?= WEBROOT?><?= UV ?>PHP/festensublagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+            <label class="datenheader" for="Substorage_fixed_name">Name</label>
+            <input class="datenfeld" id="Substorage_fixed_name" type="text" name="Substorage_fixed_name">
+
+
+            <label class="datenheader" for="Substorage_fixed_description">Beschreibung</label>
+            <input class="datenfeld" id="Substorage_fixed_description" type="text" name="Substorage_fixed_description">
+
+            <label class="datenheader" for="Substorage_fixed_category">Kategorie</label>
+            <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
+                <option value="Räume">Fach</option>
+                <option value="Schränke">Schublade</option>
+            </select> 
+            
+            <label class="datenheader" for="Substorage_fixed_Format_Format_id">Formatvorlage</label>
+                <select class="datenfeld" class="" name="Substorage_fixed_Format_Format_id" id="Substorage_fixed_Format_Format_id">
+                <option value="">keine Vorlage</option>
+                    <?php foreach ($formates=getformates() as $key => $format): ?>
+                        <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
+                    <?php endforeach; ?>
+                </select>
+                
+            <label class="datenheader" for="neuesformat">neues Format</label>
+            <div class="datenfeld">
+                <input type="checkbox" id="neuesformat" name="neuesformat" value="neuesformat"> 
+                <label for="Format_length">Länge</label>
+                <input id="Format_length" type="text" name="Format_length">
+                <label for="Format_width">Breite</label>
+                <input id="Format_width" type="text" name="Format_width">
+                <label for="Format_height">Höhe</label>
+                <input id="Format_height" type="text" name="Format_height">
+            </div>
+            
+            <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
+                <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
+                    <?php foreach ($subtorages=getsubstorages() as $key => $substorage): ?>
+                                <option value="<?= $substorage->Storage_id ?>"><?= $substorage->Storage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+            <label class="datenheader" for="Substorage_fixed_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Substorage_fixed_picture" id="Substorage_fixed_picture">
+
+            <button type="submit" name="submit">anlegen</button>
+
+        </form>
+    </div>
+</div>
+
+<div class="mainbox">
+    <div id="beweglichensublagerplatzanlegen" class="actionwindow">
+
+        <h3>Sublagerplatz anlegen</h3>
+        <form action="<?= WEBROOT?><?= UV ?>PHP/beweglichensublagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+      
+
+            <label class="datenheader" for="Substorage_fixed_name">Name</label>
+            <input class="datenfeld" id="Substorage_fixed_name" type="text" name="Substorage_fixed_name">
+
+
+            <label class="datenheader" for="Substorage_fixed_description">Beschreibung</label>
+            <input class="datenfeld" id="Substorage_fixed_description" type="text" name="Substorage_fixed_description">
+
+            <label class="datenheader" for="Substorage_fixed_category">Kategorie</label>
+            <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
+                <option value="Räume">Fach</option>
+                <option value="Schränke">Schublade</option>
+            </select> 
+
+            <label class="datenheader" for="Substorage_mobile_cover">Deckel</label>
+            <input class="datenfeld" id="Substorage_mobile_cover" type="text" name="Substorage_mobile_cover">
+
+            <label class="datenheader" for="Substorage_fixed_Format_Format_id">Formatvorlage</label>
+                <select class="datenfeld" class="" name="Substorage_fixed_Format_Format_id" id="Substorage_fixed_Format_Format_id">
+                <option value="">keine Vorlage</option>
+                    <?php foreach ($formates=getformates() as $key => $format): ?>
+                        <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
+                    <?php endforeach; ?>
+                </select>
+                
+            <label class="datenheader" for="neuesformat">neues Format</label>
+            <div class="datenfeld">
+                <input type="checkbox" id="neuesformat" name="neuesformat" value="neuesformat"> 
+                <label for="Format_length">Länge</label>
+                <input id="Format_length" type="text" name="Format_length">
+                <label for="Format_width">Breite</label>
+                <input id="Format_width" type="text" name="Format_width">
+                <label for="Format_height">Höhe</label>
+                <input id="Format_height" type="text" name="Format_height">
+            </div>
+
+            <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
+                <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
+                    <?php foreach ($subtorages=getsubstorages() as $key => $substorage): ?>
+                                <option value="<?= $substorage->Storage_id ?>"><?= $substorage->Storage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+            <label class="datenheader" for="Substorage_fixed_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Substorage_fixed_picture" id="Substorage_fixed_picture">
 
             <button type="submit" name="submit">anlegen</button>
 
@@ -119,6 +220,45 @@
             <button type="submit" name="submit">anlegen</button>
 
         </form>
+    </div>
+</div>
+
+<div class="mainbox">
+    <div id="formatanlegen" class="actionwindow">
+
+        <h3>Format anlegen</h3>
+        
+            <form action="<?= WEBROOT?><?= UV ?>PHP/formatanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+                <label class="datenheader" for="Format_Format_id">Formatvorlage</label>
+                <select class="datenfeld" class="" name="Format_Format_id" id="Format_Format_id">
+                    <?php foreach ($formates=getformates() as $key => $format): ?>
+                        <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
+                    <?php endforeach; ?>
+                </select>
+                
+                <label class="datenheader" for="neuesformat">neues Format</label>
+                <div class="datenfeld">
+                    <input type="checkbox" id="neuesformat" name="neuesformat" value="neuesformat"> 
+                    <label for="Format_length" >Länge</label>
+                    <input id="Format_length" type="text" name="Format_length">
+                    <label for="Format_width" >Breite</label>
+                    <input id="Format_width" type="text" name="Format_width">
+                    <label for="Format_height" >Höhe</label>
+                    <input id="Format_height" type="text" name="Format_height">
+                </div>
+
+            <button type="submit" name="submit">anlegen</button>
+
+        </form>
+    </div>
+</div>
+
+<div class="mainbox">
+    <div id="eigenschaftanlegen" class="actionwindow">
+
+        <h3>Eigenschaft anlegen</h3>
+        
     </div>
 </div>
 

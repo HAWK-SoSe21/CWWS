@@ -4,9 +4,11 @@
         <?php
             $sql = "SELECT * FROM storage_yard WHERE Storage_id = '" . $_GET['storageid'] . "'";
             $object = getData($sql);
+            $sql = "SELECT * FROM properties WHERE Properties_id = '" . $object->Properties_id . "'";
+            $objprops= getData($sql);
         ?>
 
-        <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$object->Storage_name?></p>
+        <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$objprops->Properties_name?></p>
         <p class="datenheader">ID:</p><p class="datenfeld"><?=$object->Storage_id?></p>
         <p class="datenheader">Beschreibung:</p><p class="datenfeld"><?=$object->Storage_description?></p>
         <p class="datenheader">Kategorie:</p><p class="datenfeld"><?=$object->Storage_category?></p>

@@ -291,14 +291,22 @@ input{
 .datenfeld{
     max-width: 100%;
     font-weight: normal;
-    background: rgb(53, 116, 53);
+    color: white;
+    background: darkgreen;
     text-align: right;
     word-wrap: break-word;
     word-break: break-all;
+    display: flex;
+}
+.datenfeld label{
+    word-wrap:normal;
+    word-break: normal;
 }
 .datenheader{
     font-weight: bold;
     max-width: 100px;
+    
+    word-wrap: break-word;
 }
 #objektfenster img{
     max-height: 200px;
