@@ -231,6 +231,12 @@
         }
     }
 
+    function getformates(){
+        $sql = "SELECT * FROM format;";
+        $articles = getDatas($sql);
+        return $articles;
+    }
+
 
     
 ?>

@@ -12,10 +12,6 @@
 
         <form action="<?= WEBROOT?><?= UV ?>PHP/lagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
 
-            <label class="datenheader" for="Storage_name">Name</label>
-            <input class="datenfeld" id="Storage_name" type="text" name="Storage_name">
-
-
             <label class="datenheader" for="Storage_description" >Beschreibung</label>
             <input class="datenfeld" id="Storage_description" type="text" name="Storage_description">
 
@@ -28,22 +24,27 @@
                     <option value="Boxen">Boxen</option>
                 </select>
 
-            <label class="datenheader" for="Storage_picture">Bild</label>
-            <input class="datenfeld" type="file" name="Storage_picture" id="Storage_picture">
-
-
-            <label class="datenheader" for="Storage_format_heigth">Höhe</label>
-            <input class="datenfeld" type="text" name="Storage_format_heigth"id="Storage_format_heigth">
+            <label class="datenheader" for="Storage_format_length">Länge</label>
+            <input class="datenfeld" type="text" name="Storage_format_length" id="Storage_format_length">
 
             <label class="datenheader" for="Storage_format_width">Breite</label>
             <input class="datenfeld" type="text" name="Storage_format_width" id="Storage_format_width">
 
+            <label class="datenheader" for="Storage_format_heigth">Höhe</label>
+            <input class="datenfeld" type="text" name="Storage_format_heigth"id="Storage_format_heigth">
 
-            <label class="datenheader" for="Storage_format_length">Länge</label>
-            <input class="datenfeld" type="text" name="Storage_format_length" id="Storage_format_length">
+            <label class="datenheader" for="Format_Format_id">Formatvorlage</label>
+                <select class="datenfeld" class="" name="Storage_yard_Storage_id" id="Storage_yard_Storage_id">
+                    <?php foreach ($storages=getformates() as $key => $format): ?>
+                                <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
+                    <?php endforeach; ?>
+                </select>
 
             <label class="datenheader" for="Storage_furniture">Möbel</label>
             <input class="datenfeld" type="text" name="Storage_furniture" id="Storage_furniture">
+
+            <label class="datenheader" for="Storage_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Storage_picture" id="Storage_picture">
 
             <button type="submit" name="submit">anlegen</button>
 
