@@ -1,6 +1,6 @@
 <?php
 define("WEBROOT", 'http://localhost/');
-define("UV", '/CWWS/HTML/CWWS/');//Unterverzeichnis wenn nicht direkt im htdocs-Ordner
+define("UV", '/CWWS/HTML/CWWS-Sprint2/');//Unterverzeichnis wenn nicht direkt im htdocs-Ordner
 define("UPLOADS_ROOT", WEBROOT . UV);
 define("ROOT", $_SERVER['DOCUMENT_ROOT'] . UV);
 

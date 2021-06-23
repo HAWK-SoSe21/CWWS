@@ -54,7 +54,7 @@
 
 
     function uidExists($conn,$uid,$email){
-        $sql = "SELECT * FROM user WHERE User_email = ? OR User_id = ?;";
+        $sql = "SELECT * FROM user WHERE User_email = ? OR User_name = ?;";
         $stmt = mysqli_stmt_init($conn);
         
         if(!mysqli_stmt_prepare($stmt,$sql)){
@@ -82,7 +82,7 @@
 
 
     function createUser($conn, $uid, $email, $pwd){
-        $sql = "INSERT INTO user (User_id,User_email,User_password) VALUES (?, ?, ?);";
+        $sql = "INSERT INTO user (User_name,User_email,User_password) VALUES (?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt,$sql)){
             header("location: ../pages/signup.php?error=stmtfailed");
@@ -129,7 +129,7 @@
         }
         else if($checkPwd === true){
             session_start();
-            $_SESSION["userid"]=$uidExists["User_id"];
+            $_SESSION["userid"]=$uidExists["User_name"];
             header("location: ../index.php");
             exit();
         }
@@ -230,7 +230,20 @@
             return $res;
         }
     }
+    
 
+    function getformates(){
+        $sql = "SELECT * FROM format;";
+        $articles = getDatas($sql);
+        return $articles;
+    }
+
+
+    function getproperties(){
+        $sql = "SELECT * FROM format;";
+        $articles = getDatas($sql);
+        return $articles;
+    }
 
     
 ?>
