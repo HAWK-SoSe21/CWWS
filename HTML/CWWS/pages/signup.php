@@ -3,38 +3,36 @@
     <div class="main">
         <div class="mainbox">
             <section class="signup-form">
-                <h2>Sign Up</h2>
-                <form action="<?php ROOT ?>/CWWS/PHP/signup.inc.php" method="post">
-                    <input type="text" name="firstname" placeholder="Vorname...">
-                    <input type="text" name="lastname" placeholder="Nachname...">
+
+                <form action="<?php ROOT ?>../PHP/signup.inc.php" method="post">
+                    <input type="text" name="name" placeholder="Nutzer-Name...">
                     <input type="text" name="email" placeholder="Email...">
-                    <input type="text" name="birthday" placeholder="Geburtstag...">
-                    <input type="password" name="pwd" placeholder="Password...">
-                    <input type="password" name="pwdrepeat" placeholder="Repeat password...">
-                    <button type="submit"name="submit">Sign Up</button>
+                    <input type="password" name="pwd" placeholder="Passwort...">
+                    <input type="password" name="pwdrepeat" placeholder="Passwort wiederholen...">
+                    <button type="submit"name="submit">Registrieren</button>
                 </form>
                 <?php
                 if(isset($_GET["error"])){
                     if($_GET["error"]=="emptyinput"){
-                        echo"<p>Fill in all fields!</p>";
+                        echo"<p>Ein Feld wurde ausgelassen!</p>";
                     }
                     else if($_GET["error"]=="invaliduid"){
-                        echo"<p>Choose a proper username!</p>";
+                        echo"<p>Nutzername nicht möglich!</p>";
                     }
                     else if($_GET["error"]=="invalidemail"){
-                        echo"<p>Choose a valif E-Mail!</p>";
+                        echo"<p>Nutze eine valide E-Mailadresse!</p>";
                     }
                     else if($_GET["error"]=="passwordsdontmatch"){
-                        echo"<p>Passwords don't match!</p>";
+                        echo"<p>Passwörter stimmen nicht überein!</p>";
                     }
                     else if($_GET["error"]=="usernametaken"){
-                        echo"<p>Username already taken!</p>";
+                        echo"<p>Nutzername schon belegt!</p>";
                     }
                     else if($_GET["error"]=="stmtfailed"){
-                        echo"<p>Something went wrong, try again!</p>";
+                        echo"<p>Da ist etwas schief gelaufen!</p>";
                     }
                     else if($_GET["error"]=="none"){
-                        echo"<p>You have signed up.</p>";
+                        echo"<p>Signup erfolgreich.</p>";
                     }
                 }
                 ?>

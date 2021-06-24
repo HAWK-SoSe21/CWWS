@@ -4,7 +4,7 @@
     <div class="maingrid">
         
     
-        <div id="sidebar" class="sidebar">
+        <div id="idsidebar" class="sidebar">
             <ul>
                 <header>Funktionen</header>
                 <li><a href="<?=$_SERVER['REQUEST_URI'];?>?action=createstorage">Lagerplatz anlegen</a></li> 
@@ -15,7 +15,7 @@
         </div>
         
 
-        <button id="sidebarbutton" class="sidebarbutton" onclick="togglesidebar()">></button>
+        <button id="idsidebarbutton" class="sidebarbutton" onclick="togglesidebar()">></button>
         
 
 

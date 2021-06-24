@@ -1,164 +1,327 @@
-<div id="option1" class="group">
-        <section class="lagerplatz-anlegen-form">
-            <h3>Lagerplatz anlegen</h3>
-            <form action="<?php ROOT?>/CWWS/PHP/lagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="Storage_name" placeholder="Name...">
-                <input type="text" name="Storage_category" placeholder="Kategorie...">
-                <input type="text" name="Storage_description" placeholder="Beschreibung...">
-                <input type="text" name="Storage_format_length" placeholder="Länge...">
-                <input type="text" name="Storage_format_heigth" placeholder="Höhe...">
-                <input type="text" name="Storage_format_width" placeholder="Breite...">
-                <input type="text" name="Storage_furniture" placeholder="Möbel...">
-                <input type="text" name="User_User_id" placeholder="User-ID">
-                <p>Bild: </p><input type="file" name="Storage_picture">
-                <button type="submit"name="submit">Lagerplatz anlegen</button>
-            </form>
-            <?php
-            if(isset($_GET["error"])){
-                if($_GET["error"]=="emptyinput"){
-                    echo"<p>Sie haben ein Feld ausgelassen.</p>";
-                }
-                else if($_GET["error"]=="stmtfailed"){
-                    echo"<p>Da ist etwas schief gelaufen.</p>";
-                }
-                else if($_GET["error"]=="none1"){
-                    echo"<p>Lagerplatz wurde angelegt.</p>";
-                }
-            }
-            ?>
-        </section> 
-    </div>
-
-    <div id="option2" class="group">
-        <?php
-            if(isset($_GET['ids'])) {
-                $sql = "SELECT * FROM storage_yard WHERE Storage_id = '" . $_GET['ids'] . "'";
-                $storage = getData($sql);
-            }
-        ?>
-        <section class="lagerplatz-bearbeiten-form">
-            <h3>Lagerplatz bearbeiten</h3>
-            <form action="<?php ROOT?>/CWWS/PHP/lagerplatzbearbeiten.inc.php" method="post">
-                <input type="hidden" name="Storage_id" value="<?php if(isset($storage)){echo $storage->Storage_id;} ?>">
-            
-                <label for="name">Name</label>
-                <input type="text" name="Storage_name" value="<?php if(isset($storage)){echo $storage->Storage_name;} ?>">
-            
-                <label for="name">Beschreibung</label>
-                <input type="text" name="Storage_description" value="<?php if(isset($storage)){echo $storage->Storage_description;} ?>">
-            
-                <label for="name">Kategorie</label>
-                <input type="text" name="Storage_category" value="<?php if(isset($storage)){echo $storage->Storage_category;} ?>">
-            
-                <label for="name">Höhe</label>
-                <input type="number" name="Storage_format_heigth" value="<?php if(isset($storage)){echo $storage->Storage_format_heigth;} ?>">
-            
-                <label for="name">Breite</label>
-                <input type="number" name="Storage_format_width" value="<?php if(isset($storage)){echo $storage->Storage_format_width;} ?>">
-            
-                <label for="name">Länge</label>
-                <input type="number" name="Storage_format_length" value="<?php if(isset($storage)){echo $storage->Storage_format_length;} ?>">
-            
-                <label for="name">Möbel</label>
-                <input type="text" name="Storage_furniture" value="<?php if(isset($storage)){echo $storage->Storage_furniture;} ?>">
-
-                <label for="name">Bild</label>
-                <img style="height: 100px; width: 200px" src="<?php if(isset($storage)){echo WEBROOT . $storage->Storage_picture;} ?>" alt="">
-                <input type="file" name="Storage_picture" value="<?php if(isset($storage)){echo $storage->Storage_picture;} ?>">
-                
-                <button type="submit"name="submit">Lagerplatz bearbeiten</button>
-            </form>
-            <?php
-            if(isset($_GET["error"])){
-                if($_GET["error"]=="emptyinput"){
-                    echo"<p>Sie haben ein Feld ausgelassen.</p>";
-                }
-                else if($_GET["error"]=="stmtfailed"){
-                    echo"<p>Da ist etwas schief gelaufen.</p>";
-                }
-                else if($_GET["error"]=="none"){
-                    echo"<p>Lagerplatz erfolgreich bearbeitet</p>";
-                }
-            }
-            ?>
-        </section>
-    </div>
-
-    <div id="option3" class="group">
-        <section class="artikel-anlegen-form">
-            <h3>Artikel anlegen</h3>
-            <form action="<?php ROOT?>/CWWS/PHP/artikelanlegen.inc.php" method="post">
-                <input type="text" name="Articel_name" placeholder="Name...">
-                <input type="text" name="Articel_alias" placeholder="Pseudonym...">
-                <input type="text" name="Articel_description" placeholder="Beschreibung...">
-                <input type="text" name="Articel_format_height" placeholder="Länge...">
-                <input type="text" name="Articel_format_width" placeholder="Breite...">
-                <input type="text" name="Articel_format_length" placeholder="Höhe...">
-                <input type="text" name="Articel_expiry" placeholder="Ablaufdatum...">
-                <p>Bild: </p><input type="file" name="Bild">
-                <button type="submit"name="submit">Artikel anlegen</button>
-            </form>
-            <?php
-            if(isset($_GET["error"])){
-                if($_GET["error"]=="emptyinput"){
-                    echo"<p>Sie haben ein Feld ausgelassen.</p>";
-                }
-                else if($_GET["error"]=="stmtfailed"){
-                    echo"<p>Da ist etwas schief gelaufen.</p>";
-                }
-                else if($_GET["error"]=="none2"){
-                    echo"<p>Artikel wurde angelegt.</p>";
-                }
-                
-            }
-            ?>
-        </section>
-    </div>
-
+<select id="dropdown1" value="bearbeiten">
     
-    <div id="option4" class="group">
-        <?php
-            if(isset($_GET['ida'])) {
-                $sql = "SELECT * FROM articel WHERE Articel_id = '" . $_GET['ida'] . "'";
-                $article = getData($sql);
-            }
-        ?>
-        <section class="artikel-bearbeiten-form">
-            <h3>Artikel bearbeiten</h3>
-            <form action="<?php ROOT?>/CWWS/PHP/artikelbearbeiten.inc.php" method="post">
-                <label for="name">Name</label>
-                <input type="text" name="Articel_name" value="<?php if(isset($article)){echo $article->Articel_name;} ?>">
-                <label for="name">Pseudonym</label>
-                <input type="text" name="Articel_alias" value="<?php if(isset($article)){echo $article->Articel_alias;} ?>">
-                <label for="name">Beschreibung</label>
-                <input type="text" name="Articel_description" value="<?php if(isset($article)){echo $article->Articel_description;} ?>">
-                <label for="name">Länge</label>
-                <input type="number" name="Articel_format_length" value="<?php if(isset($article)){echo $article->Articel_format_length;} ?>">
-                <label for="name">Breite</label>
-                <input type="number" name="Articel_format_width" value="<?php if(isset($article)){echo $article->Articel_format_width;} ?>">
-                <label for="name">Höhe</label>
-                <input type="number" name="Articel_format_height" value="<?php if(isset($article)){echo $article->Articel_format_height;} ?>">
-                <label for="name">Ablaufdatum</label>
-                <input type="date" name="Articel_expiry" value="<?php if(isset($article)){echo $article->Articel_expiry;} ?>">
-                <label for="name">Bild</label>
-                <img style="height: 100px; width: 200px" src="<?php if(isset($article)){echo  WEBROOT . $article->Articel_picture;} ?>" alt="">
-                <input type="file" name="Articel_picture">
-                <button type="submit"name="submit">Artikel bearbeiten</button>
-            </form>
-            <?php
-            
-            if(isset($_GET["error"])){
-                if($_GET["error"]=="emptyinput"){
-                    echo"<p>Sie haben ein Feld ausgelassen.</p>";
+    <option value="bearbeiten">Auswahl bearbeiten</option>
+    <option value="lagerplatzanlegen">Lagerplatz anlegen</option>
+    <option value="sublagerplatzanlegen">Sublagerplatz anlegen</option>
+    <option value="festensublagerplatzanlegen">festen Sublagerlatz anlegen</option>
+    <option value="beweglichensublagerplatzanlegen">beweglichen Sublagerlatz anlegen</option>
+    <option value="artikelanlegen">Artikel anlegen</option>
 
-                }
-                else if($_GET["error"]=="stmtfailed"){
-                    echo"<p>Da ist etwas schief gelaufen.</p>";
-                }
-                else if($_GET["error"]=="none3"){
-                    echo"<p>Artikel erfolgreich bearbeitet</p>";
-                }
-            }
-            ?>
-        </section>
+</select>
+
+<div id="lagerplatzanlegen" class="actionwindow">   
+    <div  class="mainbox">
+
+        <h3>Lagerplatz anlegen</h3>
+
+        <form action="<?= WEBROOT?><?= UV ?>PHP/lagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+            <label class="datenheader" for="Storage_name" >Name</label>
+            <input class="datenfeld" id="Storage_name" type="text" name="Storage_name">
+
+            <label class="datenheader" for="Storage_description" >Beschreibung</label>
+            <input class="datenfeld" id="Storage_description" type="text" name="Storage_description">
+
+            <label class="datenheader" for="Storage_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Storage_picture" id="Storage_picture">
+
+            <button type="submit" name="submit">anlegen</button>
+
+        </form>
     </div>
+</div>
+
+<div id="sublagerplatzanlegen" class="actionwindow">
+    <div class="mainbox">
+
+        <h3>Sublagerplatz anlegen</h3>
+        <form action="<?= WEBROOT?><?= UV ?>PHP/sublagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+            <label class="datenheader" for="Substorage_name">Name</label>
+            <input class="datenfeld" id="Substorage_name" type="text" name="Substorage_name">
+
+
+            <label class="datenheader" for="Substorage_description" >Beschreibung</label>
+            <input class="datenfeld" id="Substorage_description" type="text" name="Substorage_description">
+
+            <label class="datenheader" for="Substorage_category">Kategorie</label>
+            <select class="datenfeld" name="Substorage_category" id="Substorage_category">
+                <option value="Räume">Schrank</option>
+                <option value="Schränke">Regal</option>
+            </select> 
+
+            <label class="datenheader" for="Substorage_quantity" >Anzahl</label>
+            <input class="datenfeld" id="Substorage_quantity" type="number" min="0" name="Substorage_quantity">
+
+
+            <label class="datenheader" for="Storage_yard_Storage_id">Lagerlatzzugehörigkeit</label>
+                <select class="datenfeld" class="" name="Storage_yard_Storage_id" id="Storage_yard_Storage_id">
+                    <?php foreach ($storages=getstorages() as $key => $storage): ?>
+                                <option value="<?= $storage->Storage_id ?>"><?= $storage->Storage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+            <label class="datenheader" for="Substorage_yard_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Substorage_yard_picture" id="Substorage_yard_picture">
+
+            <button type="submit" name="submit">anlegen</button>
+
+        </form>
+    </div>
+</div>
+
+
+<div id="festensublagerplatzanlegen" class="actionwindow">
+    <div class="mainbox">
+
+        <h3>festen Sublagerplatz anlegen</h3>
+        <form action="<?= WEBROOT?><?= UV ?>PHP/festensublagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+            <label class="datenheader" for="Substorage_fixed_name">Name</label>
+            <input class="datenfeld" id="Substorage_fixed_name" type="text" name="Substorage_fixed_name">
+
+            <label class="datenheader" for="Substorage_fixed_description">Beschreibung</label>
+            <input class="datenfeld" id="Substorage_fixed_description" type="text" name="Substorage_fixed_description">
+
+            <label class="datenheader" for="Substorage_fixed_category">Kategorie</label>
+            <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
+                <option value="Räume">Fach</option>
+                <option value="Schränke">Schublade</option>
+            </select> 
+            
+            
+                
+            <label class="datenheader" for="Substorage_fixed_format">neues Format</label>
+            <div class="datenfeld" id="Substorage_fixed_format" name="Substorage_fixed_format"> 
+                <label for="Substorage_fixed_Format_length">Länge: </label>
+                <input class="numinput" id="Substorage_fixed_Format_length" type="number" step="0.01" name="Substorage_fixed_Format_length"><span>m</span>
+                <label class="numinputlabel" for="Substorage_fixed_Format_width">Breite: </label>
+                <input class="numinput" id="Substorage_fixed_Format_width" type="number" step="0.01" name="Substorage_fixed_Format_width"><span>m</span>
+                <label class="numinputlabel" for="Substorage_fixed_Format_height">Höhe: </label>
+                <input class="numinput" id="Substorage_fixed_Format_height" type="number" step="0.01" name="Substorage_fixed_Format_height"><span>m</span>
+            </div>
+            
+            <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
+                <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
+                    <?php foreach ($subtorages=getsubstorages() as $key => $substorage): ?>
+                                <option value="<?= $substorage->Storage_id ?>"><?= $substorage->Storage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+            <label class="datenheader" for="Substorage_fixed_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Substorage_fixed_picture" id="Substorage_fixed_picture">
+
+            <button type="submit" name="submit">anlegen</button>
+
+        </form>
+    </div>
+</div>
+
+<div id="beweglichensublagerplatzanlegen" class="actionwindow">
+    <div class="mainbox">
+
+        <h3>Sublagerplatz anlegen</h3>
+        <form action="<?= WEBROOT?><?= UV ?>PHP/beweglichensublagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+      
+
+            <label class="datenheader" for="Substorage_fixed_name">Name</label>
+            <input class="datenfeld" id="Substorage_fixed_name" type="text" name="Substorage_fixed_name">
+
+
+            <label class="datenheader" for="Substorage_fixed_description">Beschreibung</label>
+            <input class="datenfeld" id="Substorage_fixed_description" type="text" name="Substorage_fixed_description">
+
+            <label class="datenheader" for="Substorage_fixed_category">Kategorie</label>
+            <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
+                <option value="Räume">Fach</option>
+                <option value="Schränke">Schublade</option>
+            </select> 
+
+            <label class="datenheader" for="Substorage_mobile_cover">Deckel</label>
+            <input class="datenfeld" id="Substorage_mobile_cover" type="text" name="Substorage_mobile_cover">
+
+            <label class="datenheader" for="Substorage_fixed_Format_Format_id">Formatvorlage</label>
+                <select class="datenfeld" class="" name="Substorage_fixed_Format_Format_id" id="Substorage_fixed_Format_Format_id">
+                <option value="">keine Vorlage</option>
+                    <?php foreach ($formates=getformates() as $key => $format): ?>
+                        <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
+                    <?php endforeach; ?>
+                </select>
+                
+            <label class="datenheader" for="neuesformat">neues Format</label>
+            <div class="datenfeld">
+                <input type="checkbox" id="neuesformat" name="neuesformat" value="neuesformat"> 
+                <label for="Format_length">Länge</label>
+                <input id="Format_length" type="text" name="Format_length">
+                <label for="Format_width">Breite</label>
+                <input id="Format_width" type="text" name="Format_width">
+                <label for="Format_height">Höhe</label>
+                <input id="Format_height" type="text" name="Format_height">
+            </div>
+
+            <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
+                <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
+                    <?php foreach ($subtorages=getsubstorages() as $key => $substorage): ?>
+                                <option value="<?= $substorage->Storage_id ?>"><?= $substorage->Storage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+            <label class="datenheader" for="Substorage_fixed_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Substorage_fixed_picture" id="Substorage_fixed_picture">
+
+            <button type="submit" name="submit">anlegen</button>
+
+        </form>
+    </div>
+</div>
+
+<div id="artikelanlegen" class="actionwindow">
+    <div class="mainbox">
+
+        <h3>Artikel anlegen</h3>
+        <form action="<?= WEBROOT?><?= UV ?>PHP/artikelanlegen.inc.php" method="post" enctype="multipart/form-data">
+
+            <label class="datenheader" for="Articel_name">Name</label>
+            <input class="datenfeld" id="Articel_name" type="text" name="Articel_name">
+
+
+            <label class="datenheader" for="Articel_description" >Beschreibung</label>
+            <input class="datenfeld" id="Articel_description" type="text" name="Articel_description">
+
+            <label class="datenheader" for="Articel_format_height">Höhe</label>
+            <input class="datenfeld" type="text" name="Articel_format_height"id="Articel_format_height">
+
+            <label class="datenheader" for="Articel_format_width">Breite</label>
+            <input class="datenfeld" type="text" name="Articel_format_width" id="Articel_format_width">
+
+
+            <label class="datenheader" for="Articel_format_length">Länge</label>
+            <input class="datenfeld" type="text" name="Articel_format_length" id="Articel_format_length">
+
+
+            <label class="datenheader" for="Articel_picture">Bild</label>
+            <input class="datenfeld" type="file" name="Articel_picture" id="Articel_picture">
+
+            <label class="datenheader"  for="name">Pseudonym</label>
+            <input class="datenfeld" type="text" name="Articel_alias" id="Articel_alias">
+
+            <label class="datenheader"  for="Articel_expiry">Ablaufdatum</label>
+            <input  class="datenfeld" type="date" name="Articel_expiry" id="Articel_expiry">
+
+            <button type="submit" name="submit">anlegen</button>
+
+        </form>
+    </div>
+</div>
+
+
+
+<div id="bearbeiten" class="actionwindow">
+    <div class="mainbox">
+        
+        <h3>Auswahl bearbeiten</h3>
+        <?php if(isset($_GET['storageid'])): ?>
+
+            <form action="<?= WEBROOT?><?= UV ?>PHP/lagerplatzbearbeiten.inc.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="Storage_id" value="<?= $object->Storage_id ?>">
+
+                <label class="datenheader" for="Storage_name">Name</label>
+                <input class="datenfeld"  type="text" name="Storage_name" value="<?= $object->Storage_name ?>">
+
+
+                <label class="datenheader" for="Storage_description">Beschreibung</label>
+                <input class="datenfeld" type="text" name="Storage_description" value="<?= $object->Storage_description ?>">
+
+
+                <label class="datenheader" for="Storage_picture">Bild</label>
+                <input class="datenfeld" type="file" name="Storage_picture" value="<?= $object->Storage_picture ?>">
+
+                <button type="submit" name="submit">bearbeiten</button>
+                <button type="submit" name="delete">löschen</button>
+            </form>
+            
+
+
+        <?php elseif(isset($_GET['substorageid'])):?>
+
+
+            <form action="<?= WEBROOT?><?= UV ?>PHP/sublagerplatzbearbeiten.inc.php" method="post" enctype="multipart/form-data">
+
+                <input  type="hidden" name="Substorage_id" value="<?= $object->Substorage_id ?>">
+
+                <label class="datenheader" for="Substorage_name">Name</label>
+                <input class="datenfeld"  type="text" name="Substorage_name" value="<?= $object->Substorage_name ?>">
+
+
+                <label class="datenheader" for="Substorage_description">Beschreibung</label>
+                <input class="datenfeld" type="text" name="Substorage_description" value="<?= $object->Substorage_description ?>">
+
+                <label for="Storage_yard_Storage_id">Lagerplatz</label>
+                <select name="Storage_yard_Storage_id">
+                    <?php foreach ($storages=getstorages() as $key => $storage): ?>
+                    <option <?= $storage->Storage_id == $object->Storage_yard_Storage_id ? 'selected' : ''  ?> value="<?= $storage->Storage_id ?>"><?= $storage->Storage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+
+                <label class="datenheader" for="Substorage_picture">Storage_picture</label>
+                <input class="datenfeld" type="file" name="Substorage_picture" value="<?= $object->Substorage_picture ?>">
+
+                <button type="submit" name="submit">bearbeiten</button>
+            </form>
+
+
+        <?php elseif(isset($_GET['articleid'])):?>
+
+
+            <form action="<?= WEBROOT?><?= UV ?>PHP/artikelbearbeiten.inc.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="Articel_id" value="<?= $object->Articel_id ?>">
+
+                <label class="datenheader" for="Articel_name">Name</label>
+                <input class="datenfeld"  type="text" name="Articel_name" value="<?= $object->Articel_name ?>">
+
+                <label class="datenheader" for="Articel_description">Beschreibung</label>
+                <input class="datenfeld" type="text" name="Articel_description" value="<?= $object->Articel_description ?>">
+
+
+                <label class="datenheader" for="Articel_format_height">Höhe</label>
+                <input class="datenfeld" type="text" name="Articel_format_height" value="<?= $object->Articel_format_height ?>">
+
+
+                <label class="datenheader" for="Articel_format_width">Breite</label>
+                <input class="datenfeld" type="text" name="Articel_format_width" value="<?= $object->Articel_format_width ?>">
+
+
+                <label class="datenheader" for="Articel_format_length">Länge</label>
+                <input class="datenfeld" type="text" name="Articel_format_length" value="<?= $object->Articel_format_length ?>">
+
+
+                <label class="datenheader" for="Articel_alias">Pseudonym</label>
+                <input class="datenfeld" type="text" name="Articel_alias" value="<?= $object->Articel_alias ?>">
+
+
+                <label class="datenheader" for="Articel_expiry">Ablaufdatum</label>
+                <input class="datenfeld" type="date" name="Articel_expiry" value="<?= $object->Articel_expiry ?>">
+
+
+                <label class="datenheader" for="Articel_picture">Bild</label>
+                <input class="datenfeld" type="file" name="Articel_picture" value="<?= $object->Articel_picture ?>">
+
+                <button type="submit" name="submit">bearbeiten</button>
+            </form>
+
+
+        <?php else:?>
+
+
+            <p>Kein Objekt ist zur Bearbeitung ausgewählt.</p>
+
+
+        <?php endif?>
+
+        
+    </div>
+</div>
+
+</div>

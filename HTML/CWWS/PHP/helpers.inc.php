@@ -1,6 +1,6 @@
 <?php
 
-    $dbName   = 'mydb';
+    $dbName   = 'db_cwws';
     $host     = 'localhost';
     $userName = 'root';
     $password = '';
@@ -36,5 +36,6 @@
     {
         global $pdo;
         $stmt = $pdo->prepare($req);
-        return $stmt->execute($params);
+        $stmt->execute($params);
+        return $pdo->lastInsertId();
     }
