@@ -129,7 +129,8 @@
         }
         else if($checkPwd === true){
             session_start();
-            $_SESSION["userid"]=$uidExists["User_name"];
+            $_SESSION["userid"]=$uidExists["User_id"];
+            $_SESSION["username"]=$uidExists["User_name"];
             header("location: ../index.php");
             exit();
         }
@@ -139,7 +140,7 @@
 
     function userinfo(){
         if(isset($_SESSION["userid"])){
-            return $_SESSION["userid"];
+            return $_SESSION["username"];
         }
         else{
             return "nicht angemeldet";
@@ -183,8 +184,7 @@
 
 
     function getstorages(){
-        
-        $sql = "SELECT * FROM storage_yard";
+        $sql = "SELECT *, properties.Properties_name as Storage_name, properties.Properties_description as Storage_description  FROM storage_yard, properties WHERE storage_yard.Properties_Properties_id = properties.Properties_id;";
         $Storages = getDatas($sql);
         return $Storages;
         
@@ -203,16 +203,16 @@
 
     function getsubstorages(){
 
-        $sql = "SELECT * FROM substorage_yard";
+        $sql = "SELECT *, properties.Properties_name as Substorage_name, properties.Properties_description as Substorage_description  FROM substorage_yard, properties WHERE substorage_yard.Properties_Properties_id = properties.Properties_id;";
         $Substorages = getDatas($sql);
-        return $Substorages; 
+        return $Substorages;
     }
 
 
 
     function getarticles(){
 
-        $sql = "SELECT * FROM articel;";
+        $sql = "SELECT *, properties.Properties_name as articel_name, properties.Properties_description as articel_description  FROM articel, properties WHERE articel.Properties_Properties_id = properties.Properties_id;";
         $articles = getDatas($sql);
         return $articles;
     }
@@ -243,6 +243,18 @@
         $sql = "SELECT * FROM format;";
         $articles = getDatas($sql);
         return $articles;
+    }
+
+    function getmobilesubstorages(){
+        $sql = "SELECT *, properties.Properties_name as Substorage_mobile_name, properties.Properties_description as Substorage_mobile_description  FROM substorage_yard_mobile, properties WHERE substorage_yard_mobile.Properties_Properties_id = properties.Properties_id;";
+        $Storages = getDatas($sql);
+        return $Storages;
+    }
+
+    function getfixedsubstorages(){
+        $sql = "SELECT *, properties.Properties_name as Substorage_fixed_name, properties.Properties_description as Substorage_fixed_description  FROM substorage_yard_fixed, properties WHERE substorage_yard_fixed.Properties_Properties_id = properties.Properties_id;";
+        $Storages = getDatas($sql);
+        return $Storages;
     }
 
     

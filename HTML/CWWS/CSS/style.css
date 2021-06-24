@@ -237,6 +237,10 @@ input{
     width: 100%;
 }
 
+.explorer p{
+    font-size: small;
+}
+
 .explorer li{
     list-style: none;
     text-decoration: none;
@@ -271,6 +275,10 @@ input{
 .tab3 {
     display: inline-block;
     margin-left: 30px;
+}
+.explorer h3{
+    font-size: medium;
+    word-break:normal;
 }
 
 
@@ -333,7 +341,12 @@ input{
     word-wrap: break-word;
     width: 100%;
 }
-
+.numinput{
+    max-width: 50px;
+}
+.numinputlabel{
+    padding-left: 10px;
+}
 
 
 /*Responsive*/

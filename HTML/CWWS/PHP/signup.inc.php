@@ -1,6 +1,6 @@
 <?php
     if(isset($_POST["submit"])){
-        $uid = $_POST["uid"];
+        $name = $_POST["name"];
         $email = $_POST["email"];
         $pwd = $_POST["pwd"];
         $pwdrepeat = $_POST["pwdrepeat"];
@@ -8,7 +8,7 @@
         require_once 'dbh.inc.php';
         require_once 'functions.inc.php';
 
-        if(emptyInputSignup($uid,$email,$pwd,$pwdrepeat) !== false) {
+        if(emptyInputSignup($name,$email,$pwd,$pwdrepeat) !== false) {
             header("location: ../pages/signup.php?error=emptyinput");
             exit();
         }
@@ -20,12 +20,8 @@
             header("location: ../pages/signup.php?error=passwordsdontmatch");
             exit();
         }
-        if(uidExists($conn, $uid, $email) !== false) {
-            header("location: ../pages/signup.php?error=usernametaken");
-            exit();
-        }
 
-        createUser($conn, $uid, $email, $pwd);
+        createUser($conn, $name, $email, $pwd);
     }
     else{
         header("location: ../pages/signup.php");

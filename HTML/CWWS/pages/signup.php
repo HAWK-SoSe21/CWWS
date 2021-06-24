@@ -3,9 +3,9 @@
     <div class="main">
         <div class="mainbox">
             <section class="signup-form">
-                
+
                 <form action="<?php ROOT ?>../PHP/signup.inc.php" method="post">
-                    <input type="text" name="uid" placeholder="Nutzer-ID...">
+                    <input type="text" name="name" placeholder="Nutzer-Name...">
                     <input type="text" name="email" placeholder="Email...">
                     <input type="password" name="pwd" placeholder="Passwort...">
                     <input type="password" name="pwdrepeat" placeholder="Passwort wiederholen...">

@@ -2,18 +2,14 @@
 <div id="objektfenster" class="mainbox">
     <?php if(isset($_GET['storageid'])):?>
         <?php
-            $sql = "SELECT * FROM storage_yard WHERE Storage_id = '" . $_GET['storageid'] . "'";
+            $sql = "SELECT *, properties.Properties_name as Storage_name, properties.Properties_description as Storage_description  FROM storage_yard, properties WHERE storage_yard.Properties_Properties_id = properties.Properties_id and Storage_id = '" . $_GET['storageid'] . "'";
             $object = getData($sql);
-            $sql = "SELECT * FROM properties WHERE Properties_id = '" . $object->Properties_id . "'";
-            $objprops= getData($sql);
         ?>
 
-        <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$objprops->Properties_name?></p>
+        <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$object->Storage_name?></p>
         <p class="datenheader">ID:</p><p class="datenfeld"><?=$object->Storage_id?></p>
         <p class="datenheader">Beschreibung:</p><p class="datenfeld"><?=$object->Storage_description?></p>
-        <p class="datenheader">Kategorie:</p><p class="datenfeld"><?=$object->Storage_category?></p>
-        <p class="datenheader">Maße:</p><p class="datenfeld"><?=$object->Storage_format_length?>m x <?=$object->Storage_format_width?>m x <?=$object->Storage_format_heigth?>m</p>
-        <p class="datenheader">Möbel:</p><p class="datenfeld"><?=$object->Storage_furniture?></p>
+
         <p class="datenheader">Nutzerliste:</p><p class="datenfeld"><?=$object->User_User_id?></p>
         <p class="datenheader">Bild:</p><img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Storage_picture ?? 'images/storage.png')?>" alt ="Image not found" onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/storage.png';">
 

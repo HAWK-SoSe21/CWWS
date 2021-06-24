@@ -3,7 +3,6 @@ define("WEBROOT", 'http://localhost/');
 define("UV", '/CWWS/');//Unterverzeichnis wenn nicht direkt im htdocs-Ordner
 define("UPLOADS_ROOT", WEBROOT . UV);
 define("ROOT", $_SERVER['DOCUMENT_ROOT'] . UV);
-
 $GLOBALS["user"] = null;
 session_start();
 

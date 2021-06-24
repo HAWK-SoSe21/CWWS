@@ -36,5 +36,6 @@
     {
         global $pdo;
         $stmt = $pdo->prepare($req);
-        return $stmt->execute($params);
+        $stmt->execute($params);
+        return $pdo->lastInsertId();
     }
