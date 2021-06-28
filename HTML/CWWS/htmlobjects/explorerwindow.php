@@ -57,7 +57,7 @@
             <br>
             <?php foreach ($Substorages as $Substorage):?>
 
-                <li ><span class="tab1"></span><a href="?substorageid=<?=str_pad($Substorage->Substorage_id, 4, 0, STR_PAD_LEFT)?>"><?= $Substorage->Substorage_name?></a></li>
+                <li ><span class="tab1"></span><a href="?fixedsubstorageid=<?=str_pad($Substorage->Substorage_fixed_id, 4, 0, STR_PAD_LEFT)?>"><?= $Substorage->Substorage_fixed_name?></a></li>
 
             <?php endforeach;?>
 

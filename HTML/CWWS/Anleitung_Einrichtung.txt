@@ -1,5 +1,0 @@
-1. xampp starten
-2. apache-webserver und MySQL starten
-3. Code von /CWWS/sql/db_cwws.sql in phpmyadmin ausführen
-4. Ordner /CWWS in C:/xampp/htdocs kopieren
-5. localhost/CWWS/index.php im Browser aufrufen

@@ -7,10 +7,14 @@
         $pictureUrl = "/uploads/storages/" . basename($_FILES["Storage_picture"]["name"]);
         $target_file = $target_dir . basename($_FILES["Storage_picture"]["name"]);
         $uploadedFilePath = move_uploaded_file($_FILES["Storage_picture"]["tmp_name"], $target_file);
-        $authenticatedUserId = $_SESSION["userid"];
+        $modified_date = getdate();
+        $sql_format = "INSERT INTO `format`(`Format_height`, `Format_width`, `Format_length`) VALUES ('". $_POST['Storage_Format_height'] ."', '". $_POST['Storage_Format_width'] ."', '". $_POST['Storage_Format_length'] ."');";
+        $formatId = setData($sql_format);
         $sql_props = "INSERT INTO `properties`(`Properties_name`, `Properties_description`) VALUES ('". $_POST['Storage_name'] ."', '". $_POST['Storage_description'] ."');";
         $propId = setData($sql_props);
-        $sql_storage_yard = "INSERT INTO `storage_yard`(`Storage_picture`,`User_User_id`,`Properties_Properties_id`) VALUES ('".$pictureUrl."', '".$authenticatedUserId."', '". $propId."')";
+        $sql_usage = "INSERT INTO `usage_statistics`(`Usage_statistics_last_modified`) VALUES ('".$modified_date."');";
+        $usageId = setData($sql_usage);
+        $sql_storage_yard = "INSERT INTO `storage_yard`(`Storage_picture`,`Format_Format_id`,`Properties_Properties_id`,`Usage_statistics_idUsage_statistics`) VALUES ('".$pictureUrl."', '".$formatId."', '". $propId."', '". $usageId."')";
         $status = setData($sql_storage_yard);
         
         if($status) {
@@ -21,7 +25,5 @@
         }
     }
 
-    
-
-
+  
 ?>

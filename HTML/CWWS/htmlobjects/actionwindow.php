@@ -22,6 +22,16 @@
             <label class="datenheader" for="Storage_description" >Beschreibung</label>
             <input class="datenfeld" id="Storage_description" type="text" name="Storage_description">
 
+            <label class="datenheader" for="Storage_format">neues Format</label>
+            <div class="datenfeld" id="Storage_format" name="Storage_format"> 
+                <label class="numinputlabel" for="Storage_Format_length">Länge: </label>
+                <input class="numinput" id="Storage_Format_length" type="number" step="0.01" name="Storage_Format_length"><span>m</span>
+                <label class="numinputlabel" for="Storage_Format_width">Breite: </label>
+                <input class="numinput" id="Storage_Format_width" type="number" step="0.01" name="Storage_Format_width"><span>m</span>
+                <label class="numinputlabel" for="Storage_Format_height">Höhe: </label>
+                <input class="numinput" id="Storage_Format_height" type="number" step="0.01" name="Storage_Format_height"><span>m</span>
+            </div>
+
             <label class="datenheader" for="Storage_picture">Bild</label>
             <input class="datenfeld" type="file" name="Storage_picture" id="Storage_picture">
 
@@ -46,11 +56,11 @@
 
             <label class="datenheader" for="Substorage_category">Kategorie</label>
             <select class="datenfeld" name="Substorage_category" id="Substorage_category">
-                <option value="Räume">Schrank</option>
-                <option value="Schränke">Regal</option>
+                <option value="Schrank">Schrank</option>
+                <option value="Regal">Regal</option>
             </select> 
 
-            <label class="datenheader" for="Substorage_quantity" >Anzahl</label>
+            <label class="datenheader" for="Substorage_quantity" >Anzahl Sublagerplätze</label>
             <input class="datenfeld" id="Substorage_quantity" type="number" min="0" name="Substorage_quantity">
 
 
@@ -85,15 +95,13 @@
 
             <label class="datenheader" for="Substorage_fixed_category">Kategorie</label>
             <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
-                <option value="Räume">Fach</option>
-                <option value="Schränke">Schublade</option>
+                <option value="Fach">Fach</option>
+                <option value="Schublade">Schublade</option>
             </select> 
-            
-            
                 
             <label class="datenheader" for="Substorage_fixed_format">neues Format</label>
             <div class="datenfeld" id="Substorage_fixed_format" name="Substorage_fixed_format"> 
-                <label for="Substorage_fixed_Format_length">Länge: </label>
+                <label class="numinputlabel" for="Substorage_fixed_Format_length">Länge: </label>
                 <input class="numinput" id="Substorage_fixed_Format_length" type="number" step="0.01" name="Substorage_fixed_Format_length"><span>m</span>
                 <label class="numinputlabel" for="Substorage_fixed_Format_width">Breite: </label>
                 <input class="numinput" id="Substorage_fixed_Format_width" type="number" step="0.01" name="Substorage_fixed_Format_width"><span>m</span>
@@ -104,12 +112,9 @@
             <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
                 <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
                     <?php foreach ($subtorages=getsubstorages() as $key => $substorage): ?>
-                                <option value="<?= $substorage->Storage_id ?>"><?= $substorage->Storage_name ?></option>
+                                <option value="<?= $substorage->Substorage_id ?>"><?= $substorage->Substorage_name ?></option>
                     <?php endforeach; ?>
                 </select>
-
-            <label class="datenheader" for="Substorage_fixed_picture">Bild</label>
-            <input class="datenfeld" type="file" name="Substorage_fixed_picture" id="Substorage_fixed_picture">
 
             <button type="submit" name="submit">anlegen</button>
 
@@ -134,8 +139,8 @@
 
             <label class="datenheader" for="Substorage_fixed_category">Kategorie</label>
             <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
-                <option value="Räume">Fach</option>
-                <option value="Schränke">Schublade</option>
+                <option value="Karton">Karton</option>
+                <option value="Kiste">Kiste</option>
             </select> 
 
             <label class="datenheader" for="Substorage_mobile_cover">Deckel</label>
