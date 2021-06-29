@@ -257,5 +257,17 @@
         return $Storages;
     }
 
+    function getarticlegroups(){
+        $sql = "SELECT *, properties.Properties_name as Articel_group_name, properties.Properties_description as Articel_group_description  FROM articel_group, properties WHERE Articel_group.Properties_Properties_id = properties.Properties_id;";
+        $Articles = getDatas($sql);
+        return $Articles;
+    }
+
+    function getsubarticles(){
+        $sql = "SELECT *, properties.Properties_name as Articel_group_name, properties.Properties_description as Articel_group_description  FROM articel_group, properties WHERE Articel_group.Properties_Properties_id = properties.Properties_id;";
+        $Articles = getDatas($sql);
+        return $Articles;
+    }
+
     
 ?>

@@ -195,12 +195,15 @@ input{
     "explorer funktionen";
     width: 100%;
 }
+
 #explorer{
     grid-area: explorer;
 }
+
 #funktionen{
     grid-area: funktionen;
 }
+
 #objekte{
     grid-area: objekte;
 }
@@ -312,7 +315,7 @@ input{
 }
 .datenheader{
     font-weight: bold;
-    max-width: 100px;
+    max-width: 150px;
     
     word-wrap: break-word;
 }
@@ -334,18 +337,23 @@ input{
     grid-template-columns: auto auto;
     grid-gap: 3px;
     font-size: small;
-    
+    max-width: 400px;
 }
 .actionwindow form input{
     white-space: normal;
-    word-wrap: break-word;
+    word-wrap:break-word;
     width: 100%;
 }
 .numinput{
     max-width: 50px;
+    width:20px;
 }
 .numinputlabel{
     padding-left: 10px;
+    text-align: left;
+}
+.input :only-of-type select{
+    max-height: 15px;
 }
 
 
@@ -380,5 +388,19 @@ input{
     .tab3 {
         display: inline-block;
         margin-left: 0px;
+    }
+    .datenfeld{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .numinput{
+        max-width: 50px;
+        width:20px;
+    }
+    .numinputlabel{
+        text-align: left;
+    }
+    .datenfeld{
+        text-align: left;
     }
   }

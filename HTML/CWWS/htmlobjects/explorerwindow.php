@@ -108,5 +108,27 @@
         <?php endif;?>
 
     </div>
+
+    <div class="mainbox">
+
+        <h3>Subartikel:</h3>  
+
+        <?php $subarticles = getsubarticles();?>
+
+        <?php if(!$subarticles):?>
+            <br>
+            <p>keine Subartikel gefunden!</p>
+
+        <?php else:?>
+            <br>
+            <?php foreach ($subarticles as $subarticle): ?>
+
+                <li><span class="tab3"></span><a href="?articleid=<?=str_pad($subarticle->Subarticel_id, 4, 0, STR_PAD_LEFT)?>"><?= $subarticle->Subarticel_name?></a></li>
+
+            <?php endforeach;?>
+
+        <?php endif;?>
+
+    </div>
     
 </div>
