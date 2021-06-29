@@ -47,17 +47,17 @@
     <div class="mainbox">
         <h3>feste Sublagerplätze:</h3>
         
-        <?php $Substorages = getfixedsubstorages();?>
+        <?php $fixedSubstorages = getfixedsubstorages();?>
         
-        <?php if(!$Substorages):?>
+        <?php if(!$fixedSubstorages):?>
             <br>
             <p>keine festen Sublagerplätze gefunden</p>
 
         <?php else:?>
             <br>
-            <?php foreach ($Substorages as $Substorage):?>
+            <?php foreach ($fixedSubstorages as $fixedSubstorage):?>
 
-                <li ><span class="tab1"></span><a href="?fixedsubstorageid=<?=str_pad($Substorage->Substorage_fixed_id, 4, 0, STR_PAD_LEFT)?>"><?= $Substorage->Substorage_fixed_name?></a></li>
+                <li ><span class="tab1"></span><a href="?fixedsubstorageid=<?=str_pad($fixedSubstorage->Substorage_fixed_id, 4, 0, STR_PAD_LEFT)?>"><?= $fixedSubstorage->Substorage_fixed_name?></a></li>
 
             <?php endforeach;?>
 
@@ -68,17 +68,17 @@
     <div class="mainbox">
         <h3>bewegliche Sublagerplätze:</h3>
         
-        <?php $Substorages = getmobilesubstorages();?>
+        <?php $mobileSubstorages = getmobilesubstorages();?>
         
-        <?php if(!$Substorages):?>
+        <?php if(!$mobileSubstorages):?>
             <br>
             <p>keine beweglichen Sublagerplätze gefunden</p>
 
         <?php else:?>
             <br>
-            <?php foreach ($Substorages as $Substorage):?>
+            <?php foreach ($mobileSubstorages as $mobileSubstorage):?>
 
-                <li ><span class="tab1"></span><a href="?substorageid=<?=str_pad($Substorage->Substorage_id, 4, 0, STR_PAD_LEFT)?>"><?= $Substorage->Substorage_name?></a></li>
+                <li ><span class="tab1"></span><a href="?mobilesubstorageid=<?=str_pad($mobileSubstorage->Substorage_id, 4, 0, STR_PAD_LEFT)?>"><?= $mobileSubstorage->Substorage_name?></a></li>
 
             <?php endforeach;?>
 
