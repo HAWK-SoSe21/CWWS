@@ -189,7 +189,7 @@ input{
 .content{
     display: grid;
     grid-template-columns: 150px auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: 20% auto;
     grid-template-areas: 
     "explorer objekte"
     "explorer funktionen";
@@ -207,6 +207,7 @@ input{
 #objekte{
     grid-area: objekte;
 }
+
 
 
 
@@ -238,6 +239,10 @@ input{
 .explorer{
     display:block;
     width: 100%;
+}
+
+.explorer input{
+    max-width: 100%;
 }
 
 .explorer p{

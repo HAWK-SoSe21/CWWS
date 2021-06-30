@@ -56,12 +56,12 @@
     function uidExists($conn,$uid,$email){
         $sql = "SELECT * FROM user WHERE User_email = ? OR User_name = ?;";
         $stmt = mysqli_stmt_init($conn);
-        
+
         if(!mysqli_stmt_prepare($stmt,$sql)){
             header("location: ../pages/signup.php?error=stmtfailed");
             exit();
         }
-    
+
 
         mysqli_stmt_bind_param($stmt, "ss",$email,$uid);
         mysqli_stmt_execute($stmt);
@@ -88,7 +88,7 @@
             header("location: ../pages/signup.php?error=stmtfailed");
             exit();
         }
-        
+
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
         mysqli_stmt_bind_param($stmt, "sss",$uid, $email, $hashedPwd);
@@ -98,7 +98,7 @@
         exit();
     }
 
-    
+
     function emptyInputLogin($username,$pwd){
         $result=false;
         if(empty($username)||empty($pwd)){
@@ -119,7 +119,7 @@
             header("location: ../pages/login.php?error=wronglogin1");
             exit();
         }
-    
+
         $pwdHashed = $uidExists["User_password"];
         $checkPwd = password_verify($pwd,$pwdHashed);
 
@@ -144,7 +144,7 @@
         }
         else{
             return "nicht angemeldet";
-        }   
+        }
     }
 
 
@@ -172,7 +172,7 @@
         if(!mysqli_stmt_bind_param($stmt, "sssssss",$Name, $Beschreibung, $Kategorie, $Hoehe, $Breite, $Laenge,$User_User_id)){
             header("location: ../pages/storage.php?error=bindparamfailed");
         }
-        
+
         if(!mysqli_stmt_execute($stmt)){
             header("location: ../pages/storage.php?error=stmtexecutefailed");
         }
@@ -187,7 +187,7 @@
         $sql = "SELECT *, properties.Properties_name as Storage_name, properties.Properties_description as Storage_description  FROM storage_yard, properties WHERE storage_yard.Properties_Properties_id = properties.Properties_id;";
         $Storages = getDatas($sql);
         return $Storages;
-        
+
     }
 
 
@@ -198,8 +198,14 @@
         $Substorages = getDatas($sql);
         return $Substorages;
     }
+    
+    function getsubstoragesinroom($Storage){
 
+    }
 
+    function getfixedubstoragesinsubstorage($substorage){
+        
+    }
 
     function getsubstorages(){
 
@@ -208,7 +214,12 @@
         return $Substorages;
     }
 
+    function getsubstoragesfixed(){
 
+        $sql = "SELECT *, properties.Properties_name as Substorage_name, properties.Properties_description as Substorage_description  FROM substorage_yard_fixed, properties WHERE substorage_yard_fixed.Properties_Properties_id = properties.Properties_id;";
+        $SubstoragesFixed = getDatas($sql);
+        return $SubstoragesFixed;
+    }
 
     function getarticles(){
 
@@ -224,13 +235,13 @@
         $sql = "SELECT * FROM storage_yard WHERE Storage_name ='$Storage_name';";
         $res=mysqli_query($conn, $sql);
         if(!$res){
-            
+
         }
         else{
             return $res;
         }
     }
-    
+
 
     function getformates(){
         $sql = "SELECT * FROM format;";
@@ -264,10 +275,12 @@
     }
 
     function getsubarticles(){
-        $sql = "SELECT *, properties.Properties_name as Articel_group_name, properties.Properties_description as Articel_group_description  FROM articel_group, properties WHERE Articel_group.Properties_Properties_id = properties.Properties_id;";
-        $Articles = getDatas($sql);
-        return $Articles;
+        $sql = "SELECT * FROM subarticel;";
+        $subarticles = getDatas($sql);
+        return $subarticles;
     }
 
-    
+
+
+
 ?>

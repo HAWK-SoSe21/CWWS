@@ -39,3 +39,7 @@
         $stmt->execute($params);
         return $pdo->lastInsertId();
     }
+
+    function dd(...$data) {
+        die(var_dump($data));
+    }
