@@ -107,7 +107,6 @@ input{
 }
 .mainbox{
     border: 1px solid darkgreen;
-    border-radius: 15px;
     padding: 5px;
 }
 .maingrid{
@@ -167,7 +166,7 @@ input{
 }
 
 .sidebarbutton{
-    visibility: hidden;
+    visibility:hidden;
     height: 100%;
     width: 20px;
     writing-mode: sideways-rl;
@@ -189,6 +188,7 @@ input{
 .content{
     display: grid;
     grid-template-columns: 150px auto;
+    grid-gap: 0.75%;
     grid-template-rows: 30% auto;
     grid-template-areas: 
     "explorer objekte"
@@ -239,6 +239,7 @@ input{
 .explorer{
     display:block;
     width: 100%;
+    border-left: 0px;
 }
 
 .explorer input{
@@ -287,6 +288,7 @@ input{
 .explorer h3{
     font-size: medium;
     word-break:normal;
+    background-color: darkgreen;
 }
 
 
@@ -294,25 +296,27 @@ input{
 /*Objektfenster*/
 #objektfenster{
     border: 1px solid darkgreen;
-    border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.001);
     width: 92%;
-    max-width: 400px;
+    max-width: 500px;
     max-height: 400px;
     font-size: small;
     display: grid;
-    grid-template-columns: auto auto;
-    grid-gap:3px;
+    grid-template-columns: 40% 60%;
+    grid-gap:4px;
 }
+
 .datenfeld{
     max-width: 100%;
     font-weight: normal;
     color: white;
     background: darkgreen;
-    text-align: right;
+    text-align: left;
     word-wrap: break-word;
     word-break: break-all;
     display: flex;
+    border: 0px;
+    padding-left: 1px;
 }
 .datenfeld label{
     word-wrap:normal;
@@ -321,9 +325,9 @@ input{
 .datenheader{
     font-weight: bold;
     max-width: 150px;
-    
     word-wrap: break-word;
 }
+
 #objektfenster img{
     max-height: 200px;
     height: 100%;
@@ -338,16 +342,19 @@ input{
 /*Actionwindow*/
 
 .actionwindow form{
+    border: 1px solid darkgreen;
+    padding: 5px;
+    width: 92%;
     display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 3px;
+    grid-template-columns: 40% 60%;
+    grid-gap: 4px;
     font-size: small;
-    max-width: 400px;
+    max-width: 500px;
 }
 .actionwindow form input{
     white-space: normal;
-    word-wrap:break-word;
-    width: 100%;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 .numinput{
     max-width: 50px;
@@ -360,7 +367,6 @@ input{
 .input :only-of-type select{
     max-height: 15px;
 }
-
 
 /*Responsive*/
 @media only screen and (max-width: 400px) {

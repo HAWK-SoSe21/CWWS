@@ -10,7 +10,7 @@
                 <li><a href="<?=$_SERVER['REQUEST_URI'];?>?action=createstorage">Lagerplatz anlegen</a></li>
                 <li><a href="<?=$_SERVER['REQUEST_URI'];?>?action=createarticle">Artikel anlegen</a></li>
                 <li><a href="<?=$_SERVER['REQUEST_URI'];?>?action=createsubstorage">Sublagerplatz anlegen</a></li>
-                <li><a href="<?=$_SERVER['REQUEST_URI'];?>?action=edit">Auswahl berbeiten</a></li>
+                <li><a href="<?=$_SERVER['REQUEST_URI'];?>?action=edit">Auswahl bearbeiten</a></li>
             </ul>
         </div>
 
