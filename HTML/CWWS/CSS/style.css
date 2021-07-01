@@ -189,7 +189,7 @@ input{
 .content{
     display: grid;
     grid-template-columns: 150px auto;
-    grid-template-rows: 20% auto;
+    grid-template-rows: 30% auto;
     grid-template-areas: 
     "explorer objekte"
     "explorer funktionen";

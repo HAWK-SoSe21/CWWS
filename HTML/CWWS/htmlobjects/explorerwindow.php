@@ -42,7 +42,7 @@
             <?php foreach ($Storages as $Storag): ?>
 
                 <li><a href="?storageid=<?=str_pad($Storag->Storage_id, 4, 0, STR_PAD_LEFT)?>"><?= $Storag->Storage_name ?></a></li>
-
+                
             <?php endforeach;?>
 
         <?php endif;?>

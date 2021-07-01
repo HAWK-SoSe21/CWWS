@@ -1,8 +1,8 @@
 <select id="dropdown1" value="bearbeiten">
 
 <option value="bearbeiten">Auswahl bearbeiten</option>
-    <option value="lagerplatzanlegen">Lagerplatz anlegen</option>
-    <option value="sublagerplatzanlegen">Sublagerplatz anlegen</option>
+    <option value="lagerplatzanlegen">Raum anlegen</option>
+    <option value="sublagerplatzanlegen">Möbel anlegen</option>
     <option value="festensublagerplatzanlegen">festen Sublagerlatz anlegen</option>
     <option value="beweglichensublagerplatzanlegen">beweglichen Sublagerlatz anlegen</option>
     <option value="artikelanlegen">Artikel anlegen</option>
@@ -22,15 +22,6 @@
 
             <label class="datenheader" for="Storage_description" >Beschreibung</label>
             <input class="datenfeld" id="Storage_description" type="text" name="Storage_description">
-
-            <label class="datenheader" for="Storage_Format_length">Länge: </label>
-            <input class="datenfeld" id="Storage_Format_length" type="number" step="0.01" min="0" name="Storage_Format_length">
-            
-            <label class="datenheader" for="Storage_Format_width">Breite: </label>
-            <input class="datenfeld" id="Storage_Format_width" type="number" step="0.01" min="0" name="Storage_Format_width">
-            
-            <label class="datenheader" for="Storage_Format_height">Höhe: </label>
-            <input class="datenfeld" id="Storage_Format_height" type="number" step="0.01" min="0" name="Storage_Format_height">
 
             <label class="datenheader" for="Storage_picture">Bild</label>
             <input class="datenfeld" type="file" name="Storage_picture" id="Storage_picture">
@@ -59,7 +50,7 @@
             <select class="datenfeld" name="Substorage_category" id="Substorage_category">
                 <option value="Schrank">Schrank</option>
                 <option value="Regal">Regal</option>
-            </select> 
+            </select>
 
             <label class="datenheader" for="Substorage_quantity" >Anzahl Sublagerplätze</label>
             <input class="datenfeld" id="Substorage_quantity" type="number" min="0" name="Substorage_quantity">
@@ -97,18 +88,18 @@
             <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
                 <option value="Fach">Fach</option>
                 <option value="Schublade">Schublade</option>
-            </select> 
-                
+            </select>
+
             <label class="datenheader" for="Format_length">Länge: </label>
             <input class="datenfeld" id="Format_length" type="number" step="0.01" min="0" name="Format_length">
-            
+
             <label class="datenheader" for="Format_width">Breite: </label>
             <input class="datenfeld" id="Format_width" type="number" step="0.01" min="0" name="Format_width">
-            
+
             <label class="datenheader" for="Format_height">Höhe: </label>
             <input class="datenfeld" id="Format_height" type="number" step="0.01" min="0" name="Format_height">
-        
-            
+
+
             <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
                 <select class="datenfeld" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
                     <?php foreach ($subtorages=getsubstorages() as $key => $substorage): ?>
@@ -138,20 +129,20 @@
             <select class="datenfeld" name="Substorage_mobile_category" id="Substorage_mobile_category">
                 <option value="Karton">Karton</option>
                 <option value="Kiste">Kiste</option>
-            </select> 
+            </select>
 
             <label class="datenheader" for="Substorage_mobile_cover">Deckel</label>
             <input class="datenfeld" id="Substorage_mobile_cover" type="checkbox" name="Substorage_mobile_cover">
-                
+
             <label class="datenheader" for="Format_length">Länge:</label>
             <input class="datenfeld"  id="Format_length" type="number" step="0.01" min="0" name="Format_length">
-            
+
             <label class="datenheader" for="Format_width">Breite:</label>
             <input class="datenfeld"  id="Format_width" type="number" step="0.01" min="0" name="Format_width">
-            
+
             <label class="datenheader" for="Format_height">Höhe:</label>
             <input  class="datenfeld" id="Format_height" type="number" step="0.01" min="0" name="Format_height">
-            
+
 
             <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
                 <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
@@ -398,17 +389,14 @@
                     <option <?= $object->Substorage_fixed_category == "Schränke" ? "selected" : "" ?> value="Schränke">Schublade</option>
                 </select>
 
-
-
-                <label class="datenheader" for="Substorage_fixed_format">neues Format</label>
-                <div class="datenfeld" id="Substorage_fixed_format" name="Substorage_fixed_format">
-                    <label for="Substorage_fixed_Format_length">Länge: </label>
-                    <input class="numinput" id="Substorage_fixed_Format_length" type="number" step="0.01" name="Substorage_fixed_Format_length" value="<?=$object->Format_length?>"><span>m</span>
-                    <label class="numinputlabel" for="Substorage_fixed_Format_width">Breite: </label>
-                    <input class="numinput" id="Substorage_fixed_Format_width" type="number" step="0.01" name="Substorage_fixed_Format_width" value="<?=$object->Format_width?>"><span>m</span>
-                    <label class="numinputlabel" for="Substorage_fixed_Format_height">Höhe: </label>
-                    <input class="numinput" id="Substorage_fixed_Format_height" type="number" step="0.01" name="Substorage_fixed_Format_height" value="<?=$object->Format_height?>"><span>m</span>
-                </div>
+                <label class="datenheader" for="Substorage_fixed_Format_length">Länge: </label>
+                <input class="datenfeld" id="Substorage_fixed_Format_length" type="number" step="0.01" name="Substorage_fixed_Format_length" value="<?=$object->Format_length?>">
+                
+                <label class="datenheader" for="Substorage_fixed_Format_width">Breite: </label>
+                <input class="datenfeld" id="Substorage_fixed_Format_width" type="number" step="0.01" name="Substorage_fixed_Format_width" value="<?=$object->Format_width?>">
+                
+                <label class="datenheader" for="Substorage_fixed_Format_height">Höhe: </label>
+                <input class="datenfeld" id="Substorage_fixed_Format_height" type="number" step="0.01" name="Substorage_fixed_Format_height" value="<?=$object->Format_height?>">
 
                 <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
                     <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
@@ -429,8 +417,10 @@
 
             <form action="<?= WEBROOT?><?= UV ?>PHP/sub_storage_mobile_update.inc.php" method="post" enctype="multipart/form-data">
             <input class="datenfeld" id="Substorage_mobile_id" type="hidden" name="Substorage_mobile_id" value="<?=$object->Substorage_mobile_id?>">
+            
             <label class="datenheader" for="Substorage_mobile_name">Name</label>
             <input class="datenfeld" id="Substorage_mobile_name" type="text" name="Substorage_mobile_name" value="<?=$object->Substorage_name?>">
+            
             <label class="datenheader" for="Substorage_mobile_description">Beschreibung</label>
             <input class="datenfeld" id="Substorage_mobile_description" type="text" name="Substorage_mobile_description"<?=$object->Substorage_description?>>
 
@@ -441,26 +431,16 @@
             </select>
 
             <label class="datenheader" for="Substorage_mobile_cover">Deckel</label>
-            <input class="datenfeld" id="Substorage_mobile_cover" type="text" name="Substorage_mobile_cover" value="<?=$object->Substorage_mobile_cover?>">
+            <input class="datenfeld" id="Substorage_mobile_cover" type="checkbox" name="Substorage_mobile_cover" value="<?=$object->Substorage_mobile_cover?>">
 
-            <label class="datenheader" for="Substorage_mobile_Format_Format_id">Formatvorlage</label>
-                <select class="datenfeld" class="" name="Substorage_mobile_Format_Format_id" id="Substorage_mobile_Format_Format_id">
-                <option value="">keine Vorlage</option>
-                    <?php foreach ($formates=getformates() as $key => $format): ?>
-                        <option value="<?= $format->Format_id ?>"><?= $format->Format_length ?>m x <?= $format->Format_width ?>m x <?= $format->Format_height ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-            <label class="datenheader" for="neuesformat">neues Format</label>
-            <div class="datenfeld">
-                <input type="checkbox" id="neuesformat" name="neuesformat" value="neuesformat">
-                <label for="Format_length">Länge</label>
-                <input id="Format_length" type="text" name="Format_length" value="<?=$object->Format_length?>">
-                <label for="Format_width">Breite</label>
-                <input id="Format_width" type="text" name="Format_width" value="<?=$object->Format_width?>">
-                <label for="Format_height">Höhe</label>
-                <input id="Format_height" type="text" name="Format_height" value="<?=$object->Format_height?>">
-            </div>
+            <label class="datenheader" for="Format_length">Länge</label>
+            <input class="datenfeld" id="Format_length" type="text" name="Format_length" value="<?=$object->Format_length?>">
+            
+            <label class="datenheader" for="Format_width">Breite</label>
+            <input class="datenfeld" id="Format_width" type="text" name="Format_width" value="<?=$object->Format_width?>">
+            
+            <label class="datenheader" for="Format_height">Höhe</label>
+            <input class="datenfeld" id="Format_height" type="text" name="Format_height" value="<?=$object->Format_height?>">
 
             <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit</label>
                 <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
@@ -474,7 +454,7 @@
 
             <button type="submit" name="submit">bearbeiten</button>
             <button type="submit" name="delete">löschen</button>
-            
+
 
         </form>
 

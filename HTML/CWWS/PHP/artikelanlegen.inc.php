@@ -19,7 +19,7 @@ if(isset($_POST['submit'])) {
     $propId = setData($sql_props);
     $sql_format = "INSERT INTO `format` (`Format_height`, `Format_width`, `Format_length`) VALUES ('". $_POST['Articel_format_height'] ."','". $_POST['Articel_format_width'] ."','". $_POST['Articel_format_length'] ."')";
     $formatId = setData($sql_format);
-    $sql = "INSERT INTO `articel`(`Articel_picture`,`Properties_Properties_id`, `Articel_expiry`, `aliase`, `Format_Format_id`, `Substorage_yard_Substorage_mobile_id`) VALUES ('".$pictureUrl."', '". $propId."', '".$_POST["Articel_expiry"]. "', '".$_POST["Articel_alias"]. "', '" . $formatId . "', '".$_POST["Substorage_yard_Substorage_mobile_id"]. "')";
+    $sql = "INSERT INTO `articel`(`Articel_picture`,`Properties_Properties_id`, `Articel_expiry`, `aliase`, `Format_Format_id`, `Substorage_yard_Substorage_mobile_id`, `User_User_id`) VALUES ('".$pictureUrl."', '". $propId."', '".$_POST["Articel_expiry"]. "', '".$_POST["Articel_alias"]. "', '" . $formatId . "', '".$_POST["Substorage_yard_Substorage_mobile_id"]. "', '".$authenticatedUserId. "')";
     $status = setData($sql);
 
     if($status) {

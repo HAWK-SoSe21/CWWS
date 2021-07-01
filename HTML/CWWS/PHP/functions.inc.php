@@ -198,13 +198,13 @@
         $Substorages = getDatas($sql);
         return $Substorages;
     }
-    
+
     function getsubstoragesinroom($Storage){
 
     }
 
     function getfixedubstoragesinsubstorage($substorage){
-        
+
     }
 
     function getsubstorages(){
@@ -213,6 +213,8 @@
         $Substorages = getDatas($sql);
         return $Substorages;
     }
+
+    
 
     function getsubstoragesfixed(){
 
@@ -278,6 +280,12 @@
         $sql = "SELECT * FROM subarticel;";
         $subarticles = getDatas($sql);
         return $subarticles;
+    }
+
+    function getUserById($id) {
+      $sql = "SELECT user.User_name as user_name FROM user WHERE User_id = ${id};";
+      $user = getData($sql);
+      return $user ? $user->user_name : '';
     }
 
 

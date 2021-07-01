@@ -1,13 +1,17 @@
 <?php
     #include_once '../phpheader.php';
-    if (isset($_POST['suchen'])){
+    if (isset($_POST['suchen'])) {
         $searchq = $_POST['suchbegriff'];
-        $searchq = preg_replace("#[^0-9a-z]#","",$searchq);
+        $sql = "SELECT *
+                FROM articel
+                WHERE articel.Properties_Properties_id IN (SELECT Properties_id FROM properties WHERE properties.Properties_name LIKE '%$searchq%')
+                OR articel.aliase LIKE '$searchq'
+                LIMIT 1";
+        $searchresults = getData($sql);
+        if(!$searchresults) {
+          header("location: index.php?error=stmtfailed&msg=Your search keyword doesnt match any records !");
+          return;
+        }
 
-        $sql = "SELECT * FROM properties WHERE Properties_name LIKE '%$searchq%'";
-        $searchresults= getDatas($sql);
-        return $searchresults;
+        header('location: index.php?articleid=' . $searchresults->Articel_id);
     }
-    
-    
-?>

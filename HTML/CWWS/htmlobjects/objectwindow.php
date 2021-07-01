@@ -9,7 +9,7 @@
         <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$object->Storage_name?></p>
         <p class="datenheader">Raum_ID:</p><p class="datenfeld"><?=$object->Storage_id?></p>
         <p class="datenheader">Beschreibung:</p><p class="datenfeld"><?=$object->Storage_description?></p>
-
+        <p class="datenheader">User:</p><p class="datenfeld"><?=getUserById($object->User_User_id)?></p>
         <p class="datenheader">User_ID:</p><p class="datenfeld"><?=$object->User_User_id?></p>
         <p class="datenheader">Bild:</p><img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Storage_picture ?? 'images/storage.png')?>" alt ="Image not found" onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/storage.png';">
 
@@ -27,9 +27,10 @@
         <p class="datenheader">Kategorie:</p><p class="datenfeld"><?=$object->Substorage_category?></p>
         <p class="datenheader">Anzahl Sublagerplätze:</p><p class="datenfeld"><?=$object->Substorage_quantity?></p>
         <p class="datenheader">Lagerplatz Zugehörigkeit:</p><p class="datenfeld"><?=$object->Storage_yard_Storage_id?></p>
+        <p class="datenheader">User:</p><p class="datenfeld"><?=getUserById($object->User_User_id)?></p>
         <p class="datenheader">Bild:</p><img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Substorage_yard_picture ?? 'images/substorage.png') ?>" alt ="Image not found" onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/substorage.png';">
 
-    
+
 
     <?php elseif(isset($_GET['substoragefixedid'])):?>
         <?php
@@ -51,9 +52,10 @@
         <p class="datenheader">Höhe:</p><p class="datenfeld"><?=$object->Format_height?></p>
         <p class="datenheader">Breite:</p><p class="datenfeld"><?=$object->Format_width?></p>
         <p class="datenheader">Länge:</p><p class="datenfeld"><?=$object->Format_length?></p>
+        <p class="datenheader">User:</p><p class="datenfeld"><?=getUserById($object->User_User_id)?></p>
         <p class="datenheader">Möbelzugehörigkeit:</p><p class="datenfeld"><?=$object->Substorage_yard_Substorage_id?></p>
         <p class="datenheader">Bild:</p><img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Substorage_fixed_picture ?? 'images/substorage.png') ?>" alt ="Image not found" onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/substorage.png';">
-    
+
         <?php elseif(isset($_GET['substoragemobileid'])):?>
         <?php
             $sql = "SELECT *,
@@ -75,9 +77,10 @@
         <p class="datenheader">Höhe:</p><p class="datenfeld"><?=$object->Format_height?></p>
         <p class="datenheader">Breite:</p><p class="datenfeld"><?=$object->Format_width?></p>
         <p class="datenheader">Länge:</p><p class="datenfeld"><?=$object->Format_length?></p>
+        <p class="datenheader">User:</p><p class="datenfeld"><?=getUserById($object->User_User_id)?></p>
         <p class="datenheader">Lagerplatz:</p><p class="datenfeld"><?=$object->Substorage_yard_fixed_Substorage_fixed_id?></p>
         <p class="datenheader">Bild:</p><img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Substorage_mobile_picture ?? 'images/substorage.png') ?>" alt ="Image not found" onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/substorage.png';">
-    
+
     <?php elseif(isset($_GET['articleid'])):?>
     <?php
         $sql = "SELECT  *, properties.Properties_name as Articel_name,
@@ -88,7 +91,6 @@
                 AND     format.Format_id = articel.Format_Format_id
                 and     Articel_id = '" . $_GET['articleid'] . "'";
         $object = getData($sql);
-
         $sql = "SELECT *,
                         properties.Properties_name as Substorage_name,
                         properties.Properties_description as Substorage_description
@@ -107,13 +109,14 @@
         <p class="datenheader">Anzahl:</p><p class="datenfeld"><?=$object->quantity?></p>
         <p class="datenheader">Maße:</p><p class="datenfeld"><?=$object->Format_length?>m x <?=$object->Format_width?>m x <?=$object->Format_height?>m</p>
         <p class="datenheader">Ablaufdatum:</p><p class="datenfeld"><?=$object->Articel_expiry?></p>
+        <p class="datenheader">User:</p><p class="datenfeld"><?=getUserById($object->User_User_id)?></p>
         <p class="datenheader">Bild:</p>
-        <img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Articel_picture ?? 'images/article.png') ?>" alt ="Image not found"  onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/article.png';"> 
-    
+        <img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Articel_picture ?? 'images/article.png') ?>" alt ="Image not found"  onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/article.png';">
+
     <?php elseif(isset($_GET['subarticleid'])):?>
 
         <p>subarticel <?= $_GET['subarticleid'] ?> ausgewählt</p>
-        
+
 
     <?php else:?>
 
