@@ -8,10 +8,11 @@
                 <?php else:?>
 
                     <div class="mainbox">
+
                         <h3>Willkommen beim CWWS</h3>
                         <p>Bitte melden Sie sich an um das System zu nutzen.</p>
                     </div>
-                    
+
                 <?php endif?>
             </div>
 
