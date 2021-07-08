@@ -14,6 +14,12 @@
     
     <body>
         <div id="header" class="header">
+             <div class="infobox">
+                <div class="brand">CWWS</div>
+                <div class="status">User: <?php echo userinfo();?></div>
+            </div>
+
+
             <div class="navbar">
                 <li><a href="<?php WEBROOT ?><?= UV ?>index.php">CWWS</a></li>
                 <li><a href="<?php WEBROOT ?><?= UV ?>pages/about.php">Handbuch</a></li>
@@ -26,9 +32,7 @@
                     <li><a href="<?php WEBROOT ?><?= UV ?>pages/login.php">Anmelden</a></li>                   
                 <?php endif ?>
             </div>
-            
-            <div class="infobox">
-                <div class="brand">CWWS</div>
-                <div class="status">User: <?php echo userinfo();?></div>
+
+            <div class="tabs">
             </div>
         </div> 
