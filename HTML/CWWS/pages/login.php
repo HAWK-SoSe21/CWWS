@@ -9,16 +9,9 @@
                 <input type="password" name="pwd" placeholder="Passwort...">
                 <button type="submit"name="submit">Anmelden</button>
             </form>
-            <?php
-                if(isset($_GET["error"])){
-                    if($_GET["error"]=="emptyinput"){
-                        echo"<p>Ein Feld wurde ausgelassen!</p>";
-                    }
-                    else if($_GET["error"]=="wronglogin"){
-                        echo"<p>Nutzername oder Passwort falsch!</p>";
-                    }
-                }
-            ?>
+
+            <?php include_once ROOT."/PHP/status.inc.php"?>
+            
         </section>
     </div>
 </div>
