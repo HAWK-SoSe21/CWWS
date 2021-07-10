@@ -16,23 +16,44 @@
         <div id="header" class="header">
              <div class="infobox">
                 <div class="brand">CWWS</div>
-                <div class="status">User: <?php echo userinfo();?></div>
+                <div class="userleiste">
+                    <?php if(isset($_SESSION["userid"])):?>  
+                            
+                            <div class="status"> 
+                                <ion-icon name="person-circle-outline"></ion-icon>
+                                <div class="infobox-name">User: <?php echo userinfo();?>
+                                </div>
+                            </div>
+
+                            <li><a href="<?php WEBROOT ?><?= UV ?>PHP/logout.inc.php">
+                                <ion-icon name="log-out"></ion-icon>  
+                                <div class="infobox-name">Abmelden</div>
+                            </a></li>
+                    <?php else: ?>
+                            <li><a href="<?php WEBROOT ?><?= UV ?>pages/signup.php"> 
+                                <ion-icon name="pencil"></ion-icon>
+                                <div class="infobox-name">Registrieren</div>
+                            </a></li>
+                            <li><a href="<?php WEBROOT ?><?= UV ?>pages/login.php">
+                                <ion-icon name="log-in"></ion-icon> 
+                                <div class="infobox-name">Anmelden</div>
+                            </a></li>
+                    <?php endif ?>
+                </div>   
             </div>
 
 
             <div class="navbar">
-                <li><a href="<?php WEBROOT ?><?= UV ?>index.php">CWWS</a></li>
-                <li><a href="<?php WEBROOT ?><?= UV ?>pages/about.php">Handbuch</a></li>
-                
-                <?php if(isset($_SESSION["userid"])):?>
-                    <li><a href="<?php WEBROOT ?><?= UV ?>PHP/logout.inc.php">Abmelden</a></li>
-                
-                <?php else: ?>
-                    <li><a href="<?php WEBROOT ?><?= UV ?>pages/signup.php">Registrieren</a></li>
-                    <li><a href="<?php WEBROOT ?><?= UV ?>pages/login.php">Anmelden</a></li>                   
-                <?php endif ?>
-            </div>
+                <li><a href="<?php WEBROOT ?><?= UV ?>index.php">
+                    <ion-icon name="albums"></ion-icon>
+                    <div class="navbar-name">CWWS</div>
+                </a></li>
 
+                <li><a href="<?php WEBROOT ?><?= UV ?>pages/about.php">
+                    <ion-icon name="book"></ion-icon>
+                    <div class="navbar-name">Handbuch</div>
+                </a></li>
+            </div>
             <div class="tabs">
             </div>
         </div> 
