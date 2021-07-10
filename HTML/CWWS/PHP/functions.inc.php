@@ -283,11 +283,15 @@
     }
 
     function getUserById($id) {
-      $sql = "SELECT user.User_name as user_name FROM user WHERE User_id = ${id};";
-      $user = getData($sql);
-      return $user ? $user->user_name : '';
+        $sql = "SELECT * FROM user WHERE User_id = ${id};";
+        $user = getData($sql);
+        return $user;
     }
-
+    function getusers(){
+        $sql = "SELECT * FROM user;";
+        $user = getDatas($sql);
+        return $user;
+    }
 
 
 

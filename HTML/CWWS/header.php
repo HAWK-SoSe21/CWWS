@@ -53,6 +53,11 @@
                     <ion-icon name="book"></ion-icon>
                     <div class="navbar-name">Handbuch</div>
                 </a></li>
+
+                <li><a href="<?php WEBROOT ?><?= UV ?>pages/user.php">
+                    <ion-icon name="people"></ion-icon>
+                    <div class="navbar-name">User</div>
+                </a></li>
             </div>
             <div class="tabs">
             </div>
