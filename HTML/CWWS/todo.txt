@@ -1,16 +1,17 @@
--inaktiv bei registrierung | Max
--Nutzerübersicht nicht selbst aufgelistet | Max
+-inaktiv bei registrierung | Max erledigt
+-Nutzerübersicht nicht selbst aufgelistet | Max erledigt
 -Nutzer auf einer Ebene | Daniel
--Session kill bei ausloggen | Max
+-Session kill bei ausloggen | Max erledigt
 -Suchfunktion realisieren | Max/Nick
 -Bilder als blob speichern / Standartbilder bei nicht gefundenem Bild | Max  
--Funktion für Baumstrukturanzeige | alle
+-Funktion für Baumstrukturanzeige | Daniel
 -use cases umsetzen: | Nick
 	-Möbel anlegen /bearbeiten/anzeigen
 	-fest Subl anlegen /bearbeiten/anzeigen
 	-bew Subl anlegen /bearbeiten/anzeigen
 	-Artikel anlegen /bearbeiten/anzeigen
 	-Subartikel anlegen /bearbeiten/anzeigen
+	-acticlegroup anlegen /bearbeiten/anzeigen
 -Passwort Nutzername vergessen Email mit Rücksetzlink | Max
 -Actionwindow Tabs?optional?
 	

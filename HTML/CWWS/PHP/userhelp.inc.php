@@ -1,44 +1,49 @@
 <?php
     include_once '../phpheader.php';
-    if(isset($_GET['send']) ) {
+
+    if(isset($_POST['submit']) ) {
         if(!isset($_POST['email']) || empty($_POST['email'])) {
+            session_start();
             $_SESSION["status"] = "Bitte eine E-Mail-Adresse eintragen";
             header('location: ../pages/userhelp.php');
             exit();
         }   
         else {
             $email = $_POST["email"];
-            $result=uidExists($conn,$email,$email);
-            $user = $statement->fetch(); 
+            $user=uidExists($email,$email);
     
             if($user === false) {
-                $error = "<b>Kein Benutzer gefunden</b>";
+                session_start();
+                $_SESSION["status"] = "Kein Benutzer mit dieser E-Mail gefunden";
+                header('location: ../pages/userhelp.php');
+                exit();
             } 
             else {
                 //Überprüfe, ob der User schon einen Passwortcode hat oder ob dieser abgelaufen ist 
-                $passwortcode = random_string();
-                $statement = $pdo->prepare("UPDATE users SET passwortcode = :passwortcode, passwortcode_time = NOW() WHERE id = :userid");
-                $result = $statement->execute(array('passwortcode' => sha1($passwortcode), 'userid' => $user['id']));
+                $passwortcode = $user->User_password;
+                #$statement = $pdo->prepare("UPDATE users SET passwortcode = :passwortcode, passwortcode_time = NOW() WHERE id = :userid");
+                #$result = $statement->execute(array('passwortcode' => sha1($passwortcode), 'userid' => $user['id']));
                 
-                $empfaenger = $user['email'];
-                $betreff = "Neues Passwort für deinen Account auf www.php-einfach.de"; //Ersetzt hier den Domain-Namen
-                $from = "From: Vorname Nachname <absender@domain.de>"; //Ersetzt hier euren Name und E-Mail-Adresse
-                $url_passwortcode = 'http://localhost/passwortzuruecksetzen.php?userid='.$user['id'].'&code='.$passwortcode; //Setzt hier eure richtige Domain ein
-                $text = 'Hallo '.$user['vorname'].',
-                für deinen Account auf www.php-einfach.de wurde nach einem neuen Passwort gefragt. Um ein neues Passwort zu vergeben, rufe innerhalb der nächsten 24 Stunden die folgende Website auf:
-                '.$url_passwortcode.'
+                $empfaenger = $user->User_email;
+                $betreff = "CWWS-Account zurücksetzen"; 
+                $from = "From: CWWS <maxvomberge@gmail.com>\n"; 
+                $url_passwortcode = 'http://localhost/CWWS/resetaccount.php?userid='.$user->User_id.'&code='.$passwortcode; 
+                $text = 'Hallo '.$user->User_name.',
+                für deinen Account im CWWS wurde nach einem Rücksezungslink gefragt. Um deinen Account zurückzustzen, rufe 
+                '.$url_passwortcode.' auf.
                 
-                Sollte dir dein Passwort wieder eingefallen sein oder hast du dies nicht angefordert, so bitte ignoriere diese E-Mail.
+                
                 
                 Viele Grüße,
-                dein PHP-Einfach.de-Team';
+                dein CWWS-Team';
                 
                 mail($empfaenger, $betreff, $text, $from);
                 
-                echo "Ein Link um dein Passwort zurückzusetzen wurde an deine E-Mail-Adresse gesendet."; 
-                $showForm = false;
-                }
+                 
+                session_start();
+                $_SESSION["status"] = "Ein Rücksetzungslink wurde an Ihre E-Mail versandt.";
+                header('location: ../pages/userhelp.php');
             }
         }
-    
-    ?>
+    }
+?>

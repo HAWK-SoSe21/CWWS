@@ -10,6 +10,6 @@ if(isset($_SESSION["userid"])){
     $GLOBALS["user"] = $_SESSION["userid"];
 }
 
-include_once ROOT.'/PHP/functions.inc.php';
-include_once ROOT.'/PHP/dbh.inc.php';
 include_once ROOT.'/PHP/helpers.inc.php';
+include_once ROOT.'/PHP/functions.inc.php';
+

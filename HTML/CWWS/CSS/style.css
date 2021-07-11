@@ -41,7 +41,7 @@ input{
     font-size: 20px;
 }
 
-.header li,.footer li{
+.header li,.footer li,.login-form li{
     float: left;
     color: white;
     text-align: center;
@@ -53,7 +53,7 @@ input{
     padding: 5px;
 }
 
-.header li a,.footer li a, .sidebar li a{
+.header li a,.footer li a, .sidebar li a,.login-form li a{
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -78,7 +78,7 @@ input{
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.header li a:hover,.footer li a:hover,.sidebar li a:hover{
+.header li a:hover,.footer li a:hover,.sidebar li a:hover,.login-form li a:hover{
     color: darkgreen;
 }
 
@@ -86,7 +86,7 @@ input{
     color: black;
 }
 
-.header .active,.footer .active,.sidebar .active,.explorer .active li{
+.header .active,.footer .active,.sidebar .active,.explorer .active li,.login-form .active{
     border-bottom: 1px solid darkgreen ;
     color:darkgreen;
 }
@@ -463,11 +463,19 @@ input{
 .userbox{
     border: 1px solid darkgreen;
     padding: 5px;
+    
 }
 
-.userbox h3{
+.usercontent h3{
     text-align: center;
     background-color: darkgreen;
+}
+.userinfo{
+    border: 1px solid darkgreen;
+    display:grid;
+    padding: 5px;
+    grid-template-columns: fit-content(150px) 200px 150px;
+    grid-gap: 3px;
 }
 
 .useradmin{

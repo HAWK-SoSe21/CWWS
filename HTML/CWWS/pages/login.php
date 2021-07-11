@@ -9,10 +9,15 @@
                 <input type="password" name="pwd" placeholder="Passwort...">
                 <button type="submit"name="submit">Anmelden</button>
             </form>
-
             <?php include_once ROOT."/PHP/status.inc.php"?>
-            
+            <br>
+            <li>
+            <a href="<?php WEBROOT ?><?= UV ?>pages/userhelp.php">
+                <p>Nutzername oder Passwort vergessen<ion-icon name="help-circle-outline"></ion-icon></p>    
+            </a>
+            </li>
         </section>
+        
     </div>
 </div>
 
