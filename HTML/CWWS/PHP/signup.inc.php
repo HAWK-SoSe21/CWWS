@@ -21,7 +21,7 @@
                 header("location: ../pages/signup.php");
                 exit();
             }
-            if(pwdMatch($pwd,$pwdrepeat) !== false) {
+            if(pwdMatch($pwd,$pwdrepeat) === false) {
                 session_start();
                 $_SESSION["status"]="Passwörter stimmen nicht überein";
                 header("location: ../pages/signup.php");

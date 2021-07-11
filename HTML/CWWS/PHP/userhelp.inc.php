@@ -14,20 +14,20 @@
     
             if($user === false) {
                 session_start();
-                $_SESSION["status"] = "Kein Benutzer mit dieser E-Mail gefunden";
+                $_SESSION["status"] = "Keinen Benutzer mit dieser E-Mail gefunden";
                 header('location: ../pages/userhelp.php');
                 exit();
             } 
             else {
                 //Überprüfe, ob der User schon einen Passwortcode hat oder ob dieser abgelaufen ist 
-                $passwortcode = $user->User_password;
+                $passwordcode = $user->User_password;
                 #$statement = $pdo->prepare("UPDATE users SET passwortcode = :passwortcode, passwortcode_time = NOW() WHERE id = :userid");
                 #$result = $statement->execute(array('passwortcode' => sha1($passwortcode), 'userid' => $user['id']));
                 
                 $empfaenger = $user->User_email;
                 $betreff = "CWWS-Account zurücksetzen"; 
-                $from = "From: CWWS <maxvomberge@gmail.com>\n"; 
-                $url_passwortcode = 'http://localhost/CWWS/resetaccount.php?userid='.$user->User_id.'&code='.$passwortcode; 
+                $from = "From: CWWS <helpdesk@CWWWS.com>\n"; 
+                $url_passwordcode = 'http://localhost/CWWS/pages/resetaccount.php?userid='.$user->User_name.'&code='.$passwordcode; 
                 $text = 'Hallo '.$user->User_name.',
                 für deinen Account im CWWS wurde nach einem Rücksezungslink gefragt. Um deinen Account zurückzustzen, rufe 
                 '.$url_passwortcode.' auf.
@@ -42,6 +42,7 @@
                  
                 session_start();
                 $_SESSION["status"] = "Ein Rücksetzungslink wurde an Ihre E-Mail versandt.";
+                $_SESSION["url_passwordcode"] = "{$url_passwordcode}";
                 header('location: ../pages/userhelp.php');
             }
         }

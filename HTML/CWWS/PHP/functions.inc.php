@@ -12,6 +12,17 @@
         return $result;
     }
 
+    function emptyInputReset($uid,$pwd,$pwdrepeat){
+        $result=false;
+        if(empty($uid)||empty($pwd)||empty($pwdrepeat)){
+            $result= TRUE;
+        }
+        else{
+            $result= FALSE;
+        }
+        return $result;
+    }
+
 
 
     function invalidUid($username){
@@ -42,7 +53,7 @@
 
     function pwdMatch($pwd,$pwdrepeat){
         $result=false;
-        if($pwdrepeat!==$pwd){
+        if($pwdrepeat===$pwd){
             $result= TRUE;
         }
         else{
