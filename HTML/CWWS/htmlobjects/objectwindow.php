@@ -2,15 +2,49 @@
 <div id="objektfenster" class="mainbox">
     <?php if(isset($_GET['storageid'])):?>
         <?php
-            $sql = "SELECT *, properties.Properties_name as Storage_name, properties.Properties_description as Storage_description  FROM storage_yard, properties WHERE storage_yard.Properties_Properties_id = properties.Properties_id and Storage_id = '" . $_GET['storageid'] . "'";
+            $sql = "SELECT *,
+                            properties.Properties_name as Storage_name,
+                            properties.Properties_description as Storage_description,
+                            usage_statistics.Usage_statistics_number_of_accesses as usage_num_accesses,
+                            usage_statistics.Usage_statistics_last_modified as usage_last_mod,
+                            format.Format_height as Storage_Format_height,
+                            format.Format_width as Storage_Format_width,
+                            format.Format_length as Storage_Format_length,
+                            format.Format_volume as Storage_volume
+                    FROM    storage_yard,
+                            properties,
+                            usage_statistics,
+                            format
+                    WHERE   storage_yard.Properties_Properties_id = properties.Properties_id
+                            AND storage_yard.Usage_statistics_idUsage_statistics = usage_statistics.Usage_statistics_id
+                            AND storage_yard.Format_Format_id = format.Format_id
+                            AND Storage_id = '" . $_GET['storageid'] . "'";
             $object = getData($sql);
         ?>
 
         <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$object->Storage_name?></p>
         <p class="datenheader">Raum_ID:</p><p class="datenfeld"><?=$object->Storage_id?></p>
         <p class="datenheader">Beschreibung:</p><p class="datenfeld"><?=$object->Storage_description?></p>
-        <p class="datenheader">User:</p><p class="datenfeld"><?=getUserById($object->User_User_id)?></p>
-        <p class="datenheader">User_ID:</p><p class="datenfeld"><?=$object->User_User_id?></p>
+        <p class="datenheader">Bearbeitet:</p><p class="datenfeld"><?=$object->Storage_last_modified?></p>
+        <p class="datenheader">Von ID:</p><p class="datenfeld"><?=$object->user_User_id?></p>
+        <p class="datenheader">Anzahl der Zugriffe:</p><p class="datenfeld"><?=$object->usage_num_accesses?></p>
+        <p class="datenheader">letzter Zugriffe:</p><p class="datenfeld"><?=$object->usage_last_mod?></p>
+        <p class="datenheader">Höhe:</p>
+            <div class="datenfeld">
+                <p class="datenfeld"><?=$object->Storage_Format_height?></p><span>m</span>
+            </div>
+        <p class="datenheader">Breite:</p>
+            <div class="datenfeld">
+                <p class="datenfeld"><?=$object->Storage_Format_width?></p><span> m</span>
+            </div>
+        <p class="datenheader">Länge:</p>
+            <div class="datenfeld">
+                <p class="datenfeld"><?=$object->Storage_Format_length?></p><span> m</span>
+            </div>
+        <p class="datenheader">Volumen:</p>
+            <div class="datenfeld">
+                <p class="datenfeld"><?=$object->Storage_volume?></p><span></span>
+            </div>
         <p class="datenheader">Bild:</p><img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Storage_picture ?? 'images/storage.png')?>" alt ="Image not found" onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/storage.png';">
 
 

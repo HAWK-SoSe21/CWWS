@@ -2,26 +2,40 @@
 
     <?php if(isset($_GET['storageid'])): ?>
      
-        <form action="<?= WEBROOT?><?= UV ?>PHP/lagerplatzbearbeiten.inc.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="Storage_id" value="<?= $object->Storage_id ?>">
+     <form action="<?= WEBROOT?><?= UV ?>PHP/lagerplatzbearbeiten.inc.php" method="post" enctype="multipart/form-data">
+     <input type="hidden" name="Storage_id" value="<?= $object->Storage_id ?>">
 
-            <label class="datenheader" for="Storage_name">Name:</label>
-            <input class="datenfeld"  type="text" name="Storage_name" value="<?= $object->Storage_name ?>">
+         <!-- Properties -->
+         <label class="datenheader" for="Storage_name">Name:</label>
+         <input class="datenfeld"  type="text" name="Storage_name" value="<?= $object->Storage_name ?>">
 
+         <label class="datenheader" for="Storage_description">Beschreibung:</label>
+         <input class="datenfeld" type="text" name="Storage_description" value="<?= $object->Storage_description ?>">
+         
+         <!-- Format -->
+         <label class="datenheader" >Höhe: </label>
+             <div class="datenfeld">
+                 <input class="datenfeld" type="text" name="Storage_Format_height" value="<?= $object->Storage_Format_height ?>"><span> m</span>
+             </div>
+         <label class="datenheader">Breite: </label>
+             <div class="datenfeld">
+                 <input class="datenfeld" type="text" name="Storage_Format_width" value="<?= $object->Storage_Format_width ?>"><span> m</span>
+             </div>
+         <label class="datenheader">Länge: </label>
+             <div class="datenfeld">
+                 <input class="datenfeld" type="text" name="Storage_Format_length" value="<?= $object->Storage_Format_length ?>"><span> m</span>
+             </div>
 
-            <label class="datenheader" for="Storage_description">Beschreibung:</label>
-            <input class="datenfeld" type="text" name="Storage_description" value="<?= $object->Storage_description ?>">
+         <!-- Picture -->
+         <label class="datenheader" for="Storage_picture">Bild:</label>
+         <input class="datenfeld" type="file" name="Storage_picture" value="<?= $object->Storage_picture ?>">
+         
+         <label class="datenheader"> </label>
+         <button type="submit" name="submit">bearbeiten</button>
+         <br>
+         <button type="submit" name="delete">löschen</button>
 
-
-            <label class="datenheader" for="Storage_picture">Bild:</label>
-            <input class="datenfeld" type="file" name="Storage_picture" value="<?= $object->Storage_picture ?>">
-
-            <label class="datenheader"> </label>
-            <button type="submit" name="submit">bearbeiten</button>
-            <br>
-            <button type="submit" name="delete">löschen</button>
-
-        </form>
+     </form>
 
 
 
