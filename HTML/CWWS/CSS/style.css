@@ -119,6 +119,7 @@ input{
     text-align: right;
     padding: 1px 4%;
     padding-bottom: 0px;
+    font-size: x-large;
 }
 
 .status{
@@ -432,6 +433,51 @@ input{
     max-height: 15px;
 }
 
+/*usercontent*/
+
+.usercontent{
+    display: grid;
+    grid-template-columns: fit-content(400px) fit-content(400px);
+    grid-gap:1%;
+}
+
+.usercontent .userinfo{
+    display:grid;
+    border: 1px solid darkgreen;
+    padding: 5px;
+    grid-template-columns: fit-content(150px) 200px;
+    height: 150px;
+    grid-gap: 0px 3px;
+}
+
+.usercontent .datenheader{
+    height: 20px;
+    padding: 2px;
+}
+
+.usercontent .datenfeld{
+    height: 20px;
+    padding: 2px;
+}
+
+.userbox{
+    border: 1px solid darkgreen;
+    padding: 5px;
+}
+
+.userbox h3{
+    text-align: center;
+    background-color: darkgreen;
+}
+
+.useradmin{
+    border: 1px solid darkgreen;
+    display:grid;
+    padding: 5px;
+    grid-template-columns: fit-content(150px) 200px 150px;
+    grid-gap: 3px;
+}
+
 /*Responsive*/
 @media only screen and (max-width: 400px) {
     .content{
@@ -477,5 +523,18 @@ input{
     }
     .datenfeld{
         text-align: left;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+
+        .usercontent{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .useradmin{
+        border: none;
+        grid-template-columns: fit-content(150px) 200px fit-content(150px);
     }
   }

@@ -8,7 +8,7 @@
 
         if(emptyInputLogin($username,$pwd)!==false){
             session_start();
-            $_SESSION["status"]="ein Eingabefeld wurde ausgelassen";
+            $_SESSION["status"]="Ein Eingabefeld wurde ausgelassen.";
             header("location: ../pages/login.php");
             exit();
         }
@@ -19,7 +19,7 @@
 
         if($uidExists===false){
             session_start();
-            $_SESSION["status"]="Nutzer existiert nicht";
+            $_SESSION["status"]="Dieser Nutzer existiert nicht.";
             header("location: ../pages/login.php");
             exit();
         }
@@ -28,7 +28,7 @@
 
         if($userisactive===0){
             session_start();
-            $_SESSION["status"]="Nutzer nicht freigeschaltet";
+            $_SESSION["status"]="Dieser Nutzer wurde noch nicht freigeschaltet.";
             header("location: ../pages/login.php");
             exit();
         }
@@ -38,7 +38,7 @@
 
         if($checkPwd === false) {
             session_start();
-            $_SESSION["status"]="falsches Passwort";
+            $_SESSION["status"]="Das Passwort ist falsch.";
             header("location: ../pages/login.php");
             exit();
         }
