@@ -382,6 +382,7 @@ input{
     display: flex;
     border: 0px;
     padding-left: 1px;
+    justify-content: space-between;
 }
 .datenfeld label{
     word-wrap:normal;
@@ -402,6 +403,9 @@ input{
     background-color: blue;
 }
 
+.content span{
+    padding-right: 2px;
+}
 
 
 /*Actionwindow*/
@@ -486,6 +490,14 @@ input{
     grid-gap: 3px;
 }
 
+.userloggedin{
+    border: 1px solid darkgreen;
+    display:grid;
+    padding: 5px;
+    grid-template-columns: fit-content(150px) 200px;
+    grid-gap: 3px;
+}
+
 /*Responsive*/
 @media only screen and (max-width: 400px) {
     .content{
@@ -532,6 +544,7 @@ input{
     .datenfeld{
         text-align: left;
     }
+
   }
 
   @media only screen and (max-width: 500px) {
@@ -542,7 +555,7 @@ input{
     }
 
     .useradmin{
-        border: none;
-        grid-template-columns: fit-content(150px) 200px fit-content(150px);
+
+        grid-template-columns: fit-content(150px) 160px fit-content(150px);
     }
   }

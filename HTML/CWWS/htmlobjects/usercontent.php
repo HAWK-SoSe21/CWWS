@@ -1,16 +1,18 @@
 <div class="usercontent">
     <?php if(isset($_SESSION['userid'])):?>
         
-        <div class="userinfo">
+        <div class="userbox">
             <h3>angemeldet als:</h3>
             <br>  
-            <?php $user = getUserById($_SESSION['userid']);?>
-            <p class="datenheader">Name: </p><p class="datenfeld"><?= $user->User_name ?></p>
-            <p class="datenheader">ID: </p><p class="datenfeld"><?=$user-> User_id?></p>
-            <p class="datenheader">E-Mail: </p><p class="datenfeld"><?= $user-> User_email?></p>
-            <!-- <p>Passwort-Hash: <?= $user-> User_password?></p> -->
-            <p class="datenheader">Admin: </p><p class="datenfeld"><?php if($user->User_is_admin == 0){echo "nein";} else{echo "ja";}?></p>
-            <p class="datenheader">aktiv: </p><p class="datenfeld"><?php if($user->User_is_active == 0){echo "nein";} else{echo "ja";}?></p>
+            <form class="userloggedin">
+                <?php $user = getUserById($_SESSION['userid']);?>
+                <p class="datenheader">Name: </p><p class="datenfeld"><?= $user->User_name ?></p>
+                <p class="datenheader">ID: </p><p class="datenfeld"><?=$user-> User_id?></p>
+                <p class="datenheader">E-Mail: </p><p class="datenfeld"><?= $user-> User_email?></p>
+                <!-- <p>Passwort-Hash: <?= $user-> User_password?></p> -->
+                <p class="datenheader">Admin: </p><p class="datenfeld"><?php if($user->User_is_admin == 0){echo "nein";} else{echo "ja";}?></p>
+                <p class="datenheader">aktiv: </p><p class="datenfeld"><?php if($user->User_is_active == 0){echo "nein";} else{echo "ja";}?></p>
+            </form>
         </div>
     
         <div class="userbox">
