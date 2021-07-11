@@ -2,13 +2,15 @@
     if (isset($_POST["submit"])){
         $username = $_POST["uid"];
         $pwd = $_POST["pwd"];
-
+        if(!isset($_SESSION["loginattemt{$username}"])){
+            $_SESSION["loginattemt"]=1;
+        }
         require_once 'dbh.inc.php';
         require_once 'functions.inc.php';
 
         if(emptyInputLogin($username,$pwd)!==false){
             session_start();
-            $_SESSION["status"]="Ein Eingabefeld wurde ausgelassen.";
+            $_SESSION["status"]="ein Eingabefeld wurde ausgelassen";
             header("location: ../pages/login.php");
             exit();
         }
@@ -19,7 +21,7 @@
 
         if($uidExists===false){
             session_start();
-            $_SESSION["status"]="Dieser Nutzer existiert nicht.";
+            $_SESSION["status"]="Nutzer existiert nicht";
             header("location: ../pages/login.php");
             exit();
         }
@@ -28,7 +30,7 @@
 
         if($userisactive===0){
             session_start();
-            $_SESSION["status"]="Dieser Nutzer wurde noch nicht freigeschaltet.";
+            $_SESSION["status"]="Nutzer nicht freigeschaltet";
             header("location: ../pages/login.php");
             exit();
         }
@@ -36,9 +38,23 @@
         $pwdHashed = $uidExists["User_password"];
         $checkPwd = password_verify($pwd,$pwdHashed);
 
-        if($checkPwd === false) {
+        if($checkPwd === false){
             session_start();
-            $_SESSION["status"]="Das Passwort ist falsch.";
+            $restattempts=3-$_SESSION["loginattemt{$username}"];
+            $_SESSION["status"]="falsches Passwort, {$restattempts} Versuch(e) verbleibend";
+            $_SESSION["loginattemt{$username}"]++;
+            if($_SESSION["loginattemt{$username}"]>3){
+                $sql = "UPDATE user SET User_is_active = 0 WHERE User_id = {$uidExists["User_id"]}";
+        
+                $status = updateData($sql);
+                
+                if($status){
+                    $_SESSION["status"]= "Nutzer {$uidExists["User_name"]} wurde gesperrt. Admin kontaktieren zur Entsperrung.";
+                }
+                else{
+                    $_SESSION["status"]= "Aktivitätsstatus ändern fehlgeschlagen";
+                }
+            }
             header("location: ../pages/login.php");
             exit();
         }
