@@ -20,13 +20,6 @@
         <label class="datenheader"  for="Articel_alias">Alias:</label>
         <input class="datenfeld" type="text" name="Articel_alias" id="Articel_alias">
 
-        <label class="datenheader" for="Substorage_yard_Substorage_mobile_id">Beweglicher Lagerplatz:</label>
-        <select name="Substorage_yard_Substorage_mobile_id">
-            <?php foreach (getmobilesubstorages() as $key => $storage): ?>
-            <option value="<?= $storage->Substorage_mobile_id ?>"><?= $storage->Substorage_mobile_name ?></option>
-            <?php endforeach; ?>
-        </select>
-
         <label class="datenheader"  for="Articel_group_Articel_group_id">Artikelgruppe:</label>
         <select class="datenfeld" name="Articel_group_Articel_group_id" id="Articel_group_Articel_group_id">
                 <option value="">keine Gruppe</option>

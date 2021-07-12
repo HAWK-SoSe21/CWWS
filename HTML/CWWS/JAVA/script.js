@@ -61,3 +61,17 @@ function togglesidebar(){
     btn.innerHTML="<";
   }
 }
+
+function openfunction(evt, funktion) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("actionwindow");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("actiontablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(funktion).style.display = "block";
+  evt.currentTarget.className += " active";
+}

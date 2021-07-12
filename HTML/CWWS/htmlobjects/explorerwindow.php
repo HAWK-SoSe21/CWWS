@@ -138,19 +138,19 @@
 
     <div class="mainbox">
 
-        <h3>Subartikel:</h3>  
+        <h3>Artikelgruppen:</h3>  
 
-        <?php $subarticles = getsubarticles();?>
+        <?php $articlegroups = getarticlegroups();?>
 
-        <?php if(!$subarticles):?>
+        <?php if(!$articlegroups):?>
             <br>
-            <p>keine Subartikel gefunden!</p>
+            <p>keine Gruppen gefunden!</p>
 
         <?php else:?>
             <br>
-            <?php foreach ($subarticles as $subarticle): ?>
+            <?php foreach ($articlegroups as $articlegroup): ?>
 
-                <li><span class="tab3"></span><a href="?subarticleid=<?=str_pad($subarticle->Subarticel_id, 4, 0, STR_PAD_LEFT)?>"><?= $subarticle->Subarticel_id?></a></li>
+                <li><span></span><a href="?articlegroupid=<?=str_pad($articlegroup->Articel_group_id, 4, 0, STR_PAD_LEFT)?>"><?= $articlegroup->Articel_group_name?></a></li>
 
             <?php endforeach;?>
 

@@ -140,7 +140,30 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
     }
 
     function getarticlebyid($id){
-        $sql="SELECT * FROM articel WHERE Articel_id = {$id}";
+        $sql = "SELECT  *, 
+                            properties.Properties_name as Articel_name,
+                            properties.Properties_description as Articel_description,
+                            format.Format_length as Articel_length,
+                            format.Format_width as Articel_width,
+                            format.Format_height as Articel_height,
+                            order.order_stackable as Articel_stackable,
+                            order.order_rotateable as Articel_rotateable,
+                            (SELECT User_name FROM user WHERE User_id = (SELECT user_User_id FROM articel WHERE Articel_id = {$id})) as Articel_user_name,
+                            (SELECT Aliase_1 FROM aliase WHERE Articel_Articel_id = {$id}) as Articel_alias,
+                            (SELECT SUM(Subarticel_quantity) as Subarticel_quantity FROM subarticel WHERE Articel_Articel_id = articel.Articel_id) as Articel_quantity,
+                            usage_statistics.Usage_statistics_number_of_accesses as Articel_number_of_accesses,
+                            usage_statistics.Usage_statistics_last_modified as Articel_last_modified
+                    FROM    articel, 
+                            properties,
+                            `order`, 
+                            format,
+                            usage_statistics
+                    WHERE   articel.Properties_Properties_id = properties.Properties_id
+                    AND     format.Format_id = articel.Format_Format_id
+                    AND     usage_statistics.Usage_statistics_id  = articel.Usage_statistics_Usage_statistics_id
+                    AND     order.order_id = articel.order_order_id 
+                    AND     articel.Articel_id = {$id}";
+        
         $article = getData($sql);
         return $article;
     }
@@ -216,13 +239,29 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
     }
 
     function getarticlegroups(){
-        $sql = "SELECT *, properties.Properties_name as Articel_group_name, properties.Properties_description as Articel_group_description  FROM articel_group, properties WHERE Articel_group.Properties_Properties_id = properties.Properties_id;";
-        $Articles = getDatas($sql);
-        return $Articles;
+        $sql = "SELECT *, 
+                        properties.Properties_name as Articel_group_name, 
+                        properties.Properties_description as Articel_group_description 
+                FROM    articel_group, 
+                        properties 
+                WHERE   Articel_group.Properties_Properties_id = properties.Properties_id;";
+        $Articlegroups = getDatas($sql);
+        return $Articlegroups;
+    }
+    function getarticlegroupbyid($id){
+        $sql = "SELECT *, 
+                        properties.Properties_name as Articel_group_name, 
+                        properties.Properties_description as Articel_group_description 
+                FROM    articel_group, 
+                        properties 
+                WHERE   Articel_group.Properties_Properties_id = properties.Properties_id
+                AND     Articel_group_id = {$id}";  
+        $Articlegroup = getData($sql);
+        return $Articlegroup;
     }
 
     function getsubarticles(){
-        $sql = "SELECT * FROM subarticel;";
+        $sql = "SELECT * FROM subarticel";
         $subarticles = getDatas($sql);
         return $subarticles;
     }
@@ -238,6 +277,7 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
         return $user;
     }
 
+    
 
 
 ?>

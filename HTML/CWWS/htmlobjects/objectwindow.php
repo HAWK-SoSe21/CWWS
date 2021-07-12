@@ -131,8 +131,8 @@
     <?php elseif(isset($_GET['substoragemobileid'])):?>
         <?php
             $sql = "SELECT *,
-                            properties.Properties_name as Substorage_mobile_name,
-                            properties.Properties_description as Substorage_mobile_description,
+                            properties.Properties_name as Substorage_name,
+                            properties.Properties_description as Substorage_description,
                             format.Format_height as Format_height,
                             format.Format_width as Format_width,
                             format.Format_length as Format_length,
@@ -145,92 +145,122 @@
                             properties,
                             format,
                             last_modified,
-                            `order`
-                    WHERE   properties.Properties_id = substorage_yard_mobile.Properties_Properties_id
+                            order
+                    WHERE   substorage_yard_mobile.Properties_Properties_id = properties.Properties_id
                     AND     format.Format_id = substorage_yard_mobile.Format_Format_id
-                    AND     last_modified.last_modified_id = substorage_yard_mobile.last_modified_last_modified_id
-                    AND     order.order_id = substorage_yard_mobile.order_order_id
+                    AND     substorage_yard_mobile.last_modified_last_modified_id = last_modified.last_modified_id
                     AND     Substorage_mobile_id = '" . $_GET['substoragemobileid'] . "'";
             $object = getData($sql);
 
         ?>
 
-        <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$object->Substorage_mobile_name?></p>
+        <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$object->Substorage_name?></p>
         <p class="datenheader">ID:</p><p class="datenfeld"><?=$object->Substorage_mobile_id?></p>
-        <p class="datenheader">Beschreibung:</p><p class="datenfeld"><?=$object->Substorage_mobile_description?></p>
+        <p class="datenheader">Beschreibung:</p><p class="datenfeld"><?=$object->Substorage_description?></p>
         <p class="datenheader">Kategorie:</p><p class="datenfeld"><?=$object->Substorage_mobile_category?></p>
-        <p class="datenheader">Länge:</p>
-            <div class="datenfeld">
-                <p class="datenfeld"><?=$object->Format_length?></p><span> m</span>
-            </div>
-        <p class="datenheader">Breite:</p>
-            <div class="datenfeld">
-                <p class="datenfeld"><?=$object->Format_width?></p><span> m</span>
-            </div>
-        <p class="datenheader">Höhe:</p>
-            <div class="datenfeld">
-                <p class="datenfeld"><?=$object->Format_height?></p><span>m</span>
-            </div>
-        <p class="datenheader">Volumen:</p>
-            <div class="datenfeld">
-                <p class="datenfeld"><?=$object->Format_volume?></p><span></span>
-            </div>
+        <p class="datenheader">Cover:</p><p class="datenfeld"><?=$object->Substorage_mobile_cover?></p>
+        <p class="datenheader">Höhe:</p><p class="datenfeld"><?=$object->Format_height?></p>
+        <p class="datenheader">Breite:</p><p class="datenfeld"><?=$object->Format_width?></p>
+        <p class="datenheader">Länge:</p><p class="datenfeld"><?=$object->Format_length?></p>
+        <p class="datenheader">User:</p><p class="datenfeld"><?=getUserById($object->User_User_id)?></p>
+        <p class="datenheader">Lagerplatz:</p><p class="datenfeld"><?=$object->Substorage_yard_fixed_Substorage_fixed_id?></p>
+        <p class="datenheader">Bild:</p><img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Substorage_mobile_picture ?? 'images/substorage.png') ?>" alt ="Image not found" onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/substorage.png';">
 
-        <p class="datenheader">Deckel: </p><p class="datenfeld">
-            <?php if($object->Substorage_mobile_cover == 0){echo "nein ";} else{echo "ja ";}?></p>
-        <p class="datenheader">Stapelbar: </p><p class="datenfeld">
-            <?php if($object->Substorage_mobile_cover == 0){echo "nein ";} else{echo "ja ";}?></p>
-        <p class="datenheader">Rotierbar: </p><p class="datenfeld">
-            <?php if($object->Substorage_mobile_cover == 0){echo "nein ";} else{echo "ja ";}?></p>
-        <p class="datenheader">an Platz gebunden: </p><p class="datenfeld">
-            <?php if($object->Substorage_mobile_binding == 0){echo "nein ";} else{echo "ja ";}?></p>
-        <p class="datenheader">temp. entnommen: </p><p class="datenfeld">
-            <?php if($object->Substorage_mobile_extracted == 0){echo "nein ";} else{echo "ja ";}?></p>
-
-        <p class="datenheader">Bearbeitet:</p><p class="datenfeld"><?=$object->last_modified_datetime?></p>
-        <p class="datenheader">Von ID:</p><p class="datenfeld"><?=$object->last_modified_user_id?></p>
-        <p class="datenheader">Zugehörigkeit-Fix ID:</p><p class="datenfeld"><?=$object->Substorage_yard_fixed_Substorage_fixed_id?></p>
-        <p class="datenheader">Zugehörigkeit-Mobil ID:</p><p class="datenfeld"><?=$object->Substorage_yard_mobile_Substorage_mobile_id?></p>
-        <p class="datenheader">Zugehörige Artikel IDs:</p><p class="datenfeld"><?=$object->Articel_Articel_id?></p>
-       
     <!-- Artikel -->
     <?php elseif(isset($_GET['articleid'])):?>
+        
         <?php
-            $sql = "SELECT  *, properties.Properties_name as Articel_name,
-                            properties.Properties_description as Articel_description,
-                            (SELECT SUM(Subarticel_quantity) as Subarticel_quantity FROM subarticel WHERE Articel_Articel_id = articel.Articel_id) as quantity
-                    FROM    articel, properties, format
-                    WHERE   articel.Properties_Properties_id = properties.Properties_id
-                    AND     format.Format_id = articel.Format_Format_id
-                    and     Articel_id = '" . $_GET['articleid'] . "'";
-            $object = getData($sql);
-            $sql = "SELECT *,
-                            properties.Properties_name as Substorage_name,
-                            properties.Properties_description as Substorage_description
-                    FROM    substorage_yard_mobile, properties, format
-                    WHERE   substorage_yard_mobile.Properties_Properties_id = properties.Properties_id
-                    AND     format.Format_id = substorage_yard_mobile.Format_Format_id
-                    AND     Substorage_mobile_id = '" . $object->Substorage_yard_Substorage_mobile_id . "'";
-            $subStorageMobile = getData($sql);
+            $object= getarticlebyid($_GET['articleid']);
+           
+            if(!$object){
+                $_SESSION["status"]="Artikel holen fail";
+                echo $_SESSION["status"];
+            }
+
+            $sql_storages = "SELECT *,
+                                    properties.Properties_name as Substorage_mobile_name,
+                                    properties.Properties_description as Substorage_mobile_description
+                            FROM    substorage_yard_mobile, properties
+                            WHERE   substorage_yard_mobile.Properties_Properties_id = properties.Properties_id
+                            AND     Articel_Articel_id  = {$_GET['articleid']}";
+            $subStoragesMobile = getDatas($sql_storages);
         ?>
 
-            <p class="datenheader">Name:</p><p class="datenfeld" id="selectedobject"><?=$object->Articel_name?></p>
-            <p class="datenheader">ID:</p><p class="datenfeld"><?=$object->Articel_id?></p>
-            <p class="datenheader">Beschreibung:</p><p class="datenfeld"><?=$object->Articel_description?></p>
-            <p class="datenheader">mobiler Lagerplatz:</p><p class="datenfeld"><?=$subStorageMobile->Substorage_name?></p>
-            <p class="datenheader">Alias:</p><p class="datenfeld"><?=$object->aliase?></p>
-            <p class="datenheader">Anzahl:</p><p class="datenfeld"><?=$object->quantity?></p>
-            <p class="datenheader">Maße:</p><p class="datenfeld"><?=$object->Format_length?>m x <?=$object->Format_width?>m x <?=$object->Format_height?>m</p>
-            <p class="datenheader">Ablaufdatum:</p><p class="datenfeld"><?=$object->Articel_expiry?></p>
-            <p class="datenheader">User:</p><p class="datenfeld"><?=getUserById($object->User_User_id)?></p>
-            <p class="datenheader">Bild:</p>
-            <img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Articel_picture ?? 'images/article.png') ?>" alt ="Image not found"  onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/article.png';">
+        <p class="datenheader">Name:</p>
+        <p class="datenfeld" id="selectedobject"><?=$object->Articel_name?></p>
+
+        <p class="datenheader">ID:</p>
+        <p class="datenfeld"><?=$object->Articel_id?></p>
+
+        <p class="datenheader">Beschreibung:</p>
+        <p class="datenfeld"><?=$object->Articel_description?></p>
+
+        <p class="datenheader">Maße:</p>
+        <p class="datenfeld"><?=$object->Articel_length?>m x <?=$object->Articel_width?>m x <?=$object->Articel_height?>m</p>
+
+        <p class="datenheader">Alias:</p>
+        <p class="datenfeld"><?=$object->Articel_alias?></p>
+
+        <p class="datenheader">gelagert in:</p>
+        <p class="datenfeld"><?php foreach($subStoragesMobile as $subStorageMobile){echo "{$subStorageMobile->Substorage_mobile_name}, ";}?></p>
+
+        <p class="datenheader">Gruppe:</p>
+        <p class="datenfeld">geht noch nicht</p>
+
+        <p class="datenheader">Anzahl:</p>
+        <p class="datenfeld"><?=$object->Articel_quantity?></p>
+
+        <p class="datenheader">Ablaufdatum:</p>
+        <p class="datenfeld"><?=$object->Articel_expiry?></p>
+
+        <p class="datenheader">User:</p>
+        <p class="datenfeld"><?=$object->Articel_user_name?></p>
+
+        <p class="datenheader">Anzahl Zugriffe:</p>
+        <p class="datenfeld"><?=$object->Articel_number_of_accesses?></p>
+
+        <p class="datenheader">letzter Zugriff:</p>
+        <p class="datenfeld"><?=$object->Articel_last_modified?></p>
+
+        <p class="datenheader">drehbar:</p>
+        <p class="datenfeld"><?php if($object->Articel_rotateable === '0'){echo "nein ";} else{echo "ja ";}?></p>
+
+        <p class="datenheader">stabelbar:</p>
+        <p class="datenfeld"><?php if($object->Articel_stackable === '0'){echo "nein ";} else{echo "ja ";}?></p>
+
+        <p class="datenheader">zerbrechlich:</p>
+        <p class="datenfeld"><?php if($object->Articel_fragile === '0'){echo "nein ";} else{echo "ja ";}?></p>
+
+        <p class="datenheader">Bild:</p>
+        <img class="datenfeld" src="<?= UPLOADS_ROOT.($object->Articel_picture ?? 'images/article.png')?>" alt ="Image not found"  onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/article.png';">
 
     <?php elseif(isset($_GET['subarticleid'])):?>
 
         <p>subarticel <?= $_GET['subarticleid'] ?> ausgewählt</p>
 
+    <?php elseif(isset($_GET['articlegroupid'])):?>
 
+        <?php
+            $object=getarticlegroupbyid($_GET['articlegroupid']);
+           
+            if(!$object){
+                $_SESSION["status"]="Artikelgruppe holen fail";
+                echo $_SESSION["status"];
+            }
+        ?>
+
+        <p class="datenheader">Name:</p>
+        <p class="datenfeld" id="selectedobject"><?=$object->Articel_group_name?></p>
+
+        <p class="datenheader">ID:</p>
+        <p class="datenfeld"><?=$object->Articel_group_id?></p>
+
+        <p class="datenheader">Beschreibung:</p>
+        <p class="datenfeld"><?=$object->Articel_group_description?></p> 
+        
+        <p class="datenheader">Bild:</p>
+        <img class="datenfeld" src="<?= UPLOADS_ROOT.($object->Articel_group_picture ?? 'images/article.png')?>" alt ="Image not found"  onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/article.png';">
+    
     <?php else:?>
 
         <?php if (isset($_GET['msg'])): ?>

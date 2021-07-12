@@ -70,13 +70,13 @@ try{
             
             $article= getarticlebyid($status);
             if(isset($_POST["Articel_alias"])){
-                $sql_aliase = "INSERT INTO `aliase` (`aliase1`,`Articel_Articel_id`) 
+                $sql_aliase = "INSERT INTO `aliase` (`Aliase_1`,`Articel_Articel_id`) 
                        VALUES ('". $_POST['Articel_alias'] ."','". $article->Articel_id ."')";
                 $aliasid = setData($sql_aliase);
             }
 
             $_SESSION["status"]="Artikel {$article->Articel_name} wurde angelegt";
-            header('location: ../index.php');
+            header('location: ../index.php?error=0');
         }
         else{
             $_SESSION["status"]="Hups! Da ist etwas schief gelaufen... {$e->getMessage()}";
