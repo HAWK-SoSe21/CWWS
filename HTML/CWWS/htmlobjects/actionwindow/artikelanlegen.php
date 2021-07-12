@@ -39,16 +39,16 @@
         <input class="datenfeld" type="date" name="Articel_expiry" id="Articel_expiry">
    
         <label class="datenheader"  for="Articel_rotatable">drehbar:</label>
-        <input class="datenfeld" type="checkbox" name="Articel_rotatable" id="Articel_rotatable">
+        <input class="datenfeld" type="checkbox" name="Articel_rotatable">
 
         <label class="datenheader"  for="Articel_stackable">stabelbar:</label>
-        <input class="datenfeld" type="checkbox" name="Articel_stackable" id="Articel_stackable">
+        <input class="datenfeld" type="checkbox" name="Articel_stackable">
 
         <label class="datenheader"  for="Articel_fragile">zerbrechlich:</label>
-        <input class="datenfeld" type="checkbox" name="Articel_fragile" id="Articel_fragile">
+        <input class="datenfeld" type="checkbox" name="Articel_fragile">
 
         <label class="datenheader" for="Articel_picture">Bild:</label>
-        <input class="datenfeld" type="file" name="Articel_picture" id="Articel_picture">
+        <input class="datenfeld" type="file" name="Articel_picture">
 
         <label class="datenheader"> </label>
         <button type="submit" name="submit">anlegen</button>

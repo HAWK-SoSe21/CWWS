@@ -1,6 +1,7 @@
 <?php
-#erstellt: PHP-Team
-#überarbeitet: Nick Heinemann
+try{
+  #erstellt: PHP-Team
+  #überarbeitet: Nick Heinemann
   include_once '../phpheader.php';
   $authenticatedUserId = $GLOBALS["user"];
   $modified_date = date('Y-m-d H:i:s');
@@ -59,4 +60,10 @@
     else{
       header("location: ../index.php?error=stmtfailed");
     }
+  }
 }
+catch(Exception $e) {
+  session_start();
+  $_SESSION["status"]="Hups! Da ist etwas schief gelaufen... {$e->getMessage()}";
+  header('location: ../index.php?error=1');
+}  

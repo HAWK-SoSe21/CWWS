@@ -19,20 +19,23 @@ try{
         $sql_props = "INSERT INTO `properties`(`Properties_name`, `Properties_description`) 
                       VALUES ('". $_POST['Articel_name'] ."', '". $_POST['Articel_description'] ."')";
         $propId = setData($sql_props);
+        
 
         $sql_format = "INSERT INTO `format` (`Format_height`, `Format_width`, `Format_length`) 
                        VALUES ('". $_POST['Articel_format_height'] ."',
                                '". $_POST['Articel_format_width'] ."',
                                '". $_POST['Articel_format_length'] ."')";
         $formatId = setData($sql_format);
+        
 
-        $sql_order = "INSERT INTO   order
-                                    (order_stackable,
-                                    order_rotateable)
-                      VALUES      ('". $_POST['Articel_stackable'] ."',
-                                    '". $_POST['Articel_rotatable'] ."')";
+        $sql_order = "INSERT INTO   `order`
+                                    (`order_stackable`,
+                                    `order_rotateable`)
+                        VALUES      ('". $_POST['Articel_stackable'] ."',
+                                    '". $_POST['Articel_rotatable'] ."')
+                        ";
         $orderID = setData($sql_order);
-
+        
 
         $modified_date = date('Y-m-d H:i:s');
         // $sql_last_mod = "INSERT INTO    last_modified
@@ -50,16 +53,14 @@ try{
                             (`Articel_picture`,
                             `Properties_Properties_id`, 
                             `Articel_expiry`,  
-                            `Format_Format_id`, 
-                            `Substorage_yard_Substorage_mobile_id`, 
+                            `Format_Format_id`,  
                             `User_User_id`,
                             `order_order_id`,
                             `Usage_statistics_Usage_statistics_id`) 
                 VALUES ('".$pictureUrl."', 
                         '". $propId."', 
                         '".$_POST["Articel_expiry"]. "', 
-                        '" . $formatId . "', 
-                        '".$_POST["Substorage_yard_Substorage_mobile_id"]. "', 
+                        '" . $formatId . "',  
                         '".$authenticatedUserId. "',
                         '".$orderID. "',
                         '".$usageId. "')";
@@ -73,19 +74,17 @@ try{
                        VALUES ('". $_POST['Articel_alias'] ."','". $article->Articel_id ."')";
                 $aliasid = setData($sql_aliase);
             }
-            session_start();
+
             $_SESSION["status"]="Artikel {$article->Articel_name} wurde angelegt";
             header('location: ../index.php');
         }
         else{
-            session_start();
             $_SESSION["status"]="Hups! Da ist etwas schief gelaufen... {$e->getMessage()}";
-            header('location: ../index.php');
+            header('location: ../index.php?error=1');
         }
     }
 }  
 catch(Exception $e) {
-    session_start();
     $_SESSION["status"]="Hups! Da ist etwas schief gelaufen... {$e->getMessage()}";
-    header('location: ../index.php');
+    header('location: ../index.php?error=1');
 }  

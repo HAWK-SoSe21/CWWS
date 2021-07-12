@@ -37,3 +37,5 @@
 <div id="bearbeiten" class="actionwindow">
     <?php include_once ROOT."htmlobjects/actionwindow/auswahlbearbeiten.php"?>
 </div>
+
+

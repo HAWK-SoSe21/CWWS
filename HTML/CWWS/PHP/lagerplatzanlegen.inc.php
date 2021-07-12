@@ -1,4 +1,5 @@
 <?php
+try{
 #erstellt: PHP-Team
 #überarbeitet: Nick Heinemann
     include_once '../phpheader.php';
@@ -50,8 +51,12 @@
         header("location: ../index.php?error=stmtfailed");
         }
     }
-
-    
+  }
+  catch(Exception $e) {
+    session_start();
+    $_SESSION["status"]="Hups! Da ist etwas schief gelaufen... {$e->getMessage()}";
+    header('location: ../index.php?error=1');
+}  
 
 
 ?>

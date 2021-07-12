@@ -47,6 +47,12 @@
 
 
         </div>
+
+        <?php if(isset($_GET["error"])):?>
+            <br>
+            <br>
+            <?php include_once ROOT."/PHP/status.inc.php"; ?> 
+        <?php endif?>
     </div>
 
 

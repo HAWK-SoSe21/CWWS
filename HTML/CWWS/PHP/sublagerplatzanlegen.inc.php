@@ -1,6 +1,7 @@
 <?php
-#erstellt: PHP-Team
-#überarbeitet: Nick Heinemann
+try{
+    #erstellt: PHP-Team
+    #überarbeitet: Nick Heinemann
     include_once '../phpheader.php';
 
     if(isset($_POST['submit'])) {
@@ -44,10 +45,17 @@
                                                 '". $last_modID."')";
         $status = setData($sql_substorage_yard);
 
-    if($status) {
-        header('location: ../index.php?error=none');
-      }
-      else{
-      header("location: ../index.php?error=stmtfailed");
-      }
+        if($status) {
+            header('location: ../index.php?error=none');
+        }
+        else{
+        header("location: ../index.php?error=stmtfailed");
+        }
     }
+}
+catch(Exception $e) {
+    session_start();
+    $_SESSION["status"]="Hups! Da ist etwas schief gelaufen... {$e->getMessage()}";
+    header('location: ../index.php?error=1');
+}  
+

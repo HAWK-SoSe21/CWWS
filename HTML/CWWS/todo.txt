@@ -3,13 +3,13 @@
 -Nutzer auf einer Ebene | Daniel erledigt
 -Session kill bei ausloggen | Max erledigt
 -Suchfunktion realisieren | Max/Nick
--Bilder als blob speichern / Standartbilder bei nicht gefundenem Bild | Max  
+-Bilder als blob speichern / Standardbilder bei nicht gefundenem Bild | Max-> geht nicht weil Datenbank mit varchar 
 -Funktion für Baumstrukturanzeige | Daniel
 -use cases umsetzen: | Nick
 	-Möbel anlegen /bearbeiten/anzeigen erledigt
 	-fest Subl anlegen /bearbeiten/anzeigen erledigt
-	-bew Subl anlegen /bearbeiten/anzeigen 
-	-Artikel anlegen /bearbeiten/anzeigen
+	-bew Subl anlegen /bearbeiten/anzeigen fast erl
+	-Artikel anlegen /bearbeiten/anzeigen 
 	-Subartikel anlegen /bearbeiten/anzeigen
 	-acticlegroup anlegen /bearbeiten/anzeigen
 -Passwort Nutzername vergessen Email mit Rücksetzlink | Max erledigt
