@@ -1,5 +1,6 @@
 <?php
-
+#erstellt: PHP-Team
+#überarbeitet: Nick Heinemann
 include_once '../phpheader.php';
 
 $authenticatedUserId = $_SESSION["userid"];
@@ -15,20 +16,24 @@ if(isset($_POST['submit'])) {
   }
   setData($sql_storage);
   
-  $propreties_id = getData("SELECT Properties_Properties_id FROM storage_yard WHERE Storage_id = '". $_POST['Storage_id'] ."'");
+  $propreties_id = getData( "SELECT   Properties_Properties_id
+                            FROM      storage_yard
+                            WHERE     Storage_id = '". $_POST['Storage_id'] ."'");
   $sql_prop = "UPDATE   properties
               SET       Properties_name = '". $_POST['Storage_name'] ."',
                         Properties_description = '" . $_POST['Storage_description'] . "'
               WHERE     Properties_id = '". $propreties_id->Properties_Properties_id ."'";
   $status = setData($sql_prop);
 
-  $format_id = getData("SELECT * FROM storage_yard WHERE Storage_id = '". $_POST['Storage_id'] ."'");
+  $format_id = getData( "SELECT   * 
+                        FROM      storage_yard 
+                        WHERE     Storage_id = '". $_POST['Storage_id'] ."'");
   $sql_format = "UPDATE format
                 SET     Format_height = {$_POST['Storage_Format_height']},
                         Format_width = {$_POST['Storage_Format_width']},
                         Format_length =  {$_POST['Storage_Format_length']}
                 WHERE   Format_id = {$format_id->Format_Format_id}";
-  $formatId = setData($sql_format);
+  $status = setData($sql_format);
 
   if($status) {
     header('location: ../index.php?error=none');

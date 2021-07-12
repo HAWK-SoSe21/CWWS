@@ -1,5 +1,6 @@
 <h3>Auswahl bearbeiten</h3>
 
+    <!-- Lagerplatz -->
     <?php if(isset($_GET['storageid'])): ?>
      
      <form action="<?= WEBROOT?><?= UV ?>PHP/lagerplatzbearbeiten.inc.php" method="post" enctype="multipart/form-data">
@@ -13,17 +14,17 @@
          <input class="datenfeld" type="text" name="Storage_description" value="<?= $object->Storage_description ?>">
          
          <!-- Format -->
-         <label class="datenheader" >Höhe: </label>
-             <div class="datenfeld">
-                 <input class="datenfeld" type="text" name="Storage_Format_height" value="<?= $object->Storage_Format_height ?>"><span> m</span>
-             </div>
-         <label class="datenheader">Breite: </label>
-             <div class="datenfeld">
-                 <input class="datenfeld" type="text" name="Storage_Format_width" value="<?= $object->Storage_Format_width ?>"><span> m</span>
-             </div>
          <label class="datenheader">Länge: </label>
              <div class="datenfeld">
                  <input class="datenfeld" type="text" name="Storage_Format_length" value="<?= $object->Storage_Format_length ?>"><span> m</span>
+             </div>
+        <label class="datenheader">Breite: </label>
+             <div class="datenfeld">
+                 <input class="datenfeld" type="text" name="Storage_Format_width" value="<?= $object->Storage_Format_width ?>"><span> m</span>
+             </div>
+         <label class="datenheader" >Höhe: </label>
+             <div class="datenfeld">
+                 <input class="datenfeld" type="text" name="Storage_Format_height" value="<?= $object->Storage_Format_height ?>"><span> m</span>
              </div>
 
          <!-- Picture -->
@@ -37,8 +38,7 @@
 
      </form>
 
-
-
+    <!-- Möbel -->
     <?php elseif(isset($_GET['substorageid'])):?>
 
 
@@ -55,8 +55,8 @@
 
             <label class="datenheader" for="Substorage_category">Kategorie:</label>
             <select class="datenfeld" name="Substorage_category" id="Substorage_category">
-                <option <?= "Räume" == $object->Substorage_category ? 'selected' : ''  ?> value="Räume">Schrank</option>
-                <option <?= "Schränke" == $object->Substorage_category ? 'selected' : ''  ?> value="Schränke">Regal</option>
+                <option <?= "Schrank" == $object->Substorage_category ? 'selected' : ''  ?> value="Schrank">Schrank</option>
+                <option <?= "Regal" == $object->Substorage_category ? 'selected' : ''  ?> value="Regal">Regal</option>
             </select>
 
             <label class="datenheader" for="Substorage_quantity" >Anzahl fester Sublagerplätze:</label>
@@ -70,8 +70,8 @@
             </select>
 
 
-            <label class="datenheader" for="Substorage_yard_picture">Bild:</label>
-            <input class="datenfeld" type="file" name="Substorage_yard_picture">
+            <label class="datenheader" for="Substorage_picture">Bild:</label>
+            <input class="datenfeld" type="file" name="Substorage_picture">
 
             <label clas="datenheader"></label>
             <button type="submit" name="submit">bearbeiten</button>
@@ -81,6 +81,68 @@
 
         </form>
 
+    <!-- Substorage_fixed -->
+    <?php elseif(isset($_GET['substoragefixedid'])): ?>
+        <?php
+            $sql = "SELECT *,
+                            properties.Properties_name as Substorage_name,
+                            properties.Properties_description as Substorage_description,
+                            format.Format_height as Substorage_fixed_Format_height,
+                            format.Format_width as Substorage_fixed_Format_width,
+                            format.Format_length as Substorage_fixed_Format_length,
+                            format.Format_volume as Substorage_fixed_volume
+                    FROM    substorage_yard_fixed,
+                            properties,
+                            format
+                    WHERE   substorage_yard_fixed.Properties_Properties_id = properties.Properties_id
+                    AND     format.Format_id = substorage_yard_fixed.Format_Format_id
+                    AND     Substorage_fixed_id = '" . $_GET['substoragefixedid'] . "'";
+            $object = getData($sql);
+
+        ?>
+        <form action="<?= WEBROOT?><?= UV ?>PHP/sub_storage_fixed_update.inc.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="Substorage_fixed_id" value="<?= $object->Substorage_fixed_id ?>">
+            <label class="datenheader" for="Substorage_fixed_name">Name:</label>
+            <input class="datenfeld" id="Substorage_fixed_name" type="text" name="Substorage_fixed_name" value="<?=$object->Substorage_name?>">
+
+            <label class="datenheader" for="Substorage_fixed_description">Beschreibung:</label>
+            <input class="datenfeld" id="Substorage_fixed_description" type="text" name="Substorage_fixed_description" value="<?=$object->Substorage_description?>">
+
+            <label class="datenheader" for="Substorage_fixed_category">Kategorie:</label>
+            <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
+                <option  <?= $object->Substorage_fixed_category == "Fach" ? "selected" : "" ?> value="Fach">Fach</option>
+                <option <?= $object->Substorage_fixed_category == "Schublade" ? "selected" : "" ?> value="Schublade">Schublade</option>
+            </select>
+
+            <!-- Format -->
+            <label class="datenheader">Länge: </label>
+                <div class="datenfeld">
+                    <input class="datenfeld" type="text" name="Substorage_fixed_Format_length" value="<?= $object->Substorage_fixed_Format_length ?>"><span> m</span>
+                </div>
+            <label class="datenheader">Breite: </label>
+                <div class="datenfeld">
+                    <input class="datenfeld" type="text" name="Substorage_fixed_Format_width" value="<?= $object->Substorage_fixed_Format_width ?>"><span> m</span>
+                </div>
+            <label class="datenheader" >Höhe: </label>
+                <div class="datenfeld">
+                    <input class="datenfeld" type="text" name="Substorage_fixed_Format_height" value="<?= $object->Substorage_fixed_Format_height ?>"><span> m</span>
+                </div>
+
+            <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit:</label>
+                <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
+                    <?php foreach (getsubstorages() as $key => $substorage): ?>
+                                <option <?= $substorage->Substorage_id == $object->Substorage_yard_Substorage_id ? 'selected' : '' ?> value="<?= $substorage->Substorage_id ?>"><?= $substorage->Substorage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+            
+            <label class="datenheadr"></label>
+            <button type="submit" name="submit">bearbeiten</button>
+
+            <label class="datenheadr"></label>
+            <button type="submit" name="delete">löschen</button>
+
+
+        </form>
 
     <?php elseif(isset($_GET['articleid'])):?>
 
@@ -140,59 +202,7 @@
             <button type="submit" name="delete">löschen</button>
         </form>
 
-    <?php elseif(isset($_GET['substoragefixedid'])): ?>
-        <?php
-            $sql = "SELECT *,
-                            properties.Properties_name as Substorage_name,
-                            properties.Properties_description as Substorage_description
-                    FROM    substorage_yard_fixed, properties, format
-                    WHERE   substorage_yard_fixed.Properties_Properties_id = properties.Properties_id
-                    AND     format.Format_id = substorage_yard_fixed.Format_Format_id
-                    AND     Substorage_fixed_id = '" . $_GET['substoragefixedid'] . "'";
-            $object = getData($sql);
-
-        ?>
-        <form action="<?= WEBROOT?><?= UV ?>PHP/sub_storage_fixed_update.inc.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="Substorage_fixed_id" value="<?= $object->Substorage_fixed_id ?>">
-            <label class="datenheader" for="Substorage_fixed_name">Name:</label>
-            <input class="datenfeld" id="Substorage_fixed_name" type="text" name="Substorage_fixed_name" value="<?=$object->Substorage_name?>">
-
-            <label class="datenheader" for="Substorage_fixed_description">Beschreibung:</label>
-            <input class="datenfeld" id="Substorage_fixed_description" type="text" name="Substorage_fixed_description" value="<?=$object->Substorage_description?>">
-
-            <label class="datenheader" for="Substorage_fixed_category">Kategorie:</label>
-            <select class="datenfeld" name="Substorage_fixed_category" id="Substorage_fixed_category">
-                <option  <?= $object->Substorage_fixed_category == "Räume" ? "selected" : "" ?> value="Räume">Fach</option>
-                <option <?= $object->Substorage_fixed_category == "Schränke" ? "selected" : "" ?> value="Schränke">Schublade</option>
-            </select>
-
-            <label class="datenheader" for="Substorage_fixed_Format_length">Länge: </label>
-            <input class="datenfeld" id="Substorage_fixed_Format_length" type="number" step="0.01" min="0" name="Substorage_fixed_Format_length" value="<?=$object->Format_length?>">
-            
-            <label class="datenheader" for="Substorage_fixed_Format_width">Breite: </label>
-            <input class="datenfeld" id="Substorage_fixed_Format_width" type="number" step="0.01" min="0" name="Substorage_fixed_Format_width" value="<?=$object->Format_width?>">
-            
-            <label class="datenheader" for="Substorage_fixed_Format_height">Höhe: </label>
-            <input class="datenfeld" id="Substorage_fixed_Format_height" type="number" step="0.01" min="0" name="Substorage_fixed_Format_height" value="<?=$object->Format_height?>">
-
-            <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit:</label>
-                <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
-                    <?php foreach (getsubstorages() as $key => $substorage): ?>
-                                <option <?= $substorage->Substorage_id == $object->Substorage_yard_Substorage_id ? 'selected' : '' ?> value="<?= $substorage->Substorage_id ?>"><?= $substorage->Substorage_name ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-            <label class="datenheader" for="Substorage_fixed_picture">Bild:</label>
-            <input class="datenfeld" type="file" name="Substorage_fixed_picture" id="Substorage_fixed_picture">
-
-            <label class="datenheadr"></label>
-            <button type="submit" name="submit">bearbeiten</button>
-
-            <label class="datenheadr"></label>
-            <button type="submit" name="delete">löschen</button>
-
-
-        </form>
+    
     <?php elseif(isset($_GET['substoragemobileid'])): ?>
 
         <form action="<?= WEBROOT?><?= UV ?>PHP/sub_storage_mobile_update.inc.php" method="post" enctype="multipart/form-data">

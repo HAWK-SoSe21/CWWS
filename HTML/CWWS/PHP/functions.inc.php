@@ -1,7 +1,8 @@
 <?php
 
+use function PHPSTORM_META\sql_injection_subst;
 
-    function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
+function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
         $result=false;
         if(empty($uid)||empty($email)||empty($pwd)||empty($pwdrepeat)){
             $result= TRUE;
@@ -138,6 +139,12 @@
 
     }
 
+    function getarticlebyid($id){
+        $sql="SELECT * FROM articel WHERE Articel_id = {$id}";
+        $article = getData($sql);
+        return $article;
+    }
+
     function getsubstorages(){
 
         $sql = "SELECT *, properties.Properties_name as Substorage_name, properties.Properties_description as Substorage_description  FROM substorage_yard, properties WHERE substorage_yard.Properties_Properties_id = properties.Properties_id;";
@@ -150,6 +157,13 @@
     function getsubstoragesfixed(){
 
         $sql = "SELECT *, properties.Properties_name as Substorage_name, properties.Properties_description as Substorage_description  FROM substorage_yard_fixed, properties WHERE substorage_yard_fixed.Properties_Properties_id = properties.Properties_id;";
+        $SubstoragesFixed = getDatas($sql);
+        return $SubstoragesFixed;
+    }
+
+    function getsubstoragesmobile(){
+
+        $sql = "SELECT *, properties.Properties_name as Substorage_name, properties.Properties_description as Substorage_description  FROM substorage_yard_mobile, properties WHERE substorage_yard_mobile.Properties_Properties_id = properties.Properties_id;";
         $SubstoragesFixed = getDatas($sql);
         return $SubstoragesFixed;
     }
