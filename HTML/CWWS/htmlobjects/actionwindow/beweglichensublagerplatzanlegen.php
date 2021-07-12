@@ -38,7 +38,7 @@
             </select>
         <label class="datenheader" for="Substorage_yard_mobile_Substorage_mobile_id">Zugehörigkeit-Mobil</label>
             <select class="datenfeld" class="" name="Substorage_yard_mobile_Substorage_mobile_id" id="Substorage_yard_mobile_Substorage_mobile_id">
-                <option value = NULL ></option>
+                <option value = '0' ></option>
                 <?php foreach (getsubstoragesmobile() as $key => $substorage): ?>
                             <option value="<?= $substorage->Substorage_mobile_id ?>"><?= $substorage->Substorage_name ?></option>
                 <?php endforeach; ?>
@@ -46,23 +46,22 @@
         
         <!-- Order -->
         <label class="datenheader" for="order_stackable">stapelbar</label>
-        <input class="datenfeld" id="order_stackable" type="checkbox" name="order_stackable">
+        <input class="datenfeld" id="order_stackable" type="checkbox" name="order_stackable" value=1>
 
         <label class="datenheader" for="order_rotateable">drehbar</label>
-        <input class="datenfeld" id="order_rotateable" type="checkbox" name="order_rotateable">
+        <input class="datenfeld" id="order_rotateable" type="checkbox" name="order_rotateable" value=1>
 
         <!-- Deckel -->
         <label class="datenheader" for="Substorage_mobile_cover">Deckel</label>
-        <input class="datenfeld" id="Substorage_mobile_cover" type="checkbox" name="Substorage_mobile_cover">
+        <input class="datenfeld" id="Substorage_mobile_cover" type="checkbox" name="Substorage_mobile_cover" value=1>
 
         <!-- Bindung -->
         <label class="datenheader" for="Substorage_mobile_binding">an Platz gebunden</label>
-        <input class="datenfeld" id="Substorage_mobile_binding" type="checkbox" name="Substorage_mobile_binding">
+        <input class="datenfeld" id="Substorage_mobile_binding" type="checkbox" name="Substorage_mobile_binding" value=1>
         
         <!-- temp. entnommen -->
         <label class="datenheader" for="Substorage_mobile_extracted">temp. entnommen</label>
-        <input class="datenfeld" id="Substorage_mobile_extracted" type="checkbox" name="Substorage_mobile_extracted">
-
+        <input class="datenfeld" id="Substorage_mobile_extracted" type="checkbox" name="Substorage_mobile_extracted" value=1>
 
         <label class="datenheader"></label>
        
