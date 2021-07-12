@@ -166,6 +166,7 @@
         <p class="datenheader">Lagerplatz:</p><p class="datenfeld"><?=$object->Substorage_yard_fixed_Substorage_fixed_id?></p>
         <p class="datenheader">Bild:</p><img class="datenfeld" src="<?= UPLOADS_ROOT . ($object->Substorage_mobile_picture ?? 'images/substorage.png') ?>" alt ="Image not found" onerror="this.onerror=null;this.src='<?= UPLOADS_ROOT ?>images/substorage.png';">
 
+    <!-- Artikel -->
     <?php elseif(isset($_GET['articleid'])):?>
         <?php
             $sql = "SELECT  *, properties.Properties_name as Articel_name,
