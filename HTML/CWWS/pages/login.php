@@ -2,6 +2,7 @@
 
 <div class="main">
     <div class="mainbox">
+        <h3>Anmeldung</h3>
         <section class="login-form">
             
             <form action="<?php ROOT ?>../PHP/login.inc.php" method="post">
@@ -10,15 +11,17 @@
                 <button type="submit"name="submit">Anmelden</button>
             </form>
             <?php include_once ROOT."/PHP/status.inc.php"?>
-            <br>
+        
+        </section>
+    </div>
+    <br>
+        <section class="login-form">
             <li>
             <a href="<?php WEBROOT ?><?= UV ?>pages/userhelp.php">
                 <p>Nutzername oder Passwort vergessen<ion-icon name="help-circle-outline"></ion-icon></p>    
             </a>
             </li>
         </section>
-        
-    </div>
 </div>
 
 <?php include_once '../footer.php'?>

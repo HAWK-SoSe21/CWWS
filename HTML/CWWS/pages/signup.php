@@ -2,6 +2,8 @@
 
     <div class="main">
         <div class="mainbox">
+
+            <h3>Registrierung</h3>
             <section class="signup-form">
 
                 <form action="<?php ROOT ?>../PHP/signup.inc.php" method="post">

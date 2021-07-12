@@ -22,7 +22,11 @@ input{
     flex-wrap: wrap;
 }
 
-
+h3{
+    text-align: center;
+    background-color: darkgreen;
+    margin-bottom: 15px;
+}
 
 /*HEADER*/
 .header{
@@ -174,6 +178,7 @@ input{
 .mainbox{
     border: 1px solid darkgreen;
     padding: 5px;
+    width: fit-content;
 }
 .maingrid{
     display: grid;
@@ -351,6 +356,7 @@ input{
     margin-left: 30px;
 }
 .explorer h3{
+    margin-bottom: 0px;
     font-size: medium;
     word-break:normal;
     background-color: darkgreen;
@@ -407,6 +413,9 @@ input{
     padding-right: 2px;
 }
 
+.content .mainbox{
+    width:auto;
+}
 
 /*Actionwindow*/
 
@@ -496,6 +505,7 @@ input{
     padding: 5px;
     grid-template-columns: fit-content(150px) 200px;
     grid-gap: 3px;
+    justify-content: space-between;
 }
 
 /*Responsive*/
