@@ -45,7 +45,28 @@ try{
                                     '". $_POST['order_rotateable'] ."')
                         ";
         $orderID = setData($sql_order);
-        if(is_null($_POST['Substorage_yard_mobile_Substorage_mobile_id'])) {
+        if(($_POST['Substorage_yard_mobile_Substorage_mobile_id'])== '0') {
+            $sql_substorage_yard = "INSERT INTO `substorage_yard_mobile`
+                                                (`Substorage_mobile_cover`,
+                                                `Substorage_mobile_category`,
+                                                `Substorage_mobile_binding`,
+                                                `Substorage_mobile_extracted`,
+                                                `Substorage_yard_fixed_Substorage_fixed_id`,
+                                                `Format_Format_id`,
+                                                `Properties_Properties_id`,
+                                                `last_modified_last_modified_id`,
+                                                `order_order_id`)
+                                    VALUES      ('". $_POST['Substorage_mobile_cover'] ."',
+                                                '". $_POST['Substorage_mobile_category'] ."',
+                                                '". $_POST['Substorage_mobile_binding'] ."',
+                                                '". $_POST['Substorage_mobile_extracted'] ."',
+                                                '". $_POST['Substorage_yard_fixed_Substorage_fixed_id'] ."',
+                                                '". $formatId."',
+                                                '" . $propId . "',
+                                                '". $last_modID."',
+                                                '". $orderID ."')
+                                    ";
+        } else{
             $sql_substorage_yard = "INSERT INTO `substorage_yard_mobile`
                                                 (`Substorage_mobile_cover`,
                                                 `Substorage_mobile_category`,
@@ -68,27 +89,6 @@ try{
                                                 '". $last_modID."',
                                                 '". $orderID ."')
                                     ";
-        } else{
-            $sql_substorage_yard = "INSERT INTO `substorage_yard_mobile`
-                                                (`Substorage_mobile_cover`,
-                                                `Substorage_mobile_category`,
-                                                `Substorage_mobile_binding`,
-                                                `Substorage_mobile_extracted`,
-                                                `Substorage_yard_fixed_Substorage_fixed_id`,
-                                                `Format_Format_id`,
-                                                `Properties_Properties_id`,
-                                                `last_modified_last_modified_id`,
-                                                `order_order_id`)
-                                    VALUES      ('". $_POST['Substorage_mobile_cover'] ."',
-                                                '". $_POST['Substorage_mobile_category'] ."',
-                                                '". $_POST['Substorage_mobile_binding'] ."',
-                                                '". $_POST['Substorage_mobile_extracted'] ."',
-                                                '". $_POST['Substorage_yard_fixed_Substorage_fixed_id'] ."',
-                                                '". $formatId."',
-                                                '" . $propId . "',
-                                                '". $last_modID."',
-                                                '". $orderID ."')
-                                    ";
         }
         $status = setData($sql_substorage_yard);
 
@@ -105,4 +105,3 @@ catch(Exception $e) {
     $_SESSION["status"]="Hups! Da ist etwas schief gelaufen... {$e->getMessage()}";
     header('location: ../index.php?error=1');
 }  
-
