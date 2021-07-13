@@ -40,6 +40,13 @@
         return $pdo->lastInsertId();
     }
 
+    function updateData($req, $params = [])
+    {
+        global $pdo;
+        $stmt = $pdo->prepare($req);
+        return $stmt->execute($params);
+    }
+
     function dd(...$data) {
         die(var_dump($data));
     }

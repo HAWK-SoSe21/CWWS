@@ -27,20 +27,27 @@ input{
 /*HEADER*/
 .header{
     width: 100%;
+    flex-direction: column;
+    display: flex;
+
 }
 .navbar{
     float: left;
-    width: 68%;
+    width: 100%;
     align-items: center;
-    padding:1%;
 }
+
+.navbar ion-icon{
+    font-size: 20px;
+}
+
 .header li,.footer li{
     float: left;
     color: white;
     text-align: center;
     text-decoration: none;
     list-style: none;
-    border: 1px solid darkgreen;
+
     
     transition: border-bottom 0.5s;
     padding: 5px;
@@ -53,8 +60,21 @@ input{
     transition: color 0.5s;
 }
 
+.userleiste li a{
+    font-size:small;
+    padding: 1px;
+    font-weight: normal;
+    flex-direction: row;
+    display:flex;
+}
+
 .header li:hover,.footer li:hover,.sidebar li:hover{
     border-bottom: 1px solid darkgreen;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.userleiste li:hover{
+    border-bottom: 1px solid black;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -62,38 +82,82 @@ input{
     color: darkgreen;
 }
 
+.userleiste li a:hover{
+    color: black;
+}
+
 .header .active,.footer .active,.sidebar .active,.explorer .active li{
     border-bottom: 1px solid darkgreen ;
-    color:darkgreen !important;
+    color:darkgreen;
+}
+
+.userleiste .active{
+    color: black;
+    border-bottom: 1px solid black;
 }
 
 .header .active a,.footer .active a,.sidebar .active a,.explorer .active a{
-    color:darkgreen !important;
+    color:darkgreen;
 }
+
+.userleiste .active a{
+    color: black;
+}
+
 .infobox{
     float: left;
-    display: block;
+    background: darkgreen;
+    display: flex;
     align-items: center;
-    padding: 1%;
-    width: 28%;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .brand{
-    color: darkgreen;
+    color: white;
     font-weight: bold;
     text-align: right;
-    padding: 1px 5px;
+    padding: 1px 4%;
+    padding-bottom: 0px;
 }
 
 .status{
-    color: blue;
+    color: white;
     font-size: small;
     text-align: right;
-    padding: 1px 5px;
-    margin: 5px;
+    padding: 1px;
+    margin: 6px;
+    flex-direction: row;
+    display:flex;
 }
 
+.tabs{
+    width: 100%;
+    height: 2px;
+    border-top: gray;
+    background: darkgreen;
+    border-bottom: gray;
+} 
 
+.userleiste{
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+}
+
+.userleiste ion-icon{
+    font-size: 20px;
+}
+
+.infobox-name{
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+.navbar li{
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
 /*MAIN*/
 .main{
@@ -101,13 +165,13 @@ input{
     margin-bottom: 20px;
     height: 100%;
     overflow: auto;
+    padding-top: 1%;
 }
 .mainpic{
     width: 100%;
 }
 .mainbox{
     border: 1px solid darkgreen;
-    border-radius: 15px;
     padding: 5px;
 }
 .maingrid{
@@ -116,8 +180,6 @@ input{
     width: 100%;
     height: 100%;
 }
-
-
 
 /* sidebar*/
 .sidebar{
@@ -167,7 +229,7 @@ input{
 }
 
 .sidebarbutton{
-    visibility: hidden;
+    visibility:hidden;
     height: 100%;
     width: 20px;
     writing-mode: sideways-rl;
@@ -189,6 +251,7 @@ input{
 .content{
     display: grid;
     grid-template-columns: 150px auto;
+    grid-gap: 0.75%;
     grid-template-rows: 30% auto;
     grid-template-areas: 
     "explorer objekte"
@@ -217,6 +280,7 @@ input{
     height: 20px;
     margin-top: -20px;
     padding: 10px;
+    border-top: 1px solid darkgreen;
 }
 .copyright{
     float: left;
@@ -239,6 +303,7 @@ input{
 .explorer{
     display:block;
     width: 100%;
+    border-left: 0px;
 }
 
 .explorer input{
@@ -287,6 +352,7 @@ input{
 .explorer h3{
     font-size: medium;
     word-break:normal;
+    background-color: darkgreen;
 }
 
 
@@ -294,25 +360,27 @@ input{
 /*Objektfenster*/
 #objektfenster{
     border: 1px solid darkgreen;
-    border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.001);
     width: 92%;
-    max-width: 400px;
+    max-width: 500px;
     max-height: 400px;
     font-size: small;
     display: grid;
-    grid-template-columns: auto auto;
-    grid-gap:3px;
+    grid-template-columns: 40% 60%;
+    grid-gap:4px;
 }
+
 .datenfeld{
     max-width: 100%;
     font-weight: normal;
     color: white;
     background: darkgreen;
-    text-align: right;
+    text-align: left;
     word-wrap: break-word;
     word-break: break-all;
     display: flex;
+    border: 0px;
+    padding-left: 1px;
 }
 .datenfeld label{
     word-wrap:normal;
@@ -321,9 +389,9 @@ input{
 .datenheader{
     font-weight: bold;
     max-width: 150px;
-    
     word-wrap: break-word;
 }
+
 #objektfenster img{
     max-height: 200px;
     height: 100%;
@@ -338,16 +406,19 @@ input{
 /*Actionwindow*/
 
 .actionwindow form{
+    border: 1px solid darkgreen;
+    padding: 5px;
+    width: 92%;
     display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 3px;
+    grid-template-columns: 40% 60%;
+    grid-gap: 4px;
     font-size: small;
-    max-width: 400px;
+    max-width: 500px;
 }
 .actionwindow form input{
     white-space: normal;
-    word-wrap:break-word;
-    width: 100%;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 .numinput{
     max-width: 50px;
@@ -360,7 +431,6 @@ input{
 .input :only-of-type select{
     max-height: 15px;
 }
-
 
 /*Responsive*/
 @media only screen and (max-width: 400px) {
