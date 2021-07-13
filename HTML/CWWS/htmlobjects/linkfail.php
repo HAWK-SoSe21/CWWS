@@ -1,3 +1,4 @@
+<!-- Autoren: Max Recke -->
 <?php 
     $_SESSION["status"]="Rücksetzlink ungültig";
 ?>

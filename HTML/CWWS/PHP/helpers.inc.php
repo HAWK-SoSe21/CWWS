@@ -1,5 +1,5 @@
 <?php
-
+//Autoren: PHP-Team
     $dbName   = 'db_cwws';
     $host     = 'localhost';
     $userName = 'root';

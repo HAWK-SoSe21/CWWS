@@ -1,3 +1,4 @@
+<!-- Max Recke -->
 <h3>Artikel einlagern/entnehmen</h3>
 
 <form action="<?= WEBROOT?><?= UV ?>PHP/sub_artikelanlegen.inc.php" method="post" enctype="multipart/form-data">

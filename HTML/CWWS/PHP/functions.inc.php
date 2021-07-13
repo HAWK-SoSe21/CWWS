@@ -1,5 +1,5 @@
 <?php
-
+//Autoren: Max Recke, PHP-Team
 use function PHPSTORM_META\sql_injection_subst;
 
 function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){

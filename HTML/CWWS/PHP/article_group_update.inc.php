@@ -1,5 +1,5 @@
 <?php
-
+//Autoren: PHP-Team
 include_once '../phpheader.php';
 $authenticatedUserId = $GLOBALS["user"];
 

@@ -1,3 +1,4 @@
+<!-- Max Recke -->
 <h3>Artikel anlegen</h3>
     <form action="<?= WEBROOT?><?= UV ?>PHP/artikelanlegen.inc.php" method="post" enctype="multipart/form-data">
 

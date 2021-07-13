@@ -1,5 +1,5 @@
 <?php
-
+//Autoren: Max Recke, PHP-Team
 include_once '../phpheader.php';
 
 try{

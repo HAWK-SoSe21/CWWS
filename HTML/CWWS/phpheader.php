@@ -1,4 +1,5 @@
 <?php
+//Autoren: Frank Guane Bi, PHP-Team
 define("WEBROOT", 'http://localhost/');
 define("UV", '/CWWS/');//Unterverzeichnis wenn nicht direkt im htdocs-Ordner
 define("UPLOADS_ROOT", WEBROOT . UV);

@@ -1,3 +1,4 @@
+<!-- Autoren: Nick Heinemann, Max Recke -->
 <h3>Objektfenster</h3>
 <div id="objektfenster" class="mainbox">
     <!-- Lagerplatz -->

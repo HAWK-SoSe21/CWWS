@@ -1,3 +1,4 @@
+<!-- Autoren: Nick Heinemann -->
 <h3>Möbel anlegen</h3>
     <form action="<?= WEBROOT?><?= UV ?>PHP/sublagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">
         <!-- Properties -->

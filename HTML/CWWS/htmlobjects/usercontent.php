@@ -1,3 +1,4 @@
+<!-- Autoren: Max Recke, Daniel Weber -->
 <div class="usercontent">
     <?php if(isset($_SESSION['userid'])):?>
         

@@ -1,4 +1,5 @@
 <?php
+//Autoren: Max Recke
     include_once '../phpheader.php';
 
     if(isset($_POST['submit']) ) {
@@ -19,10 +20,8 @@
                 exit();
             } 
             else {
-                //Überprüfe, ob der User schon einen Passwortcode hat oder ob dieser abgelaufen ist 
+                
                 $passwordcode = $user->User_password;
-                #$statement = $pdo->prepare("UPDATE users SET passwortcode = :passwortcode, passwortcode_time = NOW() WHERE id = :userid");
-                #$result = $statement->execute(array('passwortcode' => sha1($passwortcode), 'userid' => $user['id']));
                 
                 $empfaenger = $user->User_email;
                 $betreff = "CWWS-Account zurücksetzen"; 
