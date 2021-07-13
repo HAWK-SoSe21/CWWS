@@ -142,6 +142,9 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
     }
 
     function getarticlesinmobilesubstorage($mobilesubstorage){
+        if(is_null($mobilesubstorage->Articel_Articel_id)){
+            return null;
+        }
         $sql = "SELECT *, properties.Properties_name as articel_name, properties.Properties_description as articel_description  FROM articel, properties WHERE articel.Properties_Properties_id = properties.Properties_id AND articel.Articel_id = {$mobilesubstorage->Articel_Articel_id}";
         $articles = getDatas($sql);
         return $articles;
@@ -158,11 +161,12 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
                             order.order_rotateable as Articel_rotateable,
                             (SELECT User_name FROM user WHERE User_id = (SELECT user_User_id FROM articel WHERE Articel_id = {$id})) as Articel_user_name,
                             (SELECT Aliase_1 FROM aliase WHERE Articel_Articel_id = {$id}) as Articel_alias,
-                            (SELECT SUM(Subarticel_quantity) as Subarticel_quantity FROM subarticel WHERE Articel_Articel_id = articel.Articel_id) as Articel_quantity,
+                            (SELECT SUM(Subarticel_quantity) as Subarticel_quantity FROM subarticel WHERE Articel_Articel_id = {$id}) as Articel_quantity,
                             usage_statistics.Usage_statistics_number_of_accesses as Articel_number_of_accesses,
                             usage_statistics.Usage_statistics_last_modified as Articel_last_modified
                     FROM    articel, 
                             properties,
+                            subarticel,
                             `order`, 
                             format,
                             usage_statistics
@@ -242,6 +246,12 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
         return $Storages;
     }
 
+    function getmobilesubstoragesbyid($id){
+        $sql = "SELECT *, properties.Properties_name as Substorage_mobile_name, properties.Properties_description as Substorage_mobile_description  FROM substorage_yard_mobile, properties WHERE substorage_yard_mobile.Properties_Properties_id = properties.Properties_id AND substorage_yard_mobile.Substorage_mobile_id = {$id}";
+        $Storages = getDatas($sql);
+        return $Storages;
+    }
+
     function getfixedsubstorages(){
         $sql = "SELECT *, properties.Properties_name as Substorage_fixed_name, properties.Properties_description as Substorage_fixed_description  FROM substorage_yard_fixed, properties WHERE substorage_yard_fixed.Properties_Properties_id = properties.Properties_id;";
         $Storages = getDatas($sql);
@@ -287,7 +297,11 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
         return $user;
     }
 
-    
+    function getsubarticlesofarticle($id){
+        $sql = "SELECT * FROM subarticel WHERE Articel_Articel_id = {$id}";
+        $subarticles = getDatas($sql);
+        return $subarticles;
+    }
 
 
 ?>

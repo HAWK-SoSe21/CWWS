@@ -90,7 +90,7 @@ h3{
     color: black;
 }
 
-.header .active,.footer .active,.sidebar .active,.explorer .active li,.login-form .active{
+.header .active,.footer .active,.sidebar .active,.login-form .active{
     border-bottom: 1px solid darkgreen ;
     color:darkgreen;
 }
@@ -100,7 +100,7 @@ h3{
     border-bottom: 1px solid black;
 }
 
-.header .active a,.footer .active a,.sidebar .active a,.explorer .active a{
+.header .active a,.footer .active a,.sidebar .active a{
     color:darkgreen;
 }
 
@@ -342,6 +342,18 @@ h3{
     color: darkgreen;
     border-bottom: 1px solid green;
 }
+.explorer li.active{
+    background-color: gray;
+    border-radius: 15px;
+}
+.explorer li a.active{
+    color: darkgreen;
+    border-bottom: 1px solid green;
+}
+.tab0 {
+    display: inline-block;
+    margin-left: 0px;
+}
 
 .tab1 {
     display: inline-block;
@@ -359,11 +371,31 @@ h3{
     display: inline-block;
     margin-left: 20px;
 }
+.tab5 {
+    display: inline-block;
+    margin-left: 25px;
+}
 .explorer h3{
     margin-bottom: 0px;
     font-size: medium;
     word-break:normal;
     background-color: darkgreen;
+}
+.explorerwrap{
+    display: grid;
+    grid-template-columns: fit-content(25px) 20px auto;
+}
+.explorerbutton{
+    background-color: #3e8e41;
+}
+.explorerbutton.active{
+    background-color:red;
+}
+div.subthing{
+    display: none;
+}
+div.subthing.active{
+    display: block !important; 
 }
 
 

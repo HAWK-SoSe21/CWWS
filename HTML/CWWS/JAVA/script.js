@@ -77,11 +77,22 @@ function openfunction(evt, funktion) {
 }
 
 //Explorerbuttons
-function togglesubelements() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
+function togglesubelements(sender, funktion) {
+  var button,subelement;
+  button = sender.currentTarget;
+  subelement = document.getElementById(funktion);
+  if(subelement.classList.contains("active")){
+    subelement.className=subelement.className.replace(" active", "");
+  }
+  else{
+    subelement.className += " active";
+  }
+  if(button.classList.contains("active")){
+    button.className=button.className.replace(" active", "");
+    button.innerHTML = ">";
+  }
+  else{
+    button.className += " active";
+    button.innerHTML = "<";
   }
 }

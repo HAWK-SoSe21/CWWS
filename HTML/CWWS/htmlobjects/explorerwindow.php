@@ -37,71 +37,117 @@
         <?php $Storages = getstorages();?>
 
         <?php if(!$Storages):?>
-            <br>
+            
             <p>keine Lagerplätze gefunden</p>
 
         <?php  else:?>
-            <br>
+            
             <?php foreach ($Storages as $Storage): ?>
+                <br>
+                <div class="explorerwrap">
+                    <span class="tab0"></span>
+                    <button class="explorerbutton" onclick="togglesubelements(event, 'storage<?=$Storage->Storage_id?>')">></button>
+                    <li><a href="?storageid=<?=str_pad($Storage->Storage_id, 4, 0, STR_PAD_LEFT)?>"><?= $Storage->Storage_name ?></a></li>
+                </div>
 
-                <li><a href="?storageid=<?=str_pad($Storage->Storage_id, 4, 0, STR_PAD_LEFT)?>"><?= $Storage->Storage_name ?></a></li>
                 <?php $Substorages = getsubstoragesinstorage($Storage);?>
-                <?php if(!$Substorages):?>
-                    <br>
-                    <p>keine Sublagerplätze gefunden</p>
-                <?php else:?>
-                    
-                    <?php foreach ($Substorages as $Substorage):?>
-
-                        <li><span class="tab1"></span><a href="?substorageid=<?=str_pad($Substorage->Substorage_id, 4, 0, STR_PAD_LEFT)?>"><?= $Substorage->Substorage_name?></a></li>
-                        <?php $fixedSubstorages = getfixedubstoragesinsubstorage($Substorage);?>
-
-                        <?php if(!$fixedSubstorages):?>
-                            <br>
-                            <p>keine festen Sublagerplätze gefunden</p>
-
-                        <?php else:?>
+                <div id="storage<?=$Storage->Storage_id?>" class="subthing">
+                    <?php if(!$Substorages):?>
+                        
+                        <p><span class="tab1"></span>leer</p>
+                    <?php else:?>
+                        
+                        <?php foreach ($Substorages as $Substorage):?>
                             
-                            <?php foreach($fixedSubstorages as $fixedSubstorage):?>
-
-                                <li ><span class="tab2"></span><a href="?substoragefixedid=<?=str_pad($fixedSubstorage->Substorage_fixed_id, 4, 0, STR_PAD_LEFT)?>"><?= $fixedSubstorage->Substorage_fixed_name?></a></li>
-                                <?php $mobileSubstorages = getmobilesubstoragesinfixedsubstorage($fixedSubstorage);?>
-
-                                <?php if(!$mobileSubstorages):?>
-                                    <br>
-                                    <p>keine beweglichen Sublagerplätze gefunden</p>
+                            <div class="explorerwrap">
+                                <span class="tab1"></span>
+                                <button class="explorerbutton" onclick="togglesubelements(event, 'Substorage<?=$Substorage->Substorage_id?>')">></button>
+                                <li><a href="?substorageid=<?=str_pad($Substorage->Substorage_id, 4, 0, STR_PAD_LEFT)?>"><?= $Substorage->Substorage_name?></a></li>
+                            </div>
+                            
+                            <?php $fixedSubstorages = getfixedubstoragesinsubstorage($Substorage);?>
+                            <div id="Substorage<?=$Substorage->Substorage_id?>" class="subthing">
+                                <?php if(!$fixedSubstorages):?>
+                                    
+                                    <p><span class="tab2"></span>leer</p>
 
                                 <?php else:?>
                                     
-                                    <?php foreach ($mobileSubstorages as $mobileSubstorage):?>
+                                    <?php foreach($fixedSubstorages as $fixedSubstorage):?>
 
-                                        <li ><span class="tab3"></span><a href="?substoragemobileid=<?=str_pad($mobileSubstorage->Substorage_mobile_id, 4, 0, STR_PAD_LEFT)?>"><?= $mobileSubstorage->Substorage_mobile_name?></a></li>
-                                        <?php $articles = getarticlesinmobilesubstorage($mobileSubstorage);?>
-
-                                        <?php if(!$articles):?>
-                                            <br>
-                                            <p>keine Artikel gefunden!</p>
-
-                                        <?php else:?>
-                                            
-                                            <?php foreach ($articles as $article): ?>
-
-                                                <li><span class="tab4"></span><a href="?articleid=<?=str_pad($article->Articel_id, 4, 0, STR_PAD_LEFT)?>"><?= $article->articel_name?></a></li>
+                                        <div class="explorerwrap">
+                                            <span class="tab2"></span>
+                                            <button class="explorerbutton" onclick="togglesubelements(event, 'fixedSubstorage<?=$fixedSubstorage->Substorage_fixed_id ?>')">></button>
+                                            <li ><a href="?substoragefixedid=<?=str_pad($fixedSubstorage->Substorage_fixed_id, 4, 0, STR_PAD_LEFT)?>"><?= $fixedSubstorage->Substorage_fixed_name?></a></li>
+                                        </div>
+                                        
+                                        <?php $mobileSubstorages = getmobilesubstoragesinfixedsubstorage($fixedSubstorage);?>
+                                        
+                                        <div id="fixedSubstorage<?=$fixedSubstorage->Substorage_fixed_id ?>" class="subthing">
+                                            <?php if(!$mobileSubstorages):?>
                                                 
-                            
-                                            <?php endforeach;?>
+                                                <p><span class="tab3"></span>leer</p>
 
-                                        <?php endif;?>
+                                            <?php else:?>
+                                                
+                                                <?php foreach ($mobileSubstorages as $mobileSubstorage):?>
+
+                                                    <div class="explorerwrap">
+                                                        <span class="tab3"></span>
+                                                        <button class="explorerbutton" onclick="togglesubelements(event, 'mobileSubstorage<?=$mobileSubstorage->Substorage_mobile_id ?>')">></button>
+                                                        <li><a href="?substoragemobileid=<?=str_pad($mobileSubstorage->Substorage_mobile_id, 4, 0, STR_PAD_LEFT)?>"><?= $mobileSubstorage->Substorage_mobile_name?></a></li>
+                                                    </div>
+                                                    
+                                                    <?php $articles = getarticlesinmobilesubstorage($mobileSubstorage);?>
+                                                    <div id="mobileSubstorage<?=$mobileSubstorage->Substorage_mobile_id ?>" class="subthing">
+                                                        <?php if(!$articles):?>
+                                                            
+                                                            <p><span class="tab4"></span>leer</p>
+
+                                                        <?php else:?>
+                                                            
+                                                            <?php foreach ($articles as $article): ?>
+
+                                                                <div class="explorerwrap">
+                                                                    <span class="tab4"></span>
+                                                                    <button class="explorerbutton" onclick="togglesubelements(event, 'articel<?=$article->Articel_id?>')">></button>
+                                                                    <li><a href="?articleid=<?=str_pad($article->Articel_id, 4, 0, STR_PAD_LEFT)?>"><?= $article->articel_name?></a></li>
+                                                                </div>
+                                                            
+                                                                <?php $subarticles = getsubarticlesofarticle($article->Articel_id);?>
+                                                                <div id="articel<?=$article->Articel_id ?>" class="subthing">
+                                                                    <?php if(!$subarticles):?>
+                                                                        
+                                                                        <p><span class="tab5"></span>leer</p>
+
+                                                                    <?php else:?>
+                                                                        
+                                                                        <?php foreach ($subarticles as $subarticle): ?>
+                                                                            <?php if($subarticle->Subarticel_quantity>0):?>
+                                                                                <p><span class="tab5"></span><?=$subarticle->Subarticel_quantity?></p>
+                                                                            <?php else:?>
+                                                                                <p><span class="tab5"></span>leer</p>
+                                                                            <?php endif?>
+                                                                        <?php endforeach;?>
+                                                                        
+                                                                    <?php endif;?>
+                                                                </div>
+                                            
+                                                            <?php endforeach;?>
+                                                            
+                                                        <?php endif;?>
+                                                    </div>
+                                                <?php endforeach;?>              
+                                            <?php endif;?>
+                                        </div>
                                     <?php endforeach;?>
-
+                                                        
                                 <?php endif;?>
-                            <?php endforeach;?>
-
-                        <?php endif;?>
-                    <?php endforeach;?>
-
-                <?php endif;?>
-
+                            </div> 
+                        <?php endforeach;?>
+                                                    
+                    <?php endif;?>
+                </div>                                                
             <?php endforeach;?>
 
         <?php endif;?>
@@ -122,7 +168,7 @@
             <br>
             <?php foreach ($articles as $article): ?>
 
-                <li><span class="tab3"></span><a href="?articleid=<?=str_pad($article->Articel_id, 4, 0, STR_PAD_LEFT)?>"><?= $article->articel_name?></a></li>
+                <li><a href="?articleid=<?=str_pad($article->Articel_id, 4, 0, STR_PAD_LEFT)?>"><?= $article->articel_name?></a></li>
 
             <?php endforeach;?>
 
@@ -144,7 +190,7 @@
             <br>
             <?php foreach ($articlegroups as $articlegroup): ?>
 
-                <li><span></span><a href="?articlegroupid=<?=str_pad($articlegroup->Articel_group_id, 4, 0, STR_PAD_LEFT)?>"><?= $articlegroup->Articel_group_name?></a></li>
+                <li><a href="?articlegroupid=<?=str_pad($articlegroup->Articel_group_id, 4, 0, STR_PAD_LEFT)?>"><?= $articlegroup->Articel_group_name?></a></li>
 
             <?php endforeach;?>
 

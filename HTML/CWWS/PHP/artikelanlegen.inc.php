@@ -75,6 +75,14 @@ try{
                 $aliasid = setData($sql_aliase);
             }
 
+            $sql = "INSERT INTO `subarticel`(`Subarticel_quantity`, `Articel_Articel_id`) VALUES ('".'0'. "', '".$status. "')";
+            $subarticle_id = setData($sql);
+            if(!$subarticle_id){
+                $_SESSION["status"]="Artikel {$article->Articel_name} wurde angelegt aber Subartikel anlegen fehlgeschlagen";
+                header('location: ../index.php?error=0');
+                exit();
+            }
+
             $_SESSION["status"]="Artikel {$article->Articel_name} wurde angelegt";
             header('location: ../index.php?error=0');
         }
