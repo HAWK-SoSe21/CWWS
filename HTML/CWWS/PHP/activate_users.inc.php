@@ -1,4 +1,5 @@
 <?php
+//Autoren: PHP-Team
 include_once '../phpheader.php';
 if(isset($_GET['user_id'])) {
     $sql = "UPDATE user SET is_active = 1 WHERE User_id = '". $_GET['user_id']."'";

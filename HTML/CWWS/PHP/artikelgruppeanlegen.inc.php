@@ -1,4 +1,5 @@
 <?php
+//Autoren: Max Recke, PHP-Team
 try{
     include_once '../phpheader.php';
     if(isset($_POST['submit'])) {

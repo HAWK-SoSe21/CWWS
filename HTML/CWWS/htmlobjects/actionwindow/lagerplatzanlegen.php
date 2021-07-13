@@ -1,3 +1,4 @@
+<!-- Autoren: Nick Heinemann -->
 <h3>Raum anlegen</h3>
 
     <form action="<?= WEBROOT?><?= UV ?>PHP/lagerplatzanlegen.inc.php" method="post" enctype="multipart/form-data">

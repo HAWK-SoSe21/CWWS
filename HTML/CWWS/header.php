@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>	
-<html>
+<html><!-- Autoren: Frnak Guane Bi, Daniel Weber -->
     <head>
         <meta charset="utf-8" />
         <title>CWWS</title>

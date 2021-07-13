@@ -1,3 +1,7 @@
+
+//Autoren: Daniel Weber, Max Recke
+
+
 //active navigation
   const currentLocation = location.href;
   const menuItem= document.querySelectorAll('a');

@@ -1,3 +1,4 @@
+<!-- Franck Guane Bi -->
 <h3>Artikelgruppe anlegen</h3>
     <form action="<?= WEBROOT?><?= UV ?>PHP/artikelgruppeanlegen.inc.php" method="post" enctype="multipart/form-data">
 

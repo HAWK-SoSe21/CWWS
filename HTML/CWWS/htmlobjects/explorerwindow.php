@@ -1,4 +1,4 @@
-<!-- Max Recke -->
+<!-- Max Recke, Frank Guane Bi -->
 <div id="explorer" class="explorer">
     
     

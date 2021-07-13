@@ -1,3 +1,4 @@
+<!-- Autoren: Daniel Weber, Max Recke -->
 <?php if(isset($_SESSION['userid'])):?>
 
 

@@ -1,4 +1,5 @@
 <?php
+//Autoren: PHP-Team
     include_once '../phpheader.php';
 if(isset($_POST['submit'])) {
     $sql_props = "INSERT INTO `properties`(`Properties_name`) VALUES ('". $_POST['article_group_name'] ."');";

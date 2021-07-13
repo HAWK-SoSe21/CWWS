@@ -1,3 +1,4 @@
+<!-- Autoren: Nick Heinemann -->
 <h3>festen Sublagerlatz anlegen</h3>
     <form action="<?= WEBROOT?><?= UV ?>PHP/sub_storage_fixed_save.inc.php" method="post" enctype="multipart/form-data">
 

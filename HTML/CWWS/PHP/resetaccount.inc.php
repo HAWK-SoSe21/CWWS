@@ -1,5 +1,5 @@
 <?php
-#Autor: Max Recke
+#Autoren: Max Recke
 include_once '../phpheader.php';
 
 

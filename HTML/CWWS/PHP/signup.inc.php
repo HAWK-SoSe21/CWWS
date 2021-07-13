@@ -1,4 +1,5 @@
 <?php
+//Autoren:Max Recke, PHP-Team
     if(isset($_POST["submit"])){
         try{
             $name = $_POST["name"];
