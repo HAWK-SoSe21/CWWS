@@ -17,8 +17,6 @@
 
         <button id="idsidebarbutton" class="sidebarbutton" onclick="togglesidebar()">></button>
 
-
-
         <div class="content">
 
 
@@ -28,16 +26,11 @@
 
             </div>
 
-
-
             <div id="objekte" class="mainbox">  
 
                 <?php include_once ROOT.'/htmlobjects/objectwindow.php'?>
 
             </div>
-
-
-
 
             <div id="funktionen" class="mainbox">
 
@@ -45,8 +38,13 @@
 
             </div>
 
-
         </div>
+
+        <?php if(isset($_GET["error"])):?>
+            <br>
+            <br>
+            <?php include_once ROOT."/PHP/status.inc.php"; ?> 
+        <?php endif?>
     </div>
 
 

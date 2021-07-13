@@ -61,3 +61,38 @@ function togglesidebar(){
     btn.innerHTML="<";
   }
 }
+
+function openfunction(evt, funktion) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("actionwindow");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("actiontablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(funktion).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+//Explorerbuttons
+function togglesubelements(sender, funktion) {
+  var button,subelement;
+  button = sender.currentTarget;
+  subelement = document.getElementById(funktion);
+  if(subelement.classList.contains("active")){
+    subelement.className=subelement.className.replace(" active", "");
+  }
+  else{
+    subelement.className += " active";
+  }
+  if(button.classList.contains("active")){
+    button.className=button.className.replace(" active", "");
+    button.innerHTML = ">";
+  }
+  else{
+    button.className += " active";
+    button.innerHTML = "<";
+  }
+}

@@ -2,6 +2,8 @@
 
     <div class="main">
         <div class="mainbox">
+
+            <h3>Registrierung</h3>
             <section class="signup-form">
 
                 <form action="<?php ROOT ?>../PHP/signup.inc.php" method="post">
@@ -11,31 +13,7 @@
                     <input type="password" name="pwdrepeat" placeholder="Passwort wiederholen...">
                     <button type="submit"name="submit">Registrieren</button>
                 </form>
-                <?php
-                if(isset($_GET["error"])){
-                    if($_GET["error"]=="emptyinput"){
-                        echo"<p>Ein Feld wurde ausgelassen!</p>";
-                    }
-                    else if($_GET["error"]=="invaliduid"){
-                        echo"<p>Nutzername nicht möglich!</p>";
-                    }
-                    else if($_GET["error"]=="invalidemail"){
-                        echo"<p>Nutze eine valide E-Mailadresse!</p>";
-                    }
-                    else if($_GET["error"]=="passwordsdontmatch"){
-                        echo"<p>Passwörter stimmen nicht überein!</p>";
-                    }
-                    else if($_GET["error"]=="usernametaken"){
-                        echo"<p>Nutzername schon belegt!</p>";
-                    }
-                    else if($_GET["error"]=="stmtfailed"){
-                        echo"<p>Da ist etwas schief gelaufen!</p>";
-                    }
-                    else if($_GET["error"]=="none"){
-                        echo"<p>Signup erfolgreich.</p>";
-                    }
-                }
-                ?>
+                <?php include_once ROOT."/PHP/status.inc.php"?>
             </section>
         </div>
     </div>
