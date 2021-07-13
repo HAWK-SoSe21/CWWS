@@ -204,8 +204,8 @@
                 <?php endforeach; ?>
             </select>
 
-            <label class="datenheader"  for="Articel_rotatable">drehbar:</label>
-            <input class="datenfeld" type="checkbox" name="Articel_rotatable" value="<? $object->Articel_rotatable?>" <?php if($object->Articel_rotateable=='1'){echo "checked";}?>>
+            <label class="datenheader"  for="Articel_rotateable">drehbar:</label>
+            <input class="datenfeld" type="checkbox" name="Articel_rotateable" value="<? $object->Articel_rotateable?>" <?php if($object->Articel_rotateable=='1'){echo "checked";}?>>
 
             <label class="datenheader"  for="Articel_stackable">stabelbar:</label>
             <input class="datenfeld" type="checkbox" name="Articel_stackable" value="<?= $object->Articel_stackable?>" <?php if($object->Articel_stackable=='1'){echo "checked";}?>>
@@ -224,51 +224,91 @@
         </form>
 
     
-    <?php elseif(isset($_GET['substoragemobileid'])): ?>
+   <!-- Substorage_mobile -->
+   <?php elseif(isset($_GET['substoragemobileid'])): ?>
+        <?php
+            $sql = "SELECT *,
+                            properties.Properties_name as Substorage_mobile_name,
+                            properties.Properties_description as Substorage_mobile_description,
+                            format.Format_height as Format_height,
+                            format.Format_width as Format_width,
+                            format.Format_length as Format_length,
+                            order.order_stackable as order_stackable,
+                            order.order_rotateable as order_rotateable
+                    FROM    substorage_yard_mobile,
+                            properties,
+                            format,
+                            `order`
+                    WHERE   substorage_yard_mobile.Properties_Properties_id = properties.Properties_id
+                    AND     format.Format_id = substorage_yard_mobile.Format_Format_id
+                    AND     order.order_id = substorage_yard_mobile.order_order_id
+                    AND     Substorage_mobile_id = '" . $_GET['substoragemobileid'] . "'";
+            $object = getData($sql);
 
+        ?>
         <form action="<?= WEBROOT?><?= UV ?>PHP/sub_storage_mobile_update.inc.php" method="post" enctype="multipart/form-data">
-        <input class="datenfeld" id="Substorage_mobile_id" type="hidden" name="Substorage_mobile_id" value="<?=$object->Substorage_mobile_id?>">
-        
-        <label class="datenheader" for="Substorage_mobile_name">Name:</label>
-        <input class="datenfeld" id="Substorage_mobile_name" type="text" name="Substorage_mobile_name" value="<?=$object->Substorage_name?>">
-        
-        <label class="datenheader" for="Substorage_mobile_description">Beschreibung:</label>
-        <input class="datenfeld" id="Substorage_mobile_description" type="text" name="Substorage_mobile_description"<?=$object->Substorage_description?>>
+            <input class="datenfeld" id="Substorage_mobile_id" type="hidden" name="Substorage_mobile_id" value="<?=$object->Substorage_mobile_id?>">
+            
+            <label class="datenheader" for="Substorage_mobile_name">Name:</label>
+            <input class="datenfeld" id="Substorage_mobile_name" type="text" name="Substorage_mobile_name" value="<?=$object->Substorage_mobile_name?>">
+            
+            <label class="datenheader" for="Substorage_mobile_description">Beschreibung:</label>
+            <input class="datenfeld" id="Substorage_mobile_description" type="text" name="Substorage_mobile_description" value=<?=$object->Substorage_mobile_description?>>
 
-        <label class="datenheader" for="Substorage_mobile_category">Kategorie:</label>
-        <select class="datenfeld" name="Substorage_mobile_category" id="Substorage_mobile_category">
-            <option  <?= $object->Substorage_mobile_category == "Räume" ? "selected" : "" ?> value="Räume">Fach</option>
-            <option <?= $object->Substorage_mobile_category == "Schränke" ? "selected" : "" ?> value="Schränke">Schublade</option>
-        </select>
-
-        <label class="datenheader" for="Format_length">Länge:</label>
-        <input class="datenfeld" id="Format_length" type="number" step="0.01" min="0" name="Format_length" value="<?=$object->Format_length?>">
-        
-        <label class="datenheader" for="Format_width">Breite:</label>
-        <input class="datenfeld" id="Format_width" type="number" step="0.01" min="0" name="Format_width" value="<?=$object->Format_width?>">
-        
-        <label class="datenheader" for="Format_height">Höhe:</label>
-        <input class="datenfeld" id="Format_height" type="number" step="0.01" min="0" name="Format_height" value="<?=$object->Format_height?>">
-
-        <label class="datenheader" for="Substorage_yard_Substorage_id">Möbelzugehörigkeit:</label>
-            <select class="datenfeld" class="" name="Substorage_yard_Substorage_id" id="Substorage_yard_Substorage_id">
-                <?php foreach (getsubstoragesfixed() as $key => $substorage): ?>
-                    <option <?= $substorage->Substorage_fixed_id == $object->Substorage_yard_fixed_Substorage_fixed_id ? 'selected' : '' ?> value="<?= $substorage->Substorage_fixed_id ?>"><?= $substorage->Substorage_name ?></option>
-                <?php endforeach; ?>
+            <label class="datenheader" for="Substorage_mobile_category">Kategorie:</label>
+            <select class="datenfeld" name="Substorage_mobile_category" id="Substorage_mobile_category">
+                <option  <?= $object->Substorage_mobile_category == "Karton" ? "selected" : "" ?> value="Karton">Karton</option>
+                <option <?= $object->Substorage_mobile_category == "Kiste" ? "selected" : "" ?> value="Kiste">Kiste</option>
             </select>
 
-        <label class="datenheader" for="Substorage_mobile_picture">Bild:</label>
-        <input class="datenfeld" type="file" name="Substorage_mobile_picture" id="Substorage_fixed_picture">
+            <!-- Format -->
+            <label class="datenheader">Länge: </label>
+                <div class="datenfeld">
+                    <input class="datenfeld" type="text" name="Format_length" value="<?= $object->Format_length ?>"><span> m</span>
+                </div>
+            <label class="datenheader">Breite: </label>
+                <div class="datenfeld">
+                    <input class="datenfeld" type="text" name="Format_width" value="<?= $object->Format_width ?>"><span> m</span>
+                </div>
+            <label class="datenheader" >Höhe: </label>
+                <div class="datenfeld">
+                    <input class="datenfeld" type="text" name="Format_height" value="<?= $object->Format_height ?>"><span> m</span>
+                </div>
 
-        <label class="datenheader" for="Substorage_mobile_cover">Deckel:</label>
-        <input class="datenfeld" id="Substorage_mobile_cover" type="checkbox" name="Substorage_mobile_cover" value="<?=$object->Substorage_mobile_cover?>">
+            <label class="datenheader" for="Substorage_yard_fixed_Substorage_fixed_id">Zugehörigkeit-Fix:</label>
+                <select class="datenfeld" class="" name="Substorage_yard_fixed_Substorage_fixed_id" id="Substorage_yard_fixed_Substorage_fixed_id">
+                    <?php foreach (getsubstoragesfixed() as $key => $substorage): ?>
+                        <option <?= $substorage->Substorage_fixed_id == $object->Substorage_yard_fixed_Substorage_fixed_id ? 'selected' : '' ?> value="<?= $substorage->Substorage_fixed_id ?>"><?= $substorage->Substorage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
+            <label class="datenheader" for="Substorage_yard_mobile_Substorage_mobile_id">Zugehörigkeit-Mobil:</label>
+                <select class="datenfeld" class="" name="Substorage_yard_mobile_Substorage_mobile_id" id="Substorage_yard_mobile_Substorage_mobile_id">
+                    <option value = '0' ></option>    
+                    <?php foreach (getsubstoragesmobile() as $key => $substorage): ?>
+                        <option <?= $substorage->Substorage_mobile_id == $object->Substorage_yard_mobile_Substorage_mobile_id ? 'selected' : '' ?> value="<?= $substorage->Substorage_mobile_id ?>"><?= $substorage->Substorage_name ?></option>
+                    <?php endforeach; ?>
+                </select>
 
-        <label class="datenheadr"></label>
-        <button type="submit" name="submit">bearbeiten</button>
+            <label class="datenheader" for="Substorage_mobile_cover">Deckel:</label>
+            <input class="datenfeld" id="Substorage_mobile_cover" type="checkbox" <?php if($object->Substorage_mobile_cover){echo "checked";} ; ?> name="Substorage_mobile_cover" value=1 >
 
-        <label class="datenheadr"></label>
-        <button type="submit" name="delete">löschen</button>
+            <label class="datenheader" for="order_stackable">Stapelbar:</label>
+            <input class="datenfeld" id="order_stackable" type="checkbox" <?php if($object->order_stackable){echo "checked";} ; ?> name="order_stackable" value=1 >
 
+            <label class="datenheader" for="order_rotateable">Rotierbar:</label>
+            <input class="datenfeld" id="order_rotateable" type="checkbox" <?php if($object->order_rotateable){echo "checked";} ; ?> name="order_rotateable" value=1 >
+
+            <label class="datenheader" for="Substorage_mobile_binding">an Platz gebunden:</label>
+            <input class="datenfeld" id="Substorage_mobile_binding" type="checkbox" <?php if($object->Substorage_mobile_binding){echo "checked";} ; ?> name="Substorage_mobile_binding" value=1 >
+            
+            <label class="datenheader" for="Substorage_mobile_extracted">temp. entnommen:</label>
+            <input class="datenfeld" id="Substorage_mobile_extracted" type="checkbox" <?php if($object->Substorage_mobile_extracted){echo "checked";} ; ?> name="Substorage_mobile_extracted" value=1 >
+
+            <label class="datenheadr"></label>
+            <button type="submit" name="submit">bearbeiten</button>
+
+            <label class="datenheadr"></label>
+            <button type="submit" name="delete">löschen</button>
 
     </form>
     
