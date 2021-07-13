@@ -122,21 +122,29 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
 
     }
 
-
-
     function getsubstoragesinstorage($Storage){
 
-        $sql = "SELECT * FROM substorage_yard WHERE Storage_yard_Storage_id = $Storage->Storage_id;";
+        $sql = "SELECT *, properties.Properties_name as Substorage_name, properties.Properties_description as Substorage_description  FROM substorage_yard, properties WHERE substorage_yard.Properties_Properties_id = properties.Properties_id AND substorage_yard.Storage_yard_Storage_id = {$Storage->Storage_id};";
         $Substorages = getDatas($sql);
         return $Substorages;
     }
 
-    function getsubstoragesinroom($Storage){
-
+    function getfixedubstoragesinsubstorage($substorage){
+        $sql = "SELECT *, properties.Properties_name as Substorage_fixed_name, properties.Properties_description as Substorage_fixed_description  FROM substorage_yard_fixed, properties WHERE substorage_yard_fixed.Properties_Properties_id = properties.Properties_id AND substorage_yard_fixed.Substorage_yard_Substorage_id  = {$substorage->Substorage_id};";
+        $fixedSubstorages = getDatas($sql);
+        return $fixedSubstorages;
     }
 
-    function getfixedubstoragesinsubstorage($substorage){
+    function getmobilesubstoragesinfixedsubstorage($fixedsubstorage){
+        $sql = "SELECT *, properties.Properties_name as Substorage_mobile_name, properties.Properties_description as Substorage_mobile_description  FROM substorage_yard_mobile, properties WHERE substorage_yard_mobile.Properties_Properties_id = properties.Properties_id AND substorage_yard_mobile.Substorage_yard_fixed_Substorage_fixed_id = {$fixedsubstorage->Substorage_fixed_id};";
+        $fixedSubstorages = getDatas($sql);
+        return $fixedSubstorages;
+    }
 
+    function getarticlesinmobilesubstorage($mobilesubstorage){
+        $sql = "SELECT *, properties.Properties_name as articel_name, properties.Properties_description as articel_description  FROM articel, properties WHERE articel.Properties_Properties_id = properties.Properties_id AND articel.Articel_id = {$mobilesubstorage->Articel_Articel_id}";
+        $articles = getDatas($sql);
+        return $articles;
     }
 
     function getarticlebyid($id){
@@ -167,6 +175,8 @@ function emptyInputSignup($uid,$email,$pwd,$pwdrepeat){
         $article = getData($sql);
         return $article;
     }
+
+    
 
     function getsubstorages(){
 

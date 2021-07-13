@@ -75,3 +75,13 @@ function openfunction(evt, funktion) {
   document.getElementById(funktion).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+//Explorerbuttons
+function togglesubelements() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
