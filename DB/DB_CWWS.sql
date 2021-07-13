@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `db_cwws`.`substorage_yard_mobile` (
   `order_order_id` INT NULL DEFAULT NULL,
   `last_modified_last_modified_id` INT(11) NULL,
   `Format_Format_id` INT(11) NOT NULL,
-  `Articel_Articel_id` INT(11) NOT NULL,
+  `Articel_Articel_id` INT(11) NULL,
   `Substorage_yard_fixed_Substorage_fixed_id` INT(11) NOT NULL,
   PRIMARY KEY (`Substorage_mobile_id`),
   UNIQUE INDEX `Substorage_mobile_id_UNIQUE` (`Substorage_mobile_id` ASC) ,
